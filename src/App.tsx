@@ -1,35 +1,23 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import styles from './styles/Index.module.css';
+import styles from './styles/index.module.css';
 
 function App() {
-	const [count, setCount] = useState(0);
-
 	return (
-		<div className={styles.container}>
-			<div className={styles.container}>
-				<a href="https://vitejs.dev" target="_blank">
-					<img src="/vite.svg" className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://reactjs.org" target="_blank">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
-			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
+		<div className="frappe">
+			<header className={styles.header}>
 				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
+					Edit <code>src/App.tsx</code> and save to reload.
 				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
-			<body className="frappe">
-				<div className="bg-base font-bold text-rose-900 ">Hello world!</div>
-			</body>
+				<a
+					className={styles.link}
+					href="https://github.com/solidjs/solid"
+					target="_blank"
+					rel="noopener noreferrer">
+					Learn Solid
+				</a>
+				<h1 className="text-3xl font-bold underline">AH AH</h1>{' '}
+				<h1 className=" text-ctp-pink">Hello world!</h1>
+			</header>
 		</div>
 	);
 }

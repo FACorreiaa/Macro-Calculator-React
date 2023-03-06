@@ -1,14 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	mode: 'jit',
-	content: ['./index.html', './src/**/*.{html,ts,tsx}', './src/*.{ts,tsx}'],
+	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		extend: {},
 	},
 	plugins: [
-		require('@tailwindcss/forms'),
-
 		require('@catppuccin/tailwindcss')({
+			prefix: 'ctp',
 			defaultFlavour: 'frappe',
 		}),
 	],
