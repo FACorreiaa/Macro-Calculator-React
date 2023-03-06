@@ -1,3 +1,7 @@
+body {
+	@apply bg-slate-500;
+}
+
 .container {
 	@apply h-full dark:bg-slate-500 text-emerald-200;
 }
