@@ -1,0 +1,4 @@
+.input_group {
+	@apply flex rounded-full border;
+	position: relative;
+}
