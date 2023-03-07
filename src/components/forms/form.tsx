@@ -1,21 +1,20 @@
+import React from 'react';
 import useZodForm from '../../hooks/useZodForm';
 import { tdeeSchema } from '../../types/tdeeSchema';
 import styles from '../styles/forms.module.css';
 type RegisterPageProps = {
-	name: string;
-	email: string;
-	password: string;
-	cpassword: string;
+	age: number;
+	height: number;
+	weight: number;
 };
 
 function CustomForm() {
 	const methods = useZodForm({
 		schema: tdeeSchema,
 		defaultValues: {
-			name: '',
-			email: '',
-			password: '',
-			cpassword: '',
+			age: 0,
+			height: 0,
+			weight: 0,
 		},
 	});
 
@@ -29,7 +28,7 @@ function CustomForm() {
 	}
 
 	return (
-		<>
+		<React.Fragment>
 			<div className="w-full max-w-xs ">
 				<form
 					className=" shadow-md rounded p-8 mb-4 bg-gray-200 dark:bg-slate-500"
@@ -202,7 +201,7 @@ function CustomForm() {
 			<p className="text-center text-gray-500 text-xs">
 				&copy;2020 Acme Corp. All rights reserved.
 			</p>
-		</>
+		</React.Fragment>
 	);
 }
 

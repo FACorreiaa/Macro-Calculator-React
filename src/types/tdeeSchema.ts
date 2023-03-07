@@ -1,24 +1,19 @@
-import type { TypeOf } from 'zod';
-import { string, z } from 'zod';
+import { number, TypeOf } from 'zod';
+import { z } from 'zod';
 
-export const tdeeSchema = z
-	.object({
-		name: string({ required_error: 'Name is required' }).min(
-			5,
-			'Name must be more than 5 characters'
-		),
-		email: string({ required_error: 'Email is required' }).email(
-			'Invalid email'
-		),
-		//photo: string({ required_error: "Photo is required" }),
-		password: string({ required_error: 'Password is required' })
-			.min(8, 'Password must be more than 8 characters')
-			.max(32, 'Password must be less than 32 characters'),
-		cpassword: string({ required_error: 'Please confirm your password' }),
-	})
-	.refine((data) => data.password === data.cpassword, {
-		path: ['passwordConfirm'],
-		message: 'Passwords do not match',
-	});
+export const tdeeSchema = z.object({
+	age: number({ required_error: 'Age is required' }).min(
+		0,
+		'Age must be bigger than zero'
+	),
+	height: number({ required_error: 'Height is required' }).min(
+		0,
+		'Height must be bigger than zero'
+	),
+	weight: number({ required_error: 'Weight is required' }).min(
+		0,
+		'Weight must be bigger than zero'
+	),
+});
 
 export type TdeeInput = TypeOf<typeof tdeeSchema>;
