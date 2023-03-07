@@ -38,12 +38,16 @@ function CustomForm() {
 					<span className="text-gray-700 text-xxl font-bold mb-2 text-center w-full">
 						Calculate your TDEE
 					</span>
-					<CustomSelect
-						label="Select your metric"
-						id="metrics"
-						options={measureValues}
-						selected
-					/>
+
+					<div className="mb-2">
+						<CustomSelect
+							label="Select your metric"
+							id="metrics"
+							options={measureValues}
+							selected
+						/>
+					</div>
+
 					<div className="mb-2">
 						<label className="block text-gray-200 dark:text-gray-900 text-sm font-bold mb-2">
 							Age

@@ -1,3 +1,5 @@
+import React from 'react';
+
 type CustomSelectProps = {
 	label: string;
 	id: string;
@@ -6,7 +8,7 @@ type CustomSelectProps = {
 };
 function CustomSelect({ label, id, selected, options }: CustomSelectProps) {
 	return (
-		<div className="mb-2">
+		<React.Fragment>
 			<label className="block text-gray-200 dark:text-gray-900 text-sm font-bold mb-2">
 				{label}
 			</label>
@@ -27,7 +29,7 @@ function CustomSelect({ label, id, selected, options }: CustomSelectProps) {
 					</svg>
 				</div>
 			</div>
-		</div>
+		</React.Fragment>
 	);
 }
 
