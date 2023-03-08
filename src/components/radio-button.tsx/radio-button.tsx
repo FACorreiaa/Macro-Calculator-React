@@ -3,15 +3,12 @@ import React from 'react';
 type CustomCustomRadioButtonProps = {
 	label: string;
 	disabled?: boolean;
-	defaultChecked: boolean;
 	id: string;
 	value: string;
 	name?: string;
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 function CustomRadioButton({
-	disabled,
-	defaultChecked,
 	id,
 	value,
 	name,
@@ -22,7 +19,6 @@ function CustomRadioButton({
 		<div className="mb-1 flex items-center">
 			<input
 				onChange={onChange}
-				defaultChecked
 				id={id}
 				type="radio"
 				value={value}

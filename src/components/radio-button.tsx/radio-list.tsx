@@ -42,7 +42,6 @@ const CustomRadioList = ({ label, options, onChange, title }: IInputGroup) => {
 					id={optionId}
 					name={name}
 					disabled={disabled}
-					defaultChecked={index === 0}
 					onChange={onChange}
 				/>
 			);
