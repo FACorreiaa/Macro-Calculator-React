@@ -21,7 +21,7 @@ function CustomTdeeForm({
 	onRadioListChange,
 	onSumitRegisterValues,
 }: CustomTdeeFormProps) {
-	const methods = useZodForm({
+	const { control, handleSubmit, register, formState } = useZodForm({
 		schema: tdeeSchema,
 		defaultValues: {
 			age: '',
@@ -37,14 +37,14 @@ function CustomTdeeForm({
 		<React.Fragment>
 			<form
 				className="shadow-lg rounded-xl p-8 mb-4 bg-gray-200 dark:bg-slate-500"
-				onSubmit={methods.handleSubmit(onSumitRegisterValues)}>
+				onSubmit={handleSubmit(onSumitRegisterValues)}>
 				<CustomFormTitle title="Calculate your TDEE" />
 				<CustomSelect
 					label="Select your metric"
 					id="metrics"
 					options={measureValues}
 					selected
-					methods={methods.register('metric')}
+					methods={register('metric')}
 				/>
 
 				<CustomInput
@@ -52,24 +52,24 @@ function CustomTdeeForm({
 					id="age"
 					type="number"
 					placeholder="Insert your age"
-					methods={methods.register('age')}
-					errorMessage={methods.formState.errors.age?.message}
+					methods={register('age')}
+					errorMessage={formState.errors.age?.message}
 				/>
 				<CustomInput
 					label="Weight"
 					id="weight"
 					type="number"
 					placeholder="Insert your weight"
-					methods={methods.register('weight')}
-					errorMessage={methods.formState.errors.weight?.message}
+					methods={register('weight')}
+					errorMessage={formState.errors.weight?.message}
 				/>
 				<CustomInput
 					label="Height"
 					id="height"
 					type="number"
 					placeholder="Insert your height"
-					methods={methods.register('height')}
-					errorMessage={methods.formState.errors.age?.message}
+					methods={register('height')}
+					errorMessage={formState.errors.age?.message}
 				/>
 
 				<CustomSelect
@@ -77,12 +77,14 @@ function CustomTdeeForm({
 					id="gender"
 					options={genderValues}
 					selected
-					methods={methods.register('gender')}
+					methods={register('gender')}
 				/>
 				<CustomRadioList
 					title="Select your daily activity:"
 					options={workoutVolume}
-					onChange={onRadioListChange}
+					name="activity"
+					onChange={() => console.log('this')}
+					methods={register('activity')}
 				/>
 
 				<div className="flex justify-center">

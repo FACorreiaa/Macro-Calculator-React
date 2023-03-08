@@ -1,4 +1,5 @@
 import React from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 import CustomRadioButton from './radio-button';
 import RadioListHeader from './radio-list-header';
 export interface IOption {
@@ -24,11 +25,18 @@ export interface IInputGroup {
 	title: string;
 	label?: string;
 	options: IOption[];
-	hasFullWidth?: boolean;
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	name: string;
+	methods: UseFormRegisterReturn<string>;
 }
 
-const CustomRadioList = ({ options, onChange, title }: IInputGroup) => {
+const CustomRadioList = ({
+	options,
+	onChange,
+	title,
+	name,
+	...methods
+}: IInputGroup) => {
 	function renderOptions() {
 		return options.map(({ label, name, disabled }: IOption) => {
 			const shortenedOptionLabel = label.replace(/\s+/g, '');
@@ -43,6 +51,7 @@ const CustomRadioList = ({ options, onChange, title }: IInputGroup) => {
 					name={name}
 					disabled={disabled}
 					onChange={onChange}
+					{...methods}
 				/>
 			);
 		});
