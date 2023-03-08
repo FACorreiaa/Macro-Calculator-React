@@ -28,9 +28,9 @@ export interface IInputGroup {
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const CustomRadioList = ({ label, options, onChange, title }: IInputGroup) => {
+const CustomRadioList = ({ options, onChange, title }: IInputGroup) => {
 	function renderOptions() {
-		return options.map(({ label, name, disabled }: IOption, index: number) => {
+		return options.map(({ label, name, disabled }: IOption) => {
 			const shortenedOptionLabel = label.replace(/\s+/g, '');
 			const optionId = `radio-option-${shortenedOptionLabel}`;
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 export interface IOption {
 	label: string;
@@ -9,9 +10,9 @@ type CustomSelectProps = {
 	id: string;
 	options: IOption[];
 	selected?: boolean;
-	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+	methods: UseFormRegisterReturn<string>;
 };
-function CustomSelect({ label, id, onChange, options }: CustomSelectProps) {
+function CustomSelect({ label, id, options, methods }: CustomSelectProps) {
 	return (
 		<div className="mb-2">
 			<label className="block text-gray-200 dark:text-gray-900 text-sm font-bold">
@@ -19,12 +20,11 @@ function CustomSelect({ label, id, onChange, options }: CustomSelectProps) {
 			</label>
 			<div className="inline-block relative w-64">
 				<select
-					onChange={onChange}
+					{...methods}
 					id={id}
 					className="dark:text-slate-900 block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
 					{options.map(({ label, value }: IOption) => {
 						let optionId = `select-${value}`;
-						console.log('optionId', optionId);
 						return (
 							<option key={optionId} id={optionId} defaultValue={label[0]}>
 								{label}

@@ -1,54 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import {
+	FieldValues,
+	UseFormRegisterReturn,
+	UseFormReturn,
+} from 'react-hook-form';
 import { genderValues, measureValues, workoutVolume } from '../../data/tdee';
 import useZodForm from '../../hooks/useZodForm';
-import { tdeeSchema } from '../../types/tdeeSchema';
+import { TdeeProperties, tdeeSchema } from '../../types/tdeeSchema';
 import CustomButtom from '../button';
 import CustomInput from '../input';
 import CustomRadioList from '../radio-button.tsx/radio-list';
 import CustomSelect from '../select';
-import styles from '../styles/forms.module.css';
 import CustomFormTitle from './form-title';
-type RegisterPageProps = {
-	age: number;
-	height: number;
-	weight: number;
-};
 
-function CustomTdeeForm() {
+type CustomTdeeFormProps = {
+	onRadioListChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	onSumitRegisterValues: (values: TdeeProperties) => number;
+};
+function CustomTdeeForm({
+	onRadioListChange,
+	onSumitRegisterValues,
+}: CustomTdeeFormProps) {
 	const methods = useZodForm({
 		schema: tdeeSchema,
 		defaultValues: {
-			age: 0,
-			height: 0,
-			weight: 0,
+			age: '',
+			height: '',
+			weight: '',
+			metric: '',
+			gender: '',
+			activity: '',
 		},
 	});
 
-	async function onSumitRegisterValues(values: RegisterPageProps) {
-		// return await mutation.mutate(values, {
-		// 	onSuccess: async () => router.push('http://localhost:5005/login/signin'),
-		// 	onError: async (error) => {
-		// 		console.log(error);
-		// 	},
-		// });
-	}
-
-	const [selectedValue, setSelectedValue] = useState<String>(
-		workoutVolume[0].label
-	);
-
-	function radioGroupHandler(event: React.ChangeEvent<HTMLInputElement>) {
-		setSelectedValue(event.target.value);
-	}
-
-	const onSelectGender = () => {};
-	const onSelectMeric = () => {};
-
-	useEffect(() => {
-		console.log(selectedValue);
-	}, [selectedValue]);
-
-	console.log('selectedValue', selectedValue);
 	return (
 		<React.Fragment>
 			<form
@@ -60,7 +44,7 @@ function CustomTdeeForm() {
 					id="metrics"
 					options={measureValues}
 					selected
-					onChange={onSelectMeric}
+					methods={methods.register('metric')}
 				/>
 
 				<CustomInput
@@ -68,31 +52,37 @@ function CustomTdeeForm() {
 					id="age"
 					type="number"
 					placeholder="Insert your age"
+					methods={methods.register('age')}
+					errorMessage={methods.formState.errors.age?.message}
 				/>
 				<CustomInput
 					label="Weight"
 					id="weight"
 					type="number"
 					placeholder="Insert your weight"
+					methods={methods.register('weight')}
+					errorMessage={methods.formState.errors.weight?.message}
 				/>
 				<CustomInput
 					label="Height"
 					id="height"
 					type="number"
 					placeholder="Insert your height"
+					methods={methods.register('height')}
+					errorMessage={methods.formState.errors.age?.message}
 				/>
 
 				<CustomSelect
-					onChange={onSelectGender}
 					label="Gender"
 					id="gender"
 					options={genderValues}
 					selected
+					methods={methods.register('gender')}
 				/>
 				<CustomRadioList
 					title="Select your daily activity:"
 					options={workoutVolume}
-					onChange={radioGroupHandler}
+					onChange={onRadioListChange}
 				/>
 
 				<div className="flex justify-center">
