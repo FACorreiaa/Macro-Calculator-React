@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { genderValues, measureValues, workoutVolume } from '../../data/tdee';
 import useZodForm from '../../hooks/useZodForm';
 import { tdeeSchema } from '../../types/tdeeSchema';
+import CustomButtom from '../button';
 import CustomInput from '../input';
 import CustomRadioList from '../radio-button.tsx/radio-list';
 import CustomSelect from '../select';
@@ -94,18 +95,8 @@ function CustomTdeeForm() {
 					onChange={radioGroupHandler}
 				/>
 
-				<div className="flex justify-between">
-					<button
-						disabled
-						type="button"
-						className="text-white disabled:bg-slate-300 disabled:cursor-not-allowed	 bg-gray-800 hover:bg-gray-900 disabled:hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 disabled:dark:hover:bg-gray-200 disabled:text-slate-900 font-bold dark:focus:ring-gray-700 dark:border-gray-700">
-						Prev
-					</button>
-					<button
-						type="button"
-						className="text-white disabled:bg-slate-300 disabled:cursor-not-allowed bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-bold rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-						Next
-					</button>
+				<div className="flex justify-center">
+					<CustomButtom type="submit" label="Calculate" />
 				</div>
 			</form>
 		</React.Fragment>
