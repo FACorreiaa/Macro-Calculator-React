@@ -8,8 +8,8 @@ type CustomInputProps = {
 };
 function CustomInput({ label, id, type, placeholder }: CustomInputProps) {
 	return (
-		<React.Fragment>
-			<label className="block text-gray-200 dark:text-gray-900 text-sm font-bold mb-2">
+		<div className="mb-2">
+			<label className="block text-gray-200 dark:text-gray-900 text-sm font-bold">
 				{label}
 			</label>
 			<input
@@ -18,7 +18,7 @@ function CustomInput({ label, id, type, placeholder }: CustomInputProps) {
 				type={type}
 				placeholder={placeholder}
 			/>
-		</React.Fragment>
+		</div>
 	);
 }
 

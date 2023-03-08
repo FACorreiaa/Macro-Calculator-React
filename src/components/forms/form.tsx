@@ -55,50 +55,40 @@ function CustomForm() {
 					className="shadow-lg rounded-xl p-8 mb-4 bg-gray-200 dark:bg-slate-500"
 					onSubmit={methods.handleSubmit(onSumitRegisterValues)}>
 					<CustomFormTitle title="Calculate your TDEE" />
-					<div className="mb-2">
-						<CustomSelect
-							label="Select your metric"
-							id="metrics"
-							options={measureValues}
-							selected
-							onChange={onSelectMeric}
-						/>
-					</div>
+					<CustomSelect
+						label="Select your metric"
+						id="metrics"
+						options={measureValues}
+						selected
+						onChange={onSelectMeric}
+					/>
 
-					<div className="mb-2">
-						<CustomInput
-							label="Age"
-							id="age"
-							type="number"
-							placeholder="Insert your age"
-						/>
-					</div>
-					<div className="mb-2">
-						<CustomInput
-							label="Weight"
-							id="weight"
-							type="number"
-							placeholder="Insert your weight"
-						/>
-					</div>
-					<div className="mb-2">
-						<CustomInput
-							label="Height"
-							id="height"
-							type="number"
-							placeholder="Insert your height"
-						/>
-					</div>
+					<CustomInput
+						label="Age"
+						id="age"
+						type="number"
+						placeholder="Insert your age"
+					/>
+					<CustomInput
+						label="Weight"
+						id="weight"
+						type="number"
+						placeholder="Insert your weight"
+					/>
+					<CustomInput
+						label="Height"
+						id="height"
+						type="number"
+						placeholder="Insert your height"
+					/>
 
-					<div className="mb-2">
-						<CustomSelect
-							onChange={onSelectGender}
-							label="Gender"
-							id="gender"
-							options={genderValues}
-							selected
-						/>
-					</div>
+					<CustomSelect
+						onChange={onSelectGender}
+						label="Gender"
+						id="gender"
+						options={genderValues}
+						selected
+					/>
 					<CustomRadioList
 						title="Select your daily activity:"
 						options={workoutVolume}

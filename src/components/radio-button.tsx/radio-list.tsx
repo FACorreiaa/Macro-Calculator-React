@@ -49,10 +49,10 @@ const CustomRadioList = ({ label, options, onChange, title }: IInputGroup) => {
 		});
 	}
 	return (
-		<React.Fragment>
+		<div className="mb-2">
 			<RadioListHeader title={title} />
 			{renderOptions()}
-		</React.Fragment>
+		</div>
 	);
 };
 export default CustomRadioList;

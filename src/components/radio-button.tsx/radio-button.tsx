@@ -19,7 +19,7 @@ function CustomRadioButton({
 	label,
 }: CustomCustomRadioButtonProps) {
 	return (
-		<div className="flex items-center">
+		<div className="mb-1 flex items-center">
 			<input
 				onChange={onChange}
 				defaultChecked

@@ -2,10 +2,9 @@ import { number, TypeOf } from 'zod';
 import { z } from 'zod';
 
 export const tdeeSchema = z.object({
-	age: number({ required_error: 'Age is required' }).min(
-		0,
-		'Age must be bigger than zero'
-	),
+	age: number({ required_error: 'Age is required' })
+		.min(0, 'Age must be bigger than zero')
+		.max(99, 'Age must not be greater than 99'),
 	height: number({ required_error: 'Height is required' }).min(
 		0,
 		'Height must be bigger than zero'
