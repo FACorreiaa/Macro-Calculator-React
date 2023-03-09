@@ -30,10 +30,14 @@ export const measureValues = [
 	{
 		label: 'Metric',
 		value: 0,
+		height: 'cm',
+		weight: 'kg',
 	},
 	{
 		label: 'Imperial',
 		value: 1,
+		height: 'ft',
+		weight: 'lb',
 	},
 ];
 export const genderValues = [
@@ -61,10 +65,3 @@ export const objectiveValues = [
 		value: 3,
 	},
 ];
-
-// const (
-// 	MetricHeight   = "cm"
-// 	MetricWeight   = "kg"
-// 	ImperialHeight = "ft"
-// 	ImperialWeight = "lb"
-// )
