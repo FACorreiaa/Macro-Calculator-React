@@ -69,7 +69,7 @@ function GoalPage() {
 					/> */}
 
 					<div className="flex justify-center">
-						<CustomButtom type="submit" label="Calculate  " />
+						<CustomButtom type="submit" label="Calculate" />
 					</div>
 				</CustomTdeeForm>
 			</div>

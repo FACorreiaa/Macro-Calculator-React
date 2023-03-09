@@ -79,7 +79,7 @@ function TdeePage() {
 					/> */}
 
 					<div className="flex justify-center">
-						<CustomButtom type="submit" label="Calculate  " />
+						<CustomButtom type="submit" label="Next" />
 					</div>
 				</CustomTdeeForm>
 			</div>
