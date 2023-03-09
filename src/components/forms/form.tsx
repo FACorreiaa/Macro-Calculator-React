@@ -83,7 +83,6 @@ function CustomTdeeForm({
 					title="Select your daily activity:"
 					options={workoutVolume}
 					name="activity"
-					onChange={() => console.log('this')}
 					methods={register('activity')}
 				/>
 

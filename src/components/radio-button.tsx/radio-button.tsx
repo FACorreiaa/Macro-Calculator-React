@@ -5,16 +5,14 @@ type CustomCustomRadioButtonProps = {
 	label: string;
 	disabled?: boolean;
 	id: string;
-	value: string;
+	value: number;
 	name?: string;
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	methods: UseFormRegisterReturn<string>;
 };
 function CustomRadioButton({
 	id,
 	value,
 	name,
-	onChange,
 	label,
 	methods,
 }: CustomCustomRadioButtonProps) {
