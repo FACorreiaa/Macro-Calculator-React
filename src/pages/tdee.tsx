@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import CustomButtom from '../components/button';
 import CustomTdeeForm from '../components/forms/form';
 import CustomFormTitle from '../components/forms/form-title';
 import CustomInput from '../components/input';
-import CustomRadioList from '../components/radio-button.tsx/radio-list';
 import CustomSelect from '../components/select';
-import { genderValues, measureValues, workoutVolume } from '../data/tdee';
+import { measureValues } from '../data/tdee';
 import useZodForm from '../hooks/useZodForm';
 import Pagelayout from '../layout/layout';
 import { TdeeProperties, tdeeSchema } from '../types/tdeeSchema';
@@ -20,6 +18,7 @@ function TdeePage() {
 			metric: '',
 			gender: '',
 			activity: '',
+			objective: '',
 		},
 	});
 
@@ -72,20 +71,12 @@ function TdeePage() {
 						errorMessage={formState.errors.age?.message}
 					/>
 
-					<CustomSelect
-						label="Gender"
-						id="gender"
-						options={genderValues}
-						selected
-						methods={register('gender')}
-					/>
-
-					<CustomRadioList
+					{/* <CustomRadioList
 						title="Select your daily activity:"
 						options={workoutVolume}
 						name="activity"
 						methods={register('activity')}
-					/>
+					/> */}
 
 					<div className="flex justify-center">
 						<CustomButtom type="submit" label="Calculate  " />

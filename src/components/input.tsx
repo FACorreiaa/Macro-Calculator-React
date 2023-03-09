@@ -23,7 +23,7 @@ function CustomInput({
 				{label}
 			</label>
 			<input
-				className="shadow appearance-none border rounded w-full py-2 px-3 dark:text-slate-900 leading-tight focus:outline-none focus:shadow-outline"
+				className="shadow appearance-none border rounded w-full py-1 px-2 dark:text-slate-900 leading-tight focus:outline-none focus:shadow-outline"
 				id={id}
 				key={id}
 				type={type}
