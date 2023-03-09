@@ -18,7 +18,7 @@ function CustomInput({
 	methods,
 }: CustomInputProps) {
 	return (
-		<div className="mb-2">
+		<div className="mb-6">
 			<label className="block text-gray-200 dark:text-gray-900 text-sm font-bold">
 				{label}
 			</label>

@@ -68,7 +68,8 @@ function GoalPage() {
 						methods={register('activity')}
 					/> */}
 
-					<div className="flex justify-center">
+					<div className="flex justify-between">
+						<CustomButtom type="button" label="Previous" />
 						<CustomButtom type="submit" label="Calculate" />
 					</div>
 				</CustomTdeeForm>
