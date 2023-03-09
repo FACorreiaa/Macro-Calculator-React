@@ -1,13 +1,28 @@
 import React, { useEffect, useState } from 'react';
+import CustomButtom from '../components/button';
 import CustomTdeeForm from '../components/forms/form';
-import CustomPageTitle from '../components/page-title';
-import { workoutVolume } from '../data/tdee';
+import CustomFormTitle from '../components/forms/form-title';
+import CustomInput from '../components/input';
+import CustomRadioList from '../components/radio-button.tsx/radio-list';
+import CustomSelect from '../components/select';
+import { genderValues, measureValues, workoutVolume } from '../data/tdee';
 import useZodForm from '../hooks/useZodForm';
 import Pagelayout from '../layout/layout';
-import styles from '../styles/index.module.css';
 import { TdeeProperties, tdeeSchema } from '../types/tdeeSchema';
 
 function TdeePage() {
+	const { handleSubmit, register, formState } = useZodForm({
+		schema: tdeeSchema,
+		defaultValues: {
+			age: '',
+			height: '',
+			weight: '',
+			metric: '',
+			gender: '',
+			activity: '',
+		},
+	});
+
 	function onSumitRegisterValues(values: TdeeProperties) {
 		// return await mutation.mutate(values, {
 		// 	onSuccess: async () => router.push('http://localhost:5005/login/signin'),
@@ -19,26 +34,63 @@ function TdeePage() {
 		return 0;
 	}
 
-	const [selectedValue, setSelectedValue] = useState<String>(
-		workoutVolume[0].label
-	);
-
-	function radioGroupHandler(event: React.ChangeEvent<HTMLInputElement>) {
-		setSelectedValue(event.target.value);
-	}
-
-	useEffect(() => {
-		console.log(selectedValue);
-	}, [selectedValue]);
-
 	return (
 		<Pagelayout>
-			<CustomPageTitle title="Macro calculator" />
 			<div className="w-full max-w-xs ">
-				<CustomTdeeForm
-					onSumitRegisterValues={onSumitRegisterValues}
-					onRadioListChange={radioGroupHandler}
-				/>
+				<CustomTdeeForm onFormSubmit={handleSubmit(onSumitRegisterValues)}>
+					<CustomFormTitle title="Calculate your TDEE" />
+					<CustomSelect
+						label="Select your metric"
+						id="metrics"
+						options={measureValues}
+						selected
+						methods={register('metric')}
+					/>
+
+					<CustomInput
+						label="Age"
+						id="age"
+						type="number"
+						placeholder="Insert your age"
+						methods={register('age')}
+						errorMessage={formState.errors.age?.message}
+					/>
+					<CustomInput
+						label="Weight"
+						id="weight"
+						type="number"
+						placeholder="Insert your weight"
+						methods={register('weight')}
+						errorMessage={formState.errors.weight?.message}
+					/>
+					<CustomInput
+						label="Height"
+						id="height"
+						type="number"
+						placeholder="Insert your height"
+						methods={register('height')}
+						errorMessage={formState.errors.age?.message}
+					/>
+
+					<CustomSelect
+						label="Gender"
+						id="gender"
+						options={genderValues}
+						selected
+						methods={register('gender')}
+					/>
+
+					<CustomRadioList
+						title="Select your daily activity:"
+						options={workoutVolume}
+						name="activity"
+						methods={register('activity')}
+					/>
+
+					<div className="flex justify-center">
+						<CustomButtom type="submit" label="Calculate  " />
+					</div>
+				</CustomTdeeForm>
 			</div>
 		</Pagelayout>
 	);
