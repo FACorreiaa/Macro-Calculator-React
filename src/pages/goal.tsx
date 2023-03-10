@@ -1,27 +1,22 @@
 import CustomButtom from '../components/button';
-import CustomTdeeForm from '../components/forms/form';
+import CustomBmrForm from '../components/forms/form';
 import CustomFormTitle from '../components/forms/form-title';
 import CustomSelect from '../components/select';
-import { genderValues, objectiveValues, workoutVolume } from '../data/tdee';
+import { objectiveValues, workoutVolume } from '../data/bmr';
 import useZodForm from '../hooks/useZodForm';
 import Pagelayout from '../layout/layout';
-import { TdeeProperties, tdeeSchema } from '../types/tdeeSchema';
+import { GoalsInput, goalsSchema } from '../types/goalsSchema';
 
 function GoalPage() {
 	const { handleSubmit, register, formState } = useZodForm({
-		schema: tdeeSchema,
+		schema: goalsSchema,
 		defaultValues: {
-			age: '',
-			height: '',
-			weight: '',
-			metric: '',
-			gender: '',
 			activity: '',
 			objective: '',
 		},
 	});
 
-	function onSumitRegisterValues(values: TdeeProperties) {
+	function onSubmitGoalsValuesPage(values: GoalsInput) {
 		// return await mutation.mutate(values, {
 		// 	onSuccess: async () => router.push('http://localhost:5005/login/signin'),
 		// 	onError: async (error) => {
@@ -35,15 +30,8 @@ function GoalPage() {
 	return (
 		<Pagelayout>
 			<div className="w-full max-w-xs ">
-				<CustomTdeeForm onFormSubmit={handleSubmit(onSumitRegisterValues)}>
-					<CustomFormTitle title="Calculate your TDEE" />
-					<CustomSelect
-						label="Gender"
-						id="gender"
-						options={genderValues}
-						selected
-						methods={register('gender')}
-					/>
+				<CustomBmrForm onFormSubmit={handleSubmit(onSubmitGoalsValuesPage)}>
+					<CustomFormTitle title="Calculate your bmr" />
 
 					<CustomSelect
 						label="Activity volume"
@@ -72,7 +60,7 @@ function GoalPage() {
 						<CustomButtom type="button" label="Previous" />
 						<CustomButtom type="submit" label="Calculate" />
 					</div>
-				</CustomTdeeForm>
+				</CustomBmrForm>
 			</div>
 		</Pagelayout>
 	);

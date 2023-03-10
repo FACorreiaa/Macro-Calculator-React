@@ -1,11 +1,11 @@
 import React from 'react';
 import FooterComponent from '../footer';
 
-type CustomTdeeFormProps = {
+type CustomBmrFormProps = {
 	children: React.ReactNode;
 	onFormSubmit: any;
 };
-function CustomTdeeForm({ children, onFormSubmit }: CustomTdeeFormProps) {
+function CustomBmrForm({ children, onFormSubmit }: CustomBmrFormProps) {
 	return (
 		<React.Fragment>
 			<form
@@ -18,4 +18,4 @@ function CustomTdeeForm({ children, onFormSubmit }: CustomTdeeFormProps) {
 	);
 }
 
-export default CustomTdeeForm;
+export default CustomBmrForm;

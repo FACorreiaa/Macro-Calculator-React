@@ -1,15 +1,6 @@
 import { number, string, TypeOf } from 'zod';
 import { z } from 'zod';
 
-export type TdeeProperties = {
-	age: string;
-	height: string;
-	weight: string;
-	metric: string;
-	gender: string;
-	activity: string;
-};
-
 export const tdeeSchema = z.object({
 	age: z
 		.string()
@@ -31,8 +22,6 @@ export const tdeeSchema = z.object({
 		}),
 	metric: string({ required_error: 'Metric is required' }),
 	gender: string({ required_error: 'Gender is required' }),
-	activity: string({ required_error: 'Activity is required' }),
-	objective: string({ required_error: 'Objective is required' }),
 });
 
-export type TdeeInput = TypeOf<typeof tdeeSchema>;
+export type BmrInput = TypeOf<typeof tdeeSchema>;

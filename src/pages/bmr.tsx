@@ -1,14 +1,16 @@
+import { useState } from 'react';
 import CustomButtom from '../components/button';
-import CustomTdeeForm from '../components/forms/form';
+import CustomBmrForm from '../components/forms/form';
 import CustomFormTitle from '../components/forms/form-title';
 import CustomInput from '../components/input';
 import CustomSelect from '../components/select';
-import { measureValues } from '../data/tdee';
+import { genderValues, measureValues } from '../data/bmr';
+import { calculateBMR } from '../helper/bmr';
 import useZodForm from '../hooks/useZodForm';
 import Pagelayout from '../layout/layout';
-import { TdeeProperties, tdeeSchema } from '../types/tdeeSchema';
+import { BmrInput, tdeeSchema } from '../types/tdeeSchema';
 
-function TdeePage() {
+function BmrPage() {
 	const { handleSubmit, register, formState } = useZodForm({
 		schema: tdeeSchema,
 		defaultValues: {
@@ -17,33 +19,44 @@ function TdeePage() {
 			weight: '',
 			metric: '',
 			gender: '',
-			activity: '',
-			objective: '',
 		},
+		mode: 'onChange',
+		reValidateMode: 'onChange',
 	});
+	const [bmr, setBmr] = useState<number>();
 
-	function onSumitRegisterValues(values: TdeeProperties) {
+	function onSubmitBmrValuesPage(values: BmrInput) {
 		// return await mutation.mutate(values, {
 		// 	onSuccess: async () => router.push('http://localhost:5005/login/signin'),
 		// 	onError: async (error) => {
 		// 		console.log(error);
 		// 	},
 		// });
-		console.log('values', values);
+		const bmr = calculateBMR(values as BmrInput);
+		setBmr(bmr);
+		console.log('bmr', bmr);
 		return 0;
 	}
 
 	return (
 		<Pagelayout>
 			<div className="w-full max-w-xs ">
-				<CustomTdeeForm onFormSubmit={handleSubmit(onSumitRegisterValues)}>
-					<CustomFormTitle title="Calculate your TDEE" />
+				<CustomBmrForm onFormSubmit={handleSubmit(onSubmitBmrValuesPage)}>
+					<CustomFormTitle title="Calculate your bmr" />
 					<CustomSelect
 						label="Select your metric"
 						id="metrics"
 						options={measureValues}
 						selected
 						methods={register('metric')}
+					/>
+
+					<CustomSelect
+						label="Gender"
+						id="gender"
+						options={genderValues}
+						selected
+						methods={register('gender')}
 					/>
 
 					<CustomInput
@@ -81,10 +94,10 @@ function TdeePage() {
 					<div className="flex justify-center">
 						<CustomButtom type="submit" label="Next" />
 					</div>
-				</CustomTdeeForm>
+				</CustomBmrForm>
 			</div>
 		</Pagelayout>
 	);
 }
 
-export default TdeePage;
+export default BmrPage;
