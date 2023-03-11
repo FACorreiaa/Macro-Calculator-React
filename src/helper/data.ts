@@ -109,3 +109,7 @@ export const caloricDistribution: {
 };
 
 export const CALORIC_DISTRIBUTIONS = ['ModerateCarb', 'LowCarb', 'HighCarb'];
+
+export const PROTEIN_PER_GRAM = 4;
+export const CARB_PER_GRAM = 4;
+export const FAT_PER_GRAM = 9;

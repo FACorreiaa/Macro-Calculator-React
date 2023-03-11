@@ -1,7 +1,9 @@
 import {
 	caloricDistribution,
-	CALORIC_DISTRIBUTIONS,
+	CARB_PER_GRAM,
+	FAT_PER_GRAM,
 	goalList,
+	PROTEIN_PER_GRAM,
 	workoutVolumesList,
 } from './data';
 
@@ -31,9 +33,21 @@ export const calculateMacros = (
 	coloricGoal: number
 ): Macros => {
 	const macroRacios = caloricDistribution[caloricFactor];
-	let protein = calculateMacroDistribution(macroRacios.protein, coloricGoal, 4);
-	let carbs = calculateMacroDistribution(macroRacios.carbs, coloricGoal, 4);
-	let fats = calculateMacroDistribution(macroRacios.fats, coloricGoal, 4);
+	let protein = calculateMacroDistribution(
+		macroRacios.protein,
+		coloricGoal,
+		PROTEIN_PER_GRAM
+	);
+	let carbs = calculateMacroDistribution(
+		macroRacios.carbs,
+		coloricGoal,
+		CARB_PER_GRAM
+	);
+	let fats = calculateMacroDistribution(
+		macroRacios.fats,
+		coloricGoal,
+		FAT_PER_GRAM
+	);
 
 	return {
 		protein,
