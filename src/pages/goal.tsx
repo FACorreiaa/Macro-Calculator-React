@@ -2,7 +2,7 @@ import CustomButtom from '../components/button';
 import CustomBmrForm from '../components/forms/form';
 import CustomFormTitle from '../components/forms/form-title';
 import CustomSelect from '../components/select';
-import { objectiveValues, workoutVolume } from '../data/bmr';
+import { workoutVolume, objectiveValues } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
 import Pagelayout from '../layout/layout';
 import { GoalsInput, goalsSchema } from '../types/goalsSchema';
