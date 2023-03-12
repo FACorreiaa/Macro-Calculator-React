@@ -9,7 +9,7 @@ function CustomBmrForm({ children, onFormSubmit }: CustomBmrFormProps) {
 	return (
 		<React.Fragment>
 			<form
-				className="shadow-lg rounded-xl p-8 mb-4 bg-gray-200 dark:bg-slate-500"
+				className="shadow-lg rounded-xl p-8 pt-0 mb-4 bg-gray-200 dark:bg-orange-400"
 				onSubmit={onFormSubmit}>
 				{children}
 			</form>

@@ -30,26 +30,18 @@ export const measureValues = [
 	{
 		label: 'Metric',
 		value: 0,
-		height: 'cm',
-		weight: 'kg',
 	},
 	{
 		label: 'Imperial',
 		value: 1,
-		height: 'ft',
-		weight: 'lb',
 	},
 ];
-export const genderValues = [
-	{
-		label: 'Male',
-		value: 5,
-	},
-	{
-		label: 'Female',
-		value: -161,
-	},
-];
+export const genderValues: {
+	[key: string]: number;
+} = {
+	Male: 5,
+	Female: -161,
+};
 
 export const goalList: {
 	[key: string]: number;

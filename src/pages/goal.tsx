@@ -42,7 +42,10 @@ function GoalPage() {
 			/>
 			<div className="w-full max-w-xs ">
 				<CustomBmrForm onFormSubmit={handleSubmit(onSubmitGoalsValuesPage)}>
-					<CustomFormTitle title="Calculate your bmr" />
+					<div>
+						<span>Your BMR is: 100</span>
+					</div>
+					<CustomFormTitle title="Calculate your TDEE" />
 
 					<CustomSelect
 						label="Activity volume"
@@ -50,6 +53,7 @@ function GoalPage() {
 						options={workoutVolume}
 						selected
 						methods={register('activity')}
+						placeholder="Select activity"
 					/>
 
 					<CustomSelect
@@ -58,6 +62,7 @@ function GoalPage() {
 						options={goalOptions}
 						selected
 						methods={register('objective')}
+						placeholder="Select objective"
 					/>
 
 					{/* <CustomRadioList

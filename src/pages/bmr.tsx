@@ -5,6 +5,7 @@ import CustomFormTitle from '../components/forms/form-title';
 import HeadComponent from '../components/head';
 import CustomInput from '../components/input';
 import CustomSelect from '../components/select';
+import CustomTabsComponent from '../components/tabs';
 import { calculateBMR } from '../helper/bmr';
 import { measureValues, genderValues } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
@@ -12,19 +13,27 @@ import Pagelayout from '../layout/layout';
 import { BmrInput, tdeeSchema } from '../types/tdeeSchema';
 
 function BmrPage() {
-	const { handleSubmit, register, formState } = useZodForm({
+	const { handleSubmit, register, formState, setValue } = useZodForm({
 		schema: tdeeSchema,
 		defaultValues: {
 			age: '',
 			height: '',
 			weight: '',
-			metric: '',
+			metric: 'Metric',
 			gender: '',
 		},
 		mode: 'onChange',
 		reValidateMode: 'onChange',
 	});
 	const [bmr, setBmr] = useState<number>();
+	const [activeTab, setActiveTab] = useState('Metric');
+
+	const handleTabClick = (e: any) => {
+		const tab = e.target.value;
+		console.log('tab', tab);
+		setActiveTab(tab);
+		setValue('metric', tab);
+	};
 
 	function onSubmitBmrValuesPage(values: BmrInput) {
 		// return await mutation.mutate(values, {
@@ -35,9 +44,15 @@ function BmrPage() {
 		// });
 		const bmr = calculateBMR(values as BmrInput);
 		setBmr(bmr);
+		console.log('values', values);
 		console.log('bmr', bmr);
 		return 0;
 	}
+
+	const genderOptions = Object.entries(genderValues).map(([label, value]) => ({
+		label,
+		value,
+	}));
 
 	return (
 		<Pagelayout>
@@ -48,21 +63,28 @@ function BmrPage() {
 			/>
 			<div className="w-full max-w-xs ">
 				<CustomBmrForm onFormSubmit={handleSubmit(onSubmitBmrValuesPage)}>
-					<CustomFormTitle title="Calculate your bmr" />
-					<CustomSelect
+					<CustomTabsComponent
+						options={measureValues}
+						activeTab={activeTab}
+						onClick={handleTabClick}
+					/>
+					{/* <CustomFormTitle title="Calculate your bmr" /> */}
+
+					{/* <CustomSelect
 						label="Select your metric"
 						id="metrics"
 						options={measureValues}
 						selected
 						methods={register('metric')}
-					/>
+					/> */}
 
 					<CustomSelect
 						label="Gender"
 						id="gender"
-						options={genderValues}
+						options={genderOptions}
 						selected
 						methods={register('gender')}
+						placeholder="Select gender"
 					/>
 
 					<CustomInput
