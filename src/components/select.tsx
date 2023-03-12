@@ -23,10 +23,11 @@ function CustomSelect({ label, id, options, methods }: CustomSelectProps) {
 					{...methods}
 					id={id}
 					className="dark:text-slate-900 block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 py-1 px-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-					{options.map(({ label, value }: IOption) => {
+					{options.map(({ label, value }: { label: string; value: number }) => {
 						let optionId = `select-${value}`;
+
 						return (
-							<option key={optionId} id={optionId} defaultValue={label[0]}>
+							<option key={optionId} id={optionId} value={value}>
 								{label}
 							</option>
 						);

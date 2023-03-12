@@ -12,21 +12,21 @@ type Macros = {
 	fats: number;
 	carbs: number;
 };
-export const calculateCaloricGoal = (
+
+export const calculateCaloricGoal = (tdee: number, goal: string): number =>
+	tdee + goalList[goal];
+
+export const calculateCaloricGoalWithTrainning = (
 	tdee: number,
 	goal: string,
 	objective: string
-): number => {
-	return (tdee + goalList[goal]) * workoutVolumesList[objective];
-};
+): number => calculateCaloricGoal(tdee, goal) * workoutVolumesList[objective];
 
 const calculateMacroDistribution = (
 	calorieFactor: number,
 	calorieGoal: number,
 	caloriesPerGram: number
-): number => {
-	return (calorieFactor * calorieGoal) / caloriesPerGram;
-};
+): number => (calorieFactor * calorieGoal) / caloriesPerGram;
 
 export const calculateMacros = (
 	caloricFactor: string,

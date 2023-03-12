@@ -1,8 +1,9 @@
 import CustomButtom from '../components/button';
 import CustomBmrForm from '../components/forms/form';
 import CustomFormTitle from '../components/forms/form-title';
+import HeadComponent from '../components/head';
 import CustomSelect from '../components/select';
-import { workoutVolume, objectiveValues } from '../helper/data';
+import { workoutVolume, goalList } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
 import Pagelayout from '../layout/layout';
 import { GoalsInput, goalsSchema } from '../types/goalsSchema';
@@ -27,8 +28,18 @@ function GoalPage() {
 		return 0;
 	}
 
+	const goalOptions = Object.entries(goalList).map(([label, value]) => ({
+		label,
+		value,
+	}));
+
 	return (
 		<Pagelayout>
+			<HeadComponent
+				title="Goal Calculator"
+				name="Goal Calculator"
+				content="Calculate your goals with your tdee"
+			/>
 			<div className="w-full max-w-xs ">
 				<CustomBmrForm onFormSubmit={handleSubmit(onSubmitGoalsValuesPage)}>
 					<CustomFormTitle title="Calculate your bmr" />
@@ -44,7 +55,7 @@ function GoalPage() {
 					<CustomSelect
 						label="Activity volume"
 						id="activity"
-						options={objectiveValues}
+						options={goalOptions}
 						selected
 						methods={register('objective')}
 					/>

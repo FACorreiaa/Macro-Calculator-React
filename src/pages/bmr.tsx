@@ -2,6 +2,7 @@ import { useState } from 'react';
 import CustomButtom from '../components/button';
 import CustomBmrForm from '../components/forms/form';
 import CustomFormTitle from '../components/forms/form-title';
+import HeadComponent from '../components/head';
 import CustomInput from '../components/input';
 import CustomSelect from '../components/select';
 import { calculateBMR } from '../helper/bmr';
@@ -40,6 +41,11 @@ function BmrPage() {
 
 	return (
 		<Pagelayout>
+			<HeadComponent
+				title="Tdee Calculator"
+				name="Tdee Calculator"
+				content="Calculate your basic calories"
+			/>
 			<div className="w-full max-w-xs ">
 				<CustomBmrForm onFormSubmit={handleSubmit(onSubmitBmrValuesPage)}>
 					<CustomFormTitle title="Calculate your bmr" />

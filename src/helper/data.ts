@@ -51,21 +51,6 @@ export const genderValues = [
 	},
 ];
 
-export const objectiveValues = [
-	{
-		label: 'Maintenance',
-		value: 1,
-	},
-	{
-		label: 'Bulking',
-		value: 2,
-	},
-	{
-		label: 'Cutting',
-		value: 3,
-	},
-];
-
 export const goalList: {
 	[key: string]: number;
 } = {
