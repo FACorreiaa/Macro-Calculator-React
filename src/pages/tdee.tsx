@@ -28,8 +28,7 @@ function TdeePage() {
 	const [, setTdee] = useAtom(tdeeAtom);
 	const [, setCaloricObjectve] = useAtom(caloricObjectiveAtom);
 	const [, setCaloricObjectiveList] = useAtom(caloricObjectiveListAtom);
-	//const bmr = location.state.bmr;
-	//const bmrValues = location.state.bmrValues;
+
 	const [bmr] = useAtom(bmrAtom);
 
 	const { handleSubmit, register } = useZodForm({

@@ -1,5 +1,3 @@
-//file to aux on the bmr calculation
-
 import { BmrInput } from '../types/tdeeSchema';
 export const maleAgeFactor = 5.0;
 export const femaleAgeFactor = -161.0;

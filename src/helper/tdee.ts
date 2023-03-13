@@ -23,8 +23,6 @@ export const calculateCalorieTarget = (tdee: number, goal: string): number => {
 	return tdee + goalAmount;
 };
 
-//REFACTORATION
-
 export const getAllObjectives = (bmr: number) => {
 	debugger;
 	return {

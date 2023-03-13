@@ -43,14 +43,10 @@ function BmrPage() {
 	};
 
 	function onSubmitBmrValuesPage(values: BmrInput) {
-		//const bmr = calculateBMR(values as BmrInput);
 		const bmr = calculateBMR(values);
 		console.log('bmr', bmr);
 		setBmr(bmr);
 		setBmrCalculationValues(values);
-		// navigate('/tdee', {
-		// 	state: { bmrValues: values, bmr },
-		// });
 		navigate('/tdee');
 	}
 

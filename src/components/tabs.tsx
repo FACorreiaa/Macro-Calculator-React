@@ -1,11 +1,3 @@
-import { useState } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
-
-// export interface IOption {
-// 	label: string;
-// 	value: number;
-// }
-
 export interface IOption {
 	label: string;
 	value: number;
