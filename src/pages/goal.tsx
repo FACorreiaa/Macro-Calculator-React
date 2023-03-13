@@ -7,6 +7,7 @@ import { workoutVolume, goalList } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
 import Pagelayout from '../layout/layout';
 import { GoalsInput, goalsSchema } from '../types/goalsSchema';
+import { useLocation } from 'react-router-dom';
 
 function GoalPage() {
 	const { handleSubmit, register, formState } = useZodForm({
@@ -32,6 +33,9 @@ function GoalPage() {
 		label,
 		value,
 	}));
+
+	const location = useLocation();
+	console.log('BMR:', location.state.bmr);
 
 	return (
 		<Pagelayout>

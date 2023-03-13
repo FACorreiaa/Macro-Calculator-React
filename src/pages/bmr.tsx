@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import CustomButtom from '../components/button';
 import CustomBmrForm from '../components/forms/form';
-import CustomFormTitle from '../components/forms/form-title';
 import HeadComponent from '../components/head';
 import CustomInput from '../components/input';
 import CustomSelect from '../components/select';
@@ -11,7 +10,7 @@ import { measureValues, genderValues } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
 import Pagelayout from '../layout/layout';
 import { BmrInput, tdeeSchema } from '../types/tdeeSchema';
-
+import { useNavigate } from 'react-router-dom';
 function BmrPage() {
 	const { handleSubmit, register, formState, setValue } = useZodForm({
 		schema: tdeeSchema,
@@ -27,6 +26,7 @@ function BmrPage() {
 	});
 	const [bmr, setBmr] = useState<number>();
 	const [activeTab, setActiveTab] = useState('Metric');
+	const navigate = useNavigate();
 
 	const handleTabClick = (e: any) => {
 		const tab = e.target.value;
@@ -43,6 +43,9 @@ function BmrPage() {
 		// 	},
 		// });
 		const bmr = calculateBMR(values as BmrInput);
+		navigate('/goals', {
+			state: { bmr },
+		});
 		setBmr(bmr);
 		console.log('values', values);
 		console.log('bmr', bmr);
