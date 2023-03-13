@@ -15,19 +15,19 @@ import FormPageLayout from '../layout/form-layout';
 import {
 	calculateTDEE,
 	calculateCalorieTarget,
-	getAllObjectives,
+	getallDietObjectives,
 } from '../helper/tdee';
 import { atom, useAtom } from 'jotai';
 
 export const tdeeAtom = atom(0);
-export const caloricObjectiveAtom = atom(0);
-export const caloricObjectiveListAtom = atom({});
+export const dietObjectiveAtom = atom(0);
+export const dietObjectiveListAtom = atom({});
 
 function TdeePage() {
 	const navigate = useNavigate();
 	const [, setTdee] = useAtom(tdeeAtom);
-	const [, setCaloricObjectve] = useAtom(caloricObjectiveAtom);
-	const [, setCaloricObjectiveList] = useAtom(caloricObjectiveListAtom);
+	const [, setCaloricObjectve] = useAtom(dietObjectiveAtom);
+	const [, setdietObjectiveList] = useAtom(dietObjectiveListAtom);
 
 	const [bmr] = useAtom(bmrAtom);
 
@@ -41,11 +41,11 @@ function TdeePage() {
 
 	function onSubmitGoals(values: GoalsInput) {
 		const tdee = calculateTDEE(bmr, values.activity);
-		const caloricObjective = calculateCalorieTarget(tdee, values.objective);
-		const allObjectives = getAllObjectives(tdee);
+		const dietObjective = calculateCalorieTarget(tdee, values.objective);
+		const allDietObjectives = getallDietObjectives(tdee);
 		setTdee(tdee);
-		setCaloricObjectve(caloricObjective);
-		setCaloricObjectiveList(allObjectives);
+		setCaloricObjectve(dietObjective);
+		setdietObjectiveList(allDietObjectives);
 		navigate('/results');
 	}
 

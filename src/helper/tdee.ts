@@ -23,7 +23,7 @@ export const calculateCalorieTarget = (tdee: number, goal: string): number => {
 	return tdee + goalAmount;
 };
 
-export const getAllObjectives = (bmr: number) => {
+export const getallDietObjectives = (bmr: number) => {
 	debugger;
 	return {
 		Maintenance: bmr,

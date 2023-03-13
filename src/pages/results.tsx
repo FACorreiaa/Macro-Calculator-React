@@ -2,19 +2,14 @@ import HeadComponent from '../components/head';
 import ResultsPageLayout from '../layout/results-layout';
 import { useAtom } from 'jotai';
 import { bmrAtom, bmrCalculationValuesAtom } from './bmr';
-import {
-	tdeeAtom,
-	caloricObjectiveAtom,
-	caloricObjectiveListAtom,
-} from './tdee';
+import { tdeeAtom, dietObjectiveAtom, dietObjectiveListAtom } from './tdee';
 
 function ResultsPage() {
-	const [bmrValues] = useAtom(bmrCalculationValuesAtom);
+	const [bmrData] = useAtom(bmrCalculationValuesAtom);
 	const [bmr] = useAtom(bmrAtom);
 	const [tdee] = useAtom(tdeeAtom);
-	const [caloricObjective] = useAtom(caloricObjectiveAtom);
-	const [allObjectives] = useAtom(caloricObjectiveListAtom);
-	console.log(allObjectives);
+	const [dietObjective] = useAtom(dietObjectiveAtom);
+	const [allDietObjectives] = useAtom(dietObjectiveListAtom);
 	return (
 		<ResultsPageLayout>
 			<HeadComponent
