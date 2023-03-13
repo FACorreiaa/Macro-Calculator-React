@@ -8,11 +8,11 @@ import CustomTabsComponent from '../components/tabs';
 import { calculateBMR } from '../helper/bmr';
 import { measureValues, genderOptions } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
-import Pagelayout from '../layout/layout';
 import { BmrInput, tdeeSchema } from '../types/tdeeSchema';
 import { useNavigate } from 'react-router-dom';
+import FormPageLayout from '../layout/form-layout';
 function BmrPage() {
-	const { handleSubmit, register, formState, setValue } = useZodForm({
+	const { handleSubmit, register, formState, setValue, reset } = useZodForm({
 		schema: tdeeSchema,
 		defaultValues: {
 			age: '',
@@ -35,22 +35,15 @@ function BmrPage() {
 	};
 
 	function onSubmitBmrValuesPage(values: BmrInput) {
-		// return await mutation.mutate(values, {
-		// 	onSuccess: async () => router.push('http://localhost:5005/login/signin'),
-		// 	onError: async (error) => {
-		// 		console.log(error);
-		// 	},
-		// });
 		const bmr = calculateBMR(values as BmrInput);
 		navigate('/goals', {
 			state: { bmr },
 		});
 		setBmr(bmr);
-		return 0;
 	}
 
 	return (
-		<Pagelayout>
+		<FormPageLayout>
 			<HeadComponent
 				title="Tdee Calculator"
 				name="Tdee Calculator"
@@ -98,12 +91,14 @@ function BmrPage() {
 						errorMessage={formState.errors.age?.message}
 					/>
 
-					<div className="flex justify-center">
+					<div className="flex justify-between">
+						<CustomButtom type="submit" label="Reset" onClick={() => reset()} />
+
 						<CustomButtom type="submit" label="Next" />
 					</div>
 				</CustomBmrForm>
 			</div>
-		</Pagelayout>
+		</FormPageLayout>
 	);
 }
 

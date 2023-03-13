@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+	createBrowserRouter,
+	Navigate,
+	RouterProvider,
+} from 'react-router-dom';
 import GoalPage from './pages/goal';
 import ResultsPage from './pages/results';
 import BmrPage from './pages/bmr';
@@ -18,6 +22,10 @@ const router = createBrowserRouter([
 	{
 		path: '/results',
 		element: <ResultsPage />,
+	},
+	{
+		path: '*',
+		element: <Navigate to="/" replace />,
 	},
 ]);
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

@@ -5,7 +5,7 @@ type CustomPageTitleProps = {
 };
 function CustomPageTitle({ title }: CustomPageTitleProps) {
 	return (
-		<h1 className="text-3xl font-bold underline text-ctp-white pb-6">
+		<h1 className="text-3xl font-bold underline text-ctp-white pb-6 text-stone-200">
 			{title}
 		</h1>
 	);

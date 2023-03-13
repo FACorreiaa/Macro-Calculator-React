@@ -5,13 +5,23 @@ import HeadComponent from '../components/head';
 import CustomSelect from '../components/select';
 import { workoutVolume, goalOptions } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
-import Pagelayout from '../layout/layout';
+import PageLayout from '../layout/form-layout';
 import { GoalsInput, goalsSchema } from '../types/goalsSchema';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 import BannerInfoComponent from '../components/banner-info';
+import {
+	calculateCaloricGoal,
+	calculateCaloricGoalWithTrainning,
+} from '../helper/goal';
+import FormPageLayout from '../layout/form-layout';
 
 function GoalPage() {
 	const location = useLocation();
+	const navigate = useNavigate();
+	const bmr = location.state.bmr;
+
 	const { handleSubmit, register } = useZodForm({
 		schema: goalsSchema,
 		defaultValues: {
@@ -21,13 +31,23 @@ function GoalPage() {
 	});
 
 	function onSubmitGoalsValuesPage(values: GoalsInput) {
-		return 0;
+		const caloricGoal = calculateCaloricGoal(bmr, values.objective);
+		const caloricGoalWithTrainning = calculateCaloricGoalWithTrainning(
+			bmr,
+			values.objective,
+			values.activity
+		);
+
+		console.log('bmr', bmr);
+		console.log('caloricGoal', caloricGoal);
+		console.log('caloricGoalWithTrainning', caloricGoalWithTrainning);
+		navigate('/results', {
+			state: { bmr, caloricGoal, caloricGoalWithTrainning },
+		});
 	}
 
-	const bmr = location.state.bmr;
-
 	return (
-		<Pagelayout>
+		<FormPageLayout>
 			<HeadComponent
 				title="Goal Calculator"
 				name="Goal Calculator"
@@ -58,12 +78,16 @@ function GoalPage() {
 					/>
 
 					<div className="flex justify-between">
-						<CustomButtom type="button" label="Previous" />
+						<CustomButtom
+							type="button"
+							label="Previous"
+							onClick={() => navigate('/')}
+						/>
 						<CustomButtom type="submit" label="Calculate" />
 					</div>
 				</CustomBmrForm>
 			</div>
-		</Pagelayout>
+		</FormPageLayout>
 	);
 }
 

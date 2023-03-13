@@ -51,7 +51,7 @@ export const genderOptions = Object.entries(genderValues).map(
 	})
 );
 
-const goalList: {
+export const goalList: {
 	[key: string]: number;
 } = {
 	Maintenance: 0,
@@ -97,8 +97,6 @@ export const caloricDistribution: {
 		fats: 0.4,
 	},
 };
-
-export const CALORIC_DISTRIBUTIONS = ['ModerateCarb', 'LowCarb', 'HighCarb'];
 
 export const PROTEIN_PER_GRAM = 4;
 export const CARB_PER_GRAM = 4;

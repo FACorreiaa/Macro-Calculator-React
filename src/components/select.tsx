@@ -29,7 +29,7 @@ function CustomSelect({
 				<select
 					{...methods}
 					id={id}
-					className="dark:text-slate-900 block focus:bg-orange-200 appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 py-1 px-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+					className="dark:text-slate-900 block focus:bg-purple-200 appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 py-1 px-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
 					<option disabled defaultValue={placeholder} value="">
 						{placeholder}
 					</option>
