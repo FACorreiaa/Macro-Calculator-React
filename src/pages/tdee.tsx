@@ -3,23 +3,26 @@ import CustomBmrForm from '../components/forms/form';
 import CustomFormTitle from '../components/forms/form-title';
 import HeadComponent from '../components/head';
 import CustomSelect from '../components/select';
-import { workoutVolume, goalOptions } from '../helper/data';
+import { workoutVolumesList, dataOptions, goalList } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
 import { GoalsInput, goalsSchema } from '../types/goalsSchema';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import BannerInfoComponent from '../components/banner-info';
-import {
-	calculateCaloricGoal,
-	calculateCaloricGoalWithTrainning,
-} from '../helper/goal';
-import FormPageLayout from '../layout/form-layout';
 
-function GoalPage() {
+import FormPageLayout from '../layout/form-layout';
+import {
+	calculateTDEE,
+	calculateCalorieTarget,
+	getAllObjectives,
+} from '../helper/tdee';
+
+function TdeePage() {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const bmr = location.state.bmr;
+	const bmrValues = location.state.bmrValues;
 
 	const { handleSubmit, register } = useZodForm({
 		schema: goalsSchema,
@@ -29,16 +32,18 @@ function GoalPage() {
 		},
 	});
 
-	function onSubmitGoalsValuesPage(values: GoalsInput) {
-		const caloricGoal = calculateCaloricGoal(bmr, values.objective);
-		const caloricGoalWithTrainning = calculateCaloricGoalWithTrainning(
-			bmr,
-			values.objective,
-			values.activity
-		);
-
+	function onSubmitGoals(values: GoalsInput) {
+		const tdee = calculateTDEE(bmr, values.activity);
+		const caloricObjective = calculateCalorieTarget(tdee, values.objective);
+		const allObjectives = getAllObjectives(tdee);
 		navigate('/results', {
-			state: { bmr, caloricGoal, caloricGoalWithTrainning },
+			state: {
+				tdee,
+				caloricObjective,
+				allObjectives,
+				bmrValues,
+				goalValues: values,
+			},
 		});
 	}
 
@@ -49,7 +54,7 @@ function GoalPage() {
 				content="Set your goals and objectives to get a realistic approach to your calories"
 			/>
 			<div className="w-full max-w-xs ">
-				<CustomBmrForm onFormSubmit={handleSubmit(onSubmitGoalsValuesPage)}>
+				<CustomBmrForm onFormSubmit={handleSubmit(onSubmitGoals)}>
 					<CustomFormTitle title="Calculate your TDEE" />
 
 					<BannerInfoComponent title="Your BMR is: " label={bmr} />
@@ -57,7 +62,7 @@ function GoalPage() {
 					<CustomSelect
 						label="Activity volume"
 						id="activity"
-						options={workoutVolume}
+						options={dataOptions(workoutVolumesList)}
 						selected
 						methods={register('activity')}
 						placeholder="Select activity"
@@ -66,7 +71,7 @@ function GoalPage() {
 					<CustomSelect
 						label="Activity volume"
 						id="activity"
-						options={goalOptions}
+						options={dataOptions(goalList)}
 						selected
 						methods={register('objective')}
 						placeholder="Select objective"
@@ -86,4 +91,4 @@ function GoalPage() {
 	);
 }
 
-export default GoalPage;
+export default TdeePage;

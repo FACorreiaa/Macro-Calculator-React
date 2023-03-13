@@ -39,7 +39,7 @@ export const calculateBMR = ({
 	weight,
 	height,
 }: BmrInput): number => {
-	const ageFactor = gender === 'male' ? maleAgeFactor : femaleAgeFactor;
+	const ageFactor = gender === 'Male' ? maleAgeFactor : femaleAgeFactor;
 	const weightConvertor = units[metric].weightConvertor;
 	const heightConvertor = units[metric].heightConvertor;
 
@@ -49,12 +49,13 @@ export const calculateBMR = ({
 	const weightFactor = units[metric].weightFactor;
 	const heightFactor = units[metric].heightFactor;
 
-	return (
+	let result =
 		weightFactor * convertedWeight +
 		heightFactor * convertedHeight -
 		5.0 * parseFloat(age) +
-		ageFactor
-	);
+		ageFactor;
+
+	return result;
 };
 
 export const getHeightUnit = (metric: string) => units[metric].heightUnit;

@@ -13,14 +13,26 @@ type Macros = {
 	carbs: number;
 };
 
-export const calculateCaloricGoal = (tdee: number, goal: string): number =>
-	tdee + goalList[goal];
+export const calculateTDEE = (bmr: number, activity: string): number => {
+	const activityFactor = workoutVolumesList[activity];
+	return bmr * activityFactor;
+};
 
-export const calculateCaloricGoalWithTrainning = (
-	tdee: number,
-	goal: string,
-	objective: string
-): number => calculateCaloricGoal(tdee, goal) * workoutVolumesList[objective];
+export const calculateCalorieTarget = (tdee: number, goal: string): number => {
+	const goalAmount = goalList[goal];
+	return tdee + goalAmount;
+};
+
+//REFACTORATION
+
+export const getAllObjectives = (bmr: number) => {
+	debugger;
+	return {
+		Maintenance: bmr,
+		Cutting: calculateCalorieTarget(bmr, 'Cutting'),
+		Bulking: calculateCalorieTarget(bmr, 'Bulking'),
+	};
+};
 
 const calculateMacroDistribution = (
 	calorieFactor: number,

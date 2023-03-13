@@ -10,7 +10,13 @@ import { measureValues, genderOptions } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
 import { BmrInput, tdeeSchema } from '../types/tdeeSchema';
 import { useNavigate } from 'react-router-dom';
+import { atom, useAtom } from 'jotai';
+
 import FormPageLayout from '../layout/form-layout';
+
+const bmrAtom = atom(0);
+const bmrValuesAtom = atom({});
+
 function BmrPage() {
 	const { handleSubmit, register, formState, setValue, reset } = useZodForm({
 		schema: tdeeSchema,
@@ -24,7 +30,6 @@ function BmrPage() {
 		mode: 'onChange',
 		reValidateMode: 'onChange',
 	});
-	const [bmr, setBmr] = useState<number>();
 	const [activeTab, setActiveTab] = useState('Metric');
 	const navigate = useNavigate();
 
@@ -35,11 +40,13 @@ function BmrPage() {
 	};
 
 	function onSubmitBmrValuesPage(values: BmrInput) {
-		const bmr = calculateBMR(values as BmrInput);
-		navigate('/goals', {
-			state: { bmr },
+		//const bmr = calculateBMR(values as BmrInput);
+		const bmr = calculateBMR(values);
+		console.log('bmr', bmr);
+
+		navigate('/tdee', {
+			state: { bmrValues: values, bmr },
 		});
-		setBmr(bmr);
 	}
 
 	return (

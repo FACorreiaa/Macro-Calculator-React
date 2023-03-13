@@ -12,9 +12,6 @@ function ResultsPage() {
 				title="Calories and Macros results"
 				content="Macro distribution according to goals and objectives and your bio data"
 			/>
-			<div>oi</div>
-			<div>oi</div>
-			<div>oi</div>
 		</ResultsPageLayout>
 	);
 }

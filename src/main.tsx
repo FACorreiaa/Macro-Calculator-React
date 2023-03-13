@@ -5,19 +5,19 @@ import {
 	Navigate,
 	RouterProvider,
 } from 'react-router-dom';
-import GoalPage from './pages/goal';
 import ResultsPage from './pages/results';
 import BmrPage from './pages/bmr';
+import TdeePage from './pages/tdee';
 import './index.css';
 
 const router = createBrowserRouter([
 	{
-		path: '/',
+		path: '/bmr',
 		element: <BmrPage />,
 	},
 	{
-		path: '/goals',
-		element: <GoalPage />,
+		path: '/tdee',
+		element: <TdeePage />,
 	},
 	{
 		path: '/results',
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '*',
-		element: <Navigate to="/" replace />,
+		element: <Navigate to="/bmr" replace />,
 	},
 ]);
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

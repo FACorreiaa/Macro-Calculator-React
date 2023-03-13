@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 type CustomInputProps = {

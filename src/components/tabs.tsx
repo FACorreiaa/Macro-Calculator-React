@@ -35,7 +35,7 @@ const CustomTabsComponent = ({
 									activeTab === label
 										? 'border-purple-900 font-bold text-purple-900'
 										: 'border-transparent text-gray-100 hover:text-gray-700 hover:border-gray-300'
-								} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+								} whitespace-nowrap	py-4 px-1 border-b-2 font-medium text-sm`}
 								onClick={onClick}>
 								{label}
 							</button>
