@@ -3,7 +3,7 @@ import CustomBmrForm from '../components/forms/form';
 import CustomFormTitle from '../components/forms/form-title';
 import HeadComponent from '../components/head';
 import CustomSelect from '../components/select';
-import { workoutVolume, goalList } from '../helper/data';
+import { workoutVolume, goalOptions } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
 import Pagelayout from '../layout/layout';
 import { GoalsInput, goalsSchema } from '../types/goalsSchema';
@@ -26,18 +26,11 @@ function GoalPage() {
 		// 		console.log(error);
 		// 	},
 		// });
-		console.log('values', values);
 		return 0;
 	}
 
-	const goalOptions = Object.entries(goalList).map(([label, value]) => ({
-		label,
-		value,
-	}));
-
 	const location = useLocation();
 	const bmr = location.state.bmr;
-	console.log('BMR:', location.state.bmr);
 
 	return (
 		<Pagelayout>

@@ -6,7 +6,7 @@ import CustomInput from '../components/input';
 import CustomSelect from '../components/select';
 import CustomTabsComponent from '../components/tabs';
 import { calculateBMR } from '../helper/bmr';
-import { measureValues, genderValues } from '../helper/data';
+import { measureValues, genderOptions } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
 import Pagelayout from '../layout/layout';
 import { BmrInput, tdeeSchema } from '../types/tdeeSchema';
@@ -30,7 +30,6 @@ function BmrPage() {
 
 	const handleTabClick = (e: any) => {
 		const tab = e.target.value;
-		console.log('tab', tab);
 		setActiveTab(tab);
 		setValue('metric', tab);
 	};
@@ -47,15 +46,8 @@ function BmrPage() {
 			state: { bmr },
 		});
 		setBmr(bmr);
-		console.log('values', values);
-		console.log('bmr', bmr);
 		return 0;
 	}
-
-	const genderOptions = Object.entries(genderValues).map(([label, value]) => ({
-		label,
-		value,
-	}));
 
 	return (
 		<Pagelayout>

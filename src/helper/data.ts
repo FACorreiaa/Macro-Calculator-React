@@ -36,20 +36,33 @@ export const measureValues = [
 		value: 1,
 	},
 ];
-export const genderValues: {
+
+const genderValues: {
 	[key: string]: number;
 } = {
 	Male: 5,
 	Female: -161,
 };
 
-export const goalList: {
+export const genderOptions = Object.entries(genderValues).map(
+	([label, value]) => ({
+		label,
+		value,
+	})
+);
+
+const goalList: {
 	[key: string]: number;
 } = {
 	Maintenance: 0,
 	Bulking: 450,
 	Cutting: 350,
 };
+
+export const goalOptions = Object.entries(goalList).map(([label, value]) => ({
+	label,
+	value,
+}));
 
 export const workoutVolumesList: {
 	[key: string]: number;
