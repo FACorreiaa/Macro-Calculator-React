@@ -24,7 +24,6 @@ export const calculateCalorieTarget = (tdee: number, goal: string): number => {
 };
 
 export const getallDietObjectives = (bmr: number) => {
-	debugger;
 	return {
 		Maintenance: bmr,
 		Cutting: calculateCalorieTarget(bmr, 'Cutting'),
