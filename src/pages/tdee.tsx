@@ -6,8 +6,8 @@ import CustomSelect from '../components/select';
 import { workoutVolumesList, dataOptions, goalList } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
 import { GoalsInput, goalsSchema } from '../types/goalsSchema';
-import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { bmrAtom, bmrCalculationValuesAtom } from './bmr';
 
 import BannerInfoComponent from '../components/banner-info';
 
@@ -17,12 +17,20 @@ import {
 	calculateCalorieTarget,
 	getAllObjectives,
 } from '../helper/tdee';
+import { atom, useAtom } from 'jotai';
+
+export const tdeeAtom = atom(0);
+export const caloricObjectiveAtom = atom(0);
+export const caloricObjectiveListAtom = atom({});
 
 function TdeePage() {
-	const location = useLocation();
 	const navigate = useNavigate();
-	const bmr = location.state.bmr;
-	const bmrValues = location.state.bmrValues;
+	const [, setTdee] = useAtom(tdeeAtom);
+	const [, setCaloricObjectve] = useAtom(caloricObjectiveAtom);
+	const [, setCaloricObjectiveList] = useAtom(caloricObjectiveListAtom);
+	//const bmr = location.state.bmr;
+	//const bmrValues = location.state.bmrValues;
+	const [bmr] = useAtom(bmrAtom);
 
 	const { handleSubmit, register } = useZodForm({
 		schema: goalsSchema,
@@ -36,15 +44,10 @@ function TdeePage() {
 		const tdee = calculateTDEE(bmr, values.activity);
 		const caloricObjective = calculateCalorieTarget(tdee, values.objective);
 		const allObjectives = getAllObjectives(tdee);
-		navigate('/results', {
-			state: {
-				tdee,
-				caloricObjective,
-				allObjectives,
-				bmrValues,
-				goalValues: values,
-			},
-		});
+		setTdee(tdee);
+		setCaloricObjectve(caloricObjective);
+		setCaloricObjectiveList(allObjectives);
+		navigate('/results');
 	}
 
 	return (
@@ -57,7 +60,7 @@ function TdeePage() {
 				<CustomBmrForm onFormSubmit={handleSubmit(onSubmitGoals)}>
 					<CustomFormTitle title="Calculate your TDEE" />
 
-					<BannerInfoComponent title="Your BMR is: " label={bmr} />
+					<BannerInfoComponent title="Your BMR is: " label={bmr.toString()} />
 
 					<CustomSelect
 						label="Activity volume"

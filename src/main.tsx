@@ -8,6 +8,7 @@ import {
 import ResultsPage from './pages/results';
 import BmrPage from './pages/bmr';
 import TdeePage from './pages/tdee';
+import { Provider } from 'jotai';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -30,6 +31,8 @@ const router = createBrowserRouter([
 ]);
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<Provider>
+			<RouterProvider router={router} />
+		</Provider>
 	</React.StrictMode>
 );

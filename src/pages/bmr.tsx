@@ -14,8 +14,8 @@ import { atom, useAtom } from 'jotai';
 
 import FormPageLayout from '../layout/form-layout';
 
-const bmrAtom = atom(0);
-const bmrValuesAtom = atom({});
+export const bmrAtom = atom(0);
+export const bmrCalculationValuesAtom = atom({});
 
 function BmrPage() {
 	const { handleSubmit, register, formState, setValue, reset } = useZodForm({
@@ -30,6 +30,9 @@ function BmrPage() {
 		mode: 'onChange',
 		reValidateMode: 'onChange',
 	});
+	const [, setBmr] = useAtom(bmrAtom);
+	const [, setBmrCalculationValues] = useAtom(bmrCalculationValuesAtom);
+
 	const [activeTab, setActiveTab] = useState('Metric');
 	const navigate = useNavigate();
 
@@ -43,10 +46,12 @@ function BmrPage() {
 		//const bmr = calculateBMR(values as BmrInput);
 		const bmr = calculateBMR(values);
 		console.log('bmr', bmr);
-
-		navigate('/tdee', {
-			state: { bmrValues: values, bmr },
-		});
+		setBmr(bmr);
+		setBmrCalculationValues(values);
+		// navigate('/tdee', {
+		// 	state: { bmrValues: values, bmr },
+		// });
+		navigate('/tdee');
 	}
 
 	return (

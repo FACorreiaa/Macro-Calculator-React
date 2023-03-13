@@ -1,11 +1,20 @@
 import HeadComponent from '../components/head';
-import { useLocation } from 'react-router-dom';
 import ResultsPageLayout from '../layout/results-layout';
+import { useAtom } from 'jotai';
+import { bmrAtom, bmrCalculationValuesAtom } from './bmr';
+import {
+	tdeeAtom,
+	caloricObjectiveAtom,
+	caloricObjectiveListAtom,
+} from './tdee';
 
 function ResultsPage() {
-	const location = useLocation();
-	console.log('location', location);
-
+	const [bmrValues] = useAtom(bmrCalculationValuesAtom);
+	const [bmr] = useAtom(bmrAtom);
+	const [tdee] = useAtom(tdeeAtom);
+	const [caloricObjective] = useAtom(caloricObjectiveAtom);
+	const [allObjectives] = useAtom(caloricObjectiveListAtom);
+	console.log(allObjectives);
 	return (
 		<ResultsPageLayout>
 			<HeadComponent
