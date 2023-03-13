@@ -63,15 +63,6 @@ function BmrPage() {
 						activeTab={activeTab}
 						onClick={handleTabClick}
 					/>
-					{/* <CustomFormTitle title="Calculate your bmr" /> */}
-
-					{/* <CustomSelect
-						label="Select your metric"
-						id="metrics"
-						options={measureValues}
-						selected
-						methods={register('metric')}
-					/> */}
 
 					<CustomSelect
 						label="Gender"
@@ -106,13 +97,6 @@ function BmrPage() {
 						methods={register('height')}
 						errorMessage={formState.errors.age?.message}
 					/>
-
-					{/* <CustomRadioList
-						title="Select your daily activity:"
-						options={workoutVolume}
-						name="activity"
-						methods={register('activity')}
-					/> */}
 
 					<div className="flex justify-center">
 						<CustomButtom type="submit" label="Next" />

@@ -11,7 +11,8 @@ import { useLocation } from 'react-router-dom';
 import BannerInfoComponent from '../components/banner-info';
 
 function GoalPage() {
-	const { handleSubmit, register, formState } = useZodForm({
+	const location = useLocation();
+	const { handleSubmit, register } = useZodForm({
 		schema: goalsSchema,
 		defaultValues: {
 			activity: '',
@@ -20,16 +21,9 @@ function GoalPage() {
 	});
 
 	function onSubmitGoalsValuesPage(values: GoalsInput) {
-		// return await mutation.mutate(values, {
-		// 	onSuccess: async () => router.push('http://localhost:5005/login/signin'),
-		// 	onError: async (error) => {
-		// 		console.log(error);
-		// 	},
-		// });
 		return 0;
 	}
 
-	const location = useLocation();
 	const bmr = location.state.bmr;
 
 	return (
@@ -62,13 +56,6 @@ function GoalPage() {
 						methods={register('objective')}
 						placeholder="Select objective"
 					/>
-
-					{/* <CustomRadioList
-						title="Select your daily activity:"
-						options={workoutVolume}
-						name="activity"
-						methods={register('activity')}
-					/> */}
 
 					<div className="flex justify-between">
 						<CustomButtom type="button" label="Previous" />
