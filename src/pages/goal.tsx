@@ -8,6 +8,7 @@ import useZodForm from '../hooks/useZodForm';
 import Pagelayout from '../layout/layout';
 import { GoalsInput, goalsSchema } from '../types/goalsSchema';
 import { useLocation } from 'react-router-dom';
+import BannerInfoComponent from '../components/banner-info';
 
 function GoalPage() {
 	const { handleSubmit, register, formState } = useZodForm({
@@ -35,6 +36,7 @@ function GoalPage() {
 	}));
 
 	const location = useLocation();
+	const bmr = location.state.bmr;
 	console.log('BMR:', location.state.bmr);
 
 	return (
@@ -46,10 +48,9 @@ function GoalPage() {
 			/>
 			<div className="w-full max-w-xs ">
 				<CustomBmrForm onFormSubmit={handleSubmit(onSubmitGoalsValuesPage)}>
-					<div>
-						<span>Your BMR is: 100</span>
-					</div>
 					<CustomFormTitle title="Calculate your TDEE" />
+
+					<BannerInfoComponent title="Your BMR is: " label={bmr} />
 
 					<CustomSelect
 						label="Activity volume"
