@@ -5,7 +5,6 @@ import HeadComponent from '../components/head';
 import CustomSelect from '../components/select';
 import { workoutVolume, goalOptions } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
-import PageLayout from '../layout/form-layout';
 import { GoalsInput, goalsSchema } from '../types/goalsSchema';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -38,9 +37,6 @@ function GoalPage() {
 			values.activity
 		);
 
-		console.log('bmr', bmr);
-		console.log('caloricGoal', caloricGoal);
-		console.log('caloricGoalWithTrainning', caloricGoalWithTrainning);
 		navigate('/results', {
 			state: { bmr, caloricGoal, caloricGoalWithTrainning },
 		});
@@ -50,8 +46,7 @@ function GoalPage() {
 		<FormPageLayout>
 			<HeadComponent
 				title="Goal Calculator"
-				name="Goal Calculator"
-				content="Calculate your goals with your tdee"
+				content="Set your goals and objectives to get a realistic approach to your calories"
 			/>
 			<div className="w-full max-w-xs ">
 				<CustomBmrForm onFormSubmit={handleSubmit(onSubmitGoalsValuesPage)}>

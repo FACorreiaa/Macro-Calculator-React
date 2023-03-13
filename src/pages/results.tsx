@@ -1,7 +1,5 @@
-import React from 'react';
 import HeadComponent from '../components/head';
 import { useLocation } from 'react-router-dom';
-import PageLayout from '../layout/form-layout';
 import ResultsPageLayout from '../layout/results-layout';
 
 function ResultsPage() {
@@ -12,8 +10,7 @@ function ResultsPage() {
 		<ResultsPageLayout>
 			<HeadComponent
 				title="Calories and Macros results"
-				name="Macro Distribution"
-				content="Macro distribution according to goals and objectives"
+				content="Macro distribution according to goals and objectives and your bio data"
 			/>
 			<div>oi</div>
 			<div>oi</div>

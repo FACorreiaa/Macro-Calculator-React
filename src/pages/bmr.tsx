@@ -46,8 +46,7 @@ function BmrPage() {
 		<FormPageLayout>
 			<HeadComponent
 				title="Tdee Calculator"
-				name="Tdee Calculator"
-				content="Calculate your basic calories"
+				content="Calculate your basic calories inserting Age, Genderm Height and Weight"
 			/>
 			<div className="w-full max-w-xs ">
 				<CustomBmrForm onFormSubmit={handleSubmit(onSubmitBmrValuesPage)}>
