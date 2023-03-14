@@ -14,19 +14,20 @@ import { atom, useAtom } from 'jotai';
 
 import FormPageLayout from '../layout/form-layout';
 
+const BmrDefaultValues = {
+	age: '',
+	gender: '',
+	height: '',
+	metric: 'Metric',
+	weight: '',
+};
 export const bmrAtom = atom(0);
-export const bmrCalculationValuesAtom = atom({});
+export const bmrCalculationValuesAtom = atom(BmrDefaultValues);
 
 function BmrPage() {
 	const { handleSubmit, register, formState, setValue, reset } = useZodForm({
 		schema: tdeeSchema,
-		defaultValues: {
-			age: '',
-			height: '',
-			weight: '',
-			metric: 'Metric',
-			gender: '',
-		},
+		defaultValues: BmrDefaultValues,
 		mode: 'onChange',
 		reValidateMode: 'onChange',
 	});
@@ -44,7 +45,6 @@ function BmrPage() {
 
 	function onSubmitbmrDataPage(values: BmrInput) {
 		const bmr = calculateBMR(values);
-		console.log('bmr', bmr);
 		setBmr(bmr);
 		setBmrCalculationValues(values);
 		navigate('/tdee');
