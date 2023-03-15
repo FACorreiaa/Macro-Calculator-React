@@ -1,6 +1,6 @@
 import { UseFormRegisterReturn } from 'react-hook-form';
 
-type CustomInputProps = {
+type InputProps = {
 	label: string;
 	id: string;
 	type: string;
@@ -8,14 +8,14 @@ type CustomInputProps = {
 	methods: UseFormRegisterReturn<string>;
 	errorMessage: string | undefined;
 };
-function CustomInput({
+function Input({
 	label,
 	id,
 	type,
 	placeholder,
 	errorMessage,
 	methods,
-}: CustomInputProps) {
+}: InputProps) {
 	return (
 		<div className="mb-6">
 			<label className="block text-gray-200 dark:text-gray-900 text-sm font-bold">
@@ -39,4 +39,4 @@ function CustomInput({
 	);
 }
 
-export default CustomInput;
+export default Input;

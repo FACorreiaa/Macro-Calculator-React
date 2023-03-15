@@ -1,11 +1,11 @@
 import React from 'react';
 import FooterComponent from '../footer';
 
-type CustomBmrFormProps = {
+type BmrFormProps = {
 	children: React.ReactNode;
 	onFormSubmit: any;
 };
-function CustomBmrForm({ children, onFormSubmit }: CustomBmrFormProps) {
+function BmrForm({ children, onFormSubmit }: BmrFormProps) {
 	return (
 		<React.Fragment>
 			<form
@@ -18,4 +18,4 @@ function CustomBmrForm({ children, onFormSubmit }: CustomBmrFormProps) {
 	);
 }
 
-export default CustomBmrForm;
+export default BmrForm;

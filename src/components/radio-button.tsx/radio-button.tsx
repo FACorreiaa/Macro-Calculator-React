@@ -1,7 +1,7 @@
 import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
-type CustomCustomRadioButtonProps = {
+type RadioButtonProps = {
 	label: string;
 	disabled?: boolean;
 	id: string;
@@ -9,13 +9,7 @@ type CustomCustomRadioButtonProps = {
 	name?: string;
 	methods: UseFormRegisterReturn<string>;
 };
-function CustomRadioButton({
-	id,
-	value,
-	name,
-	label,
-	methods,
-}: CustomCustomRadioButtonProps) {
+function RadioButton({ id, value, name, label, methods }: RadioButtonProps) {
 	return (
 		<div className="mb-1 flex items-center">
 			<input
@@ -32,4 +26,4 @@ function CustomRadioButton({
 	);
 }
 
-export default CustomRadioButton;
+export default RadioButton;

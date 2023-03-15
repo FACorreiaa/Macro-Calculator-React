@@ -1,8 +1,8 @@
-import CustomButtom from '../components/button';
-import CustomBmrForm from '../components/forms/form';
-import CustomFormTitle from '../components/forms/form-title';
+import Buttom from '../components/button';
+import BmrForm from '../components/forms/form';
+import FormTitle from '../components/forms/form-title';
 import HeadComponent from '../components/head';
-import CustomSelect from '../components/select';
+import Select from '../components/select';
 import { workoutVolumesList, dataOptions, goalList } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
 import { GoalsInput, goalsSchema } from '../types/goalsSchema';
@@ -64,10 +64,10 @@ function TdeePage() {
 				content="Set your goals and objectives to get a realistic approach to your calories"
 			/>
 			<div className="w-full max-w-xs ">
-				<CustomBmrForm onFormSubmit={handleSubmit(onSubmitGoals)}>
-					<CustomFormTitle title="Calculate your TDEE" />
+				<BmrForm onFormSubmit={handleSubmit(onSubmitGoals)}>
+					<FormTitle title="Calculate your TDEE" />
 
-					<CustomSelect
+					<Select
 						label="Activity volume"
 						id="activity"
 						options={dataOptions(workoutVolumesList)}
@@ -76,7 +76,7 @@ function TdeePage() {
 						placeholder="Select activity"
 					/>
 
-					<CustomSelect
+					<Select
 						label="Activity volume"
 						id="activity"
 						options={dataOptions(goalList)}
@@ -86,14 +86,14 @@ function TdeePage() {
 					/>
 
 					<div className="flex justify-between">
-						<CustomButtom
+						<Buttom
 							type="button"
 							label="Previous"
 							onClick={() => navigate('/')}
 						/>
-						<CustomButtom type="submit" label="Calculate" />
+						<Buttom type="submit" label="Calculate" />
 					</div>
-				</CustomBmrForm>
+				</BmrForm>
 			</div>
 		</FormPageLayout>
 	);

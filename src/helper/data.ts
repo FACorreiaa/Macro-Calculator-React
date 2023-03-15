@@ -9,6 +9,21 @@ export const measureValues = [
 	},
 ];
 
+export const objectiveValues = [
+	{
+		label: 'Maintenance',
+		value: 0,
+	},
+	{
+		label: 'Bulking',
+		value: 1,
+	},
+	{
+		label: 'Cutting',
+		value: 2,
+	},
+];
+
 const genderValues: {
 	[key: string]: number;
 } = {

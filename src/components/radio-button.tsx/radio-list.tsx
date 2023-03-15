@@ -1,6 +1,6 @@
 import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import CustomRadioButton from './radio-button';
+import RadioButton from './radio-button';
 import RadioListHeader from './radio-list-header';
 export interface IOption {
 	label: string;
@@ -16,14 +16,14 @@ export interface IInputGroup {
 	methods: UseFormRegisterReturn<string>;
 }
 
-const CustomRadioList = ({ options, title, name, ...methods }: IInputGroup) => {
+const RadioList = ({ options, title, name, ...methods }: IInputGroup) => {
 	function renderOptions() {
 		return options.map(({ label, name, value }: IOption) => {
 			const shortenedOptionLabel = label.replace(/\s+/g, '');
 			const optionId = `radio-option-${shortenedOptionLabel}`;
 
 			return (
-				<CustomRadioButton
+				<RadioButton
 					value={value}
 					label={label}
 					key={optionId}
@@ -41,4 +41,4 @@ const CustomRadioList = ({ options, title, name, ...methods }: IInputGroup) => {
 		</div>
 	);
 };
-export default CustomRadioList;
+export default RadioList;

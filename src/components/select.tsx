@@ -5,7 +5,7 @@ export interface IOption {
 	label: string;
 	value: number;
 }
-type CustomSelectProps = {
+type SelectProps = {
 	label: string;
 	id: string;
 	options: IOption[];
@@ -13,13 +13,7 @@ type CustomSelectProps = {
 	methods: UseFormRegisterReturn<string>;
 	placeholder: string;
 };
-function CustomSelect({
-	label,
-	id,
-	options,
-	methods,
-	placeholder,
-}: CustomSelectProps) {
+function Select({ label, id, options, methods, placeholder }: SelectProps) {
 	return (
 		<div className="mb-6">
 			<label className="block text-gray-200 dark:text-gray-900 text-sm font-bold">
@@ -56,4 +50,4 @@ function CustomSelect({
 	);
 }
 
-export default CustomSelect;
+export default Select;

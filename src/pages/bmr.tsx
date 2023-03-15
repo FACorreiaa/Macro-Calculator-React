@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import CustomButtom from '../components/button';
-import CustomBmrForm from '../components/forms/form';
+import Buttom from '../components/button';
+import BmrForm from '../components/forms/form';
 import HeadComponent from '../components/head';
-import CustomInput from '../components/input';
-import CustomSelect from '../components/select';
-import CustomTabsComponent from '../components/tabs';
+import Input from '../components/input';
+import Select from '../components/select';
+import TabsComponent from '../components/tabs';
 import { calculateBMR } from '../helper/bmr';
 import { measureValues, genderOptions } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
@@ -57,14 +57,14 @@ function BmrPage() {
 				content="Calculate your basic calories inserting Age, Genderm Height and Weight"
 			/>
 			<div className="w-full max-w-xs ">
-				<CustomBmrForm onFormSubmit={handleSubmit(onSubmitbmrDataPage)}>
-					<CustomTabsComponent
+				<BmrForm onFormSubmit={handleSubmit(onSubmitbmrDataPage)}>
+					<TabsComponent
 						options={measureValues}
 						activeTab={activeTab}
 						onClick={handleTabClick}
 					/>
 
-					<CustomSelect
+					<Select
 						label="Gender"
 						id="gender"
 						options={genderOptions}
@@ -73,7 +73,7 @@ function BmrPage() {
 						placeholder="Select gender"
 					/>
 
-					<CustomInput
+					<Input
 						label="Age"
 						id="age"
 						type="number"
@@ -81,7 +81,7 @@ function BmrPage() {
 						methods={register('age')}
 						errorMessage={formState.errors.age?.message}
 					/>
-					<CustomInput
+					<Input
 						label="Weight"
 						id="weight"
 						type="number"
@@ -89,7 +89,7 @@ function BmrPage() {
 						methods={register('weight')}
 						errorMessage={formState.errors.weight?.message}
 					/>
-					<CustomInput
+					<Input
 						label="Height"
 						id="height"
 						type="number"
@@ -99,11 +99,11 @@ function BmrPage() {
 					/>
 
 					<div className="flex justify-between">
-						<CustomButtom type="submit" label="Reset" onClick={() => reset()} />
+						<Buttom type="submit" label="Reset" onClick={() => reset()} />
 
-						<CustomButtom type="submit" label="Next" />
+						<Buttom type="submit" label="Next" />
 					</div>
-				</CustomBmrForm>
+				</BmrForm>
 			</div>
 		</FormPageLayout>
 	);

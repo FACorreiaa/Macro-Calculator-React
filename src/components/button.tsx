@@ -1,11 +1,11 @@
 import React from 'react';
 
-type CustomButtomProps = {
+type ButtomProps = {
 	type: 'submit' | 'reset' | 'button' | undefined;
 	label: string;
 	onClick?: () => void;
 };
-function CustomButtom({ type, label, onClick }: CustomButtomProps) {
+function Buttom({ type, label, onClick }: ButtomProps) {
 	return (
 		<button
 			onClick={onClick}
@@ -16,4 +16,4 @@ function CustomButtom({ type, label, onClick }: CustomButtomProps) {
 	);
 }
 
-export default CustomButtom;
+export default Buttom;

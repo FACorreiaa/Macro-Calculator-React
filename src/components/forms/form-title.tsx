@@ -1,9 +1,9 @@
 import React from 'react';
 
-type CustomFormTitleProps = {
+type FormTitleProps = {
 	title: string;
 };
-function CustomFormTitle({ title }: CustomFormTitleProps) {
+function FormTitle({ title }: FormTitleProps) {
 	return (
 		<span className="flex text-gray-700 text-xxl font-bold py-6 text-center w-full">
 			{title}
@@ -11,4 +11,4 @@ function CustomFormTitle({ title }: CustomFormTitleProps) {
 	);
 }
 
-export default CustomFormTitle;
+export default FormTitle;

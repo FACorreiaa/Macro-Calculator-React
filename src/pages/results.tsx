@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import HeadComponent from '../components/head';
 import ResultsPageLayout from '../layout/results-layout';
 import { useAtom } from 'jotai';
@@ -10,6 +11,8 @@ import {
 	objectiveAtom,
 } from './tdee';
 import BannerInfoComponent from '../components/banner-info';
+import { objectiveValues } from '../helper/data';
+import DashboardTabsComponent from '../components/dashboard/tabs';
 
 const DisplayBaseInfo = () => {
 	const [bmrData] = useAtom(bmrCalculationValuesAtom);
@@ -20,10 +23,10 @@ const DisplayBaseInfo = () => {
 	const [allDietObjectives] = useAtom(dietObjectiveListAtom);
 
 	return (
-		<>
-			<div className="container justify-evenly flex flex-row p-2 m-5">
-				<div className="items-center shadow-sm justify-center  shadow-purple-200  bg-white p-6 border border-spacing-2 rounded">
-					<h1>Biometric Data</h1>
+		<div className="bg-slate-100 border border-slate-400  p-2  rounded relative text-center m-5">
+			<div className="justify-between flex flex-row p-4 m-5">
+				<div className="shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
+					<h1 className="text-xl font-bold mb-2">Biometric Data</h1>
 					<p className="text-sm">
 						<label className="font-bold">Gender: </label>
 						<span>{bmrData.gender}</span>
@@ -46,8 +49,8 @@ const DisplayBaseInfo = () => {
 					</p>
 				</div>
 
-				<div className="  shadow-sm justify-center  shadow-purple-200  bg-white p-6 border border-spacing-2 rounded">
-					<h1>Goals and Objectives</h1>
+				<div className="shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
+					<h1 className="text-xl font-bold mb-2">Goals and Objectives</h1>
 
 					<p className="text-sm">
 						<label className="font-bold">Objective: </label>
@@ -71,10 +74,10 @@ const DisplayBaseInfo = () => {
 					</p>
 				</div>
 				<div className="shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
-					<h1>Macros</h1>
-					<p className="text-sm">
+					<h1 className="text-xl font-bold mb-2">Macros</h1>
+					<p className="text-sm ">
 						<label className="font-bold">Tdee: </label>
-						<span>{tdee}</span>
+						<span className="text-lg">{tdee}</span>
 					</p>
 
 					<p className="text-sm">
@@ -91,7 +94,7 @@ const DisplayBaseInfo = () => {
 					</p>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 
@@ -100,18 +103,48 @@ const DisplayCalorieObjective = () => {
 	const [objective] = useAtom(objectiveAtom);
 
 	return (
-		<div className="container">
+		<div className="bg-slate-100 border border-slate-400  p-2  rounded relative text-center m-5">
 			<div
 				className=" m-5 justify-center text-center p-2 items-center bg-blue-500 text-white text-sm font-bold px-4 py-3 border border-blue-200 border-spacing-2 rounded"
 				role="alert">
 				<p className="text-sm">
 					<label className="font-bold">Calories target:&nbsp; </label>
 					<span>
-						For {objective} you should consume {dietObjective} per day or&nbsp;{' '}
+						For {objective} you should consume{' '}
+						<span className="underline font-bold text-lg">{dietObjective}</span>{' '}
+						per day or&nbsp;
 					</span>
-					<span>{dietObjective * 7} per week</span>
+					<span>
+						<span className="underline font-bold text-lg">
+							{dietObjective * 7}
+						</span>{' '}
+						per week
+					</span>
 				</p>
 			</div>
+		</div>
+	);
+};
+
+const DisplayMacros = () => {
+	const [activeTab, setActiveTab] = useState('Maintenance');
+
+	const [dietObjective] = useAtom(dietObjectiveAtom);
+	const [objective] = useAtom(objectiveAtom);
+
+	const handleTabClick = (e: any) => {
+		const tab = e.target.value;
+		setActiveTab(tab);
+	};
+
+	return (
+		<div className="bg-slate-100 border border-slate-400  p-2  rounded relative text-center m-5">
+			<DashboardTabsComponent
+				options={objectiveValues}
+				activeTab={activeTab}
+				onClick={handleTabClick}
+			/>
+			<div>oi</div>
 		</div>
 	);
 };
@@ -131,7 +164,7 @@ function ResultsPage() {
 			<div className="container">
 				<BannerInfoComponent
 					title="Measuring: "
-					label={`You are using ${bmrData.metric} measures`}
+					label={`You are using ${bmrData.metric} system`}
 				/>
 				<DisplayBaseInfo />
 				<BannerInfoComponent
@@ -139,6 +172,7 @@ function ResultsPage() {
 					label="Keep in mind the body is not a calculator and this or any tool out there are just extimatives. Adjust yours for the best result possible and enjoy the process."
 				/>
 				<DisplayCalorieObjective />
+				<DisplayMacros />
 			</div>
 		</ResultsPageLayout>
 	);

@@ -1,9 +1,9 @@
 import React from 'react';
 
-type CustomPageTitleProps = {
+type PageTitleProps = {
 	title: string;
 };
-function CustomPageTitle({ title }: CustomPageTitleProps) {
+function PageTitle({ title }: PageTitleProps) {
 	return (
 		<h1 className="text-3xl font-bold text-ctp-white pb-6 text-stone-200">
 			{title}
@@ -11,4 +11,4 @@ function CustomPageTitle({ title }: CustomPageTitleProps) {
 	);
 }
 
-export default CustomPageTitle;
+export default PageTitle;
