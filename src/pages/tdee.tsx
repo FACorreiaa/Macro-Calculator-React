@@ -7,9 +7,7 @@ import { workoutVolumesList, dataOptions, goalList } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
 import { GoalsInput, goalsSchema } from '../types/goalsSchema';
 import { useNavigate } from 'react-router-dom';
-import { bmrAtom, bmrCalculationValuesAtom } from './bmr';
-
-import BannerInfoComponent from '../components/banner-info';
+import { bmrAtom } from './bmr';
 
 import FormPageLayout from '../layout/form-layout';
 import {
@@ -18,10 +16,14 @@ import {
 	getallDietObjectives,
 } from '../helper/tdee';
 import { atom, useAtom } from 'jotai';
-
+const DietObjctiveListInitialValues = {
+	Maintenance: 0,
+	Bulking: 0,
+	Cutting: 0,
+};
 export const tdeeAtom = atom(0);
 export const dietObjectiveAtom = atom(0);
-export const dietObjectiveListAtom = atom({});
+export const dietObjectiveListAtom = atom(DietObjctiveListInitialValues);
 export const objectiveAtom = atom('');
 export const activityAtom = atom('');
 
@@ -64,8 +66,6 @@ function TdeePage() {
 			<div className="w-full max-w-xs ">
 				<CustomBmrForm onFormSubmit={handleSubmit(onSubmitGoals)}>
 					<CustomFormTitle title="Calculate your TDEE" />
-
-					<BannerInfoComponent title="Your BMR is: " label={bmr.toString()} />
 
 					<CustomSelect
 						label="Activity volume"
