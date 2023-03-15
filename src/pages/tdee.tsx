@@ -22,12 +22,16 @@ import { atom, useAtom } from 'jotai';
 export const tdeeAtom = atom(0);
 export const dietObjectiveAtom = atom(0);
 export const dietObjectiveListAtom = atom({});
+export const objectiveAtom = atom('');
+export const activityAtom = atom('');
 
 function TdeePage() {
 	const navigate = useNavigate();
 	const [, setTdee] = useAtom(tdeeAtom);
 	const [, setCaloricObjectve] = useAtom(dietObjectiveAtom);
 	const [, setdietObjectiveList] = useAtom(dietObjectiveListAtom);
+	const [, setObjective] = useAtom(objectiveAtom);
+	const [, setActivity] = useAtom(activityAtom);
 
 	const [bmr] = useAtom(bmrAtom);
 
@@ -44,6 +48,8 @@ function TdeePage() {
 		const dietObjective = calculateCalorieTarget(tdee, values.objective);
 		const allDietObjectives = getallDietObjectives(tdee);
 		setTdee(tdee);
+		setObjective(values.objective);
+		setActivity(values.activity);
 		setCaloricObjectve(dietObjective);
 		setdietObjectiveList(allDietObjectives);
 		navigate('/results');
