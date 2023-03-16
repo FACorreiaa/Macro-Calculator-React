@@ -7,7 +7,7 @@ type LayoutProps = {
 };
 function ResultsPageLayout({ children }: LayoutProps) {
 	return (
-		<div className="bg-purple-800">
+		<div className="bg-white">
 			<header className={styles.header}>
 				<PageTitle title="Macro calculator" />
 				{children}

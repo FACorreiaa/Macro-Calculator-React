@@ -5,7 +5,7 @@ type PageTitleProps = {
 };
 function PageTitle({ title }: PageTitleProps) {
 	return (
-		<h1 className="text-3xl font-bold text-ctp-white pb-6 text-stone-200">
+		<h1 className="text-3xl font-bold text-ctp-white pb-6 text-stone-900">
 			{title}
 		</h1>
 	);
