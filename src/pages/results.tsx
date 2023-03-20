@@ -137,6 +137,7 @@ const DisplayMacros = () => {
 		setActiveTab(tab);
 	};
 
+	console.log('activeTab', activeTab);
 	return (
 		<div className="bg-slate-100 border border-slate-400  p-2  rounded relative text-center m-5">
 			<DashboardTabsComponent
