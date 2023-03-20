@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Buttom from '../components/button';
 import BmrForm from '../components/forms/form';
 import HeadComponent from '../components/head';
@@ -8,11 +7,11 @@ import TabsComponent from '../components/tabs';
 import { calculateBMR } from '../helper/bmr';
 import { measureValues, genderOptions } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
-import { BmrInput, tdeeSchema } from '../types/tdeeSchema';
-import { useNavigate } from 'react-router-dom';
-import { atom, useAtom } from 'jotai';
-
 import FormPageLayout from '../layout/form-layout';
+import { BmrInput, tdeeSchema } from '../types/tdeeSchema';
+import { atom, useAtom } from 'jotai';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const BmrDefaultValues = {
 	age: '',

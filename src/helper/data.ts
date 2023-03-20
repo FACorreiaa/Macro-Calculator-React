@@ -46,7 +46,7 @@ export const goalList: {
 	Cutting: -350,
 };
 
-export const dataOptions = (data: Object) =>
+export const dataOptions = (data: object) =>
 	Object.entries(data).map(([label, value]) => ({
 		label,
 		value,

@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import BannerInfoComponent from '../components/banner-info';
+import DashboardTabsComponent from '../components/dashboard/tabs';
 import HeadComponent from '../components/head';
+import { objectiveValues } from '../helper/data';
 import ResultsPageLayout from '../layout/results-layout';
-import { useAtom } from 'jotai';
 import { bmrAtom, bmrCalculationValuesAtom } from './bmr';
 import {
 	tdeeAtom,
@@ -10,9 +11,8 @@ import {
 	activityAtom,
 	objectiveAtom,
 } from './tdee';
-import BannerInfoComponent from '../components/banner-info';
-import { objectiveValues } from '../helper/data';
-import DashboardTabsComponent from '../components/dashboard/tabs';
+import { useAtom } from 'jotai';
+import { useState } from 'react';
 
 const DisplayBaseInfo = () => {
 	const [bmrData] = useAtom(bmrCalculationValuesAtom);

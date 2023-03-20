@@ -1,4 +1,3 @@
-import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 type RadioButtonProps = {
@@ -9,7 +8,7 @@ type RadioButtonProps = {
 	name?: string;
 	methods: UseFormRegisterReturn<string>;
 };
-function RadioButton({ id, value, name, label, methods }: RadioButtonProps) {
+function RadioButton({ id, value, label, methods }: RadioButtonProps) {
 	return (
 		<div className="mb-1 flex items-center">
 			<input

@@ -1,5 +1,3 @@
-import React from 'react';
-
 type ButtomProps = {
 	type: 'submit' | 'reset' | 'button' | undefined;
 	label: string;

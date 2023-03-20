@@ -1,6 +1,6 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import type { UseFormProps } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import type { z } from 'zod';
 
 function useZodForm<TSchema extends z.ZodType>(

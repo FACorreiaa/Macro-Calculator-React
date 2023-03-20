@@ -9,7 +9,7 @@ test('calculateTDEE should return the correct value', () => {
 	const metric = 'Metric';
 	const expected = 2340;
 
-	const result = calculateBMR(34, gender, metric, weight, height);
+	const result = calculateBMR(age, gender, metric, weight, height);
 	assert.equal(result, expected);
 });
 

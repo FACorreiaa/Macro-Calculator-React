@@ -1,4 +1,3 @@
-import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 export interface IOption {
@@ -28,7 +27,7 @@ function Select({ label, id, options, methods, placeholder }: SelectProps) {
 						{placeholder}
 					</option>
 					{options.map(({ label, value }: { label: string; value: number }) => {
-						let optionId = `select-${value}`;
+						const optionId = `select-${value}`;
 
 						return (
 							<option key={optionId} id={optionId} value={label}>

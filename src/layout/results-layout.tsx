@@ -1,6 +1,6 @@
-import React from 'react';
 import PageTitle from '../components/page-title';
 import styles from '../styles/results.module.css';
+import React from 'react';
 
 type LayoutProps = {
 	children: React.ReactNode;

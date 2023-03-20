@@ -1,4 +1,4 @@
-import { number, string, TypeOf } from 'zod';
+import { string, TypeOf } from 'zod';
 import { z } from 'zod';
 
 export const tdeeSchema = z.object({

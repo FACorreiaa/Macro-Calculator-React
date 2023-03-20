@@ -1,4 +1,5 @@
 import { BmrInput } from '../types/tdeeSchema';
+
 export const maleAgeFactor = 5.0;
 export const femaleAgeFactor = -161.0;
 
@@ -47,7 +48,7 @@ export const calculateBMR = ({
 	const weightFactor = units[metric].weightFactor;
 	const heightFactor = units[metric].heightFactor;
 
-	let result =
+	const result =
 		weightFactor * convertedWeight +
 		heightFactor * convertedHeight -
 		5.0 * parseFloat(age) +

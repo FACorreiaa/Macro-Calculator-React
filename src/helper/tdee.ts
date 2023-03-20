@@ -42,17 +42,17 @@ export const calculateMacros = (
 	coloricGoal: number
 ): Macros => {
 	const macroRacios = caloricDistribution[caloricFactor];
-	let protein = calculateMacroDistribution(
+	const protein = calculateMacroDistribution(
 		macroRacios.protein,
 		coloricGoal,
 		PROTEIN_PER_GRAM
 	);
-	let carbs = calculateMacroDistribution(
+	const carbs = calculateMacroDistribution(
 		macroRacios.carbs,
 		coloricGoal,
 		CARB_PER_GRAM
 	);
-	let fats = calculateMacroDistribution(
+	const fats = calculateMacroDistribution(
 		macroRacios.fats,
 		coloricGoal,
 		FAT_PER_GRAM

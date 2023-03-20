@@ -1,6 +1,6 @@
-import React from 'react';
 import PageTitle from '../components/page-title';
 import styles from '../styles/forms.module.css';
+import React from 'react';
 
 type LayoutProps = {
 	children: React.ReactNode;
