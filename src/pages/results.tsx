@@ -1,4 +1,5 @@
 import BannerInfoComponent from '../components/banner-info';
+import CustomPieChart from '../components/dashboard/pie-chart';
 import DashboardTabsComponent from '../components/dashboard/tabs';
 import HeadComponent from '../components/head';
 import { objectiveValues } from '../helper/data';
@@ -10,6 +11,7 @@ import {
 	dietObjectiveListAtom,
 	activityAtom,
 	objectiveAtom,
+	macrosAtom,
 } from './tdee';
 import { useAtom } from 'jotai';
 import { useState } from 'react';
@@ -21,7 +23,8 @@ const DisplayBaseInfo = () => {
 	const [objective] = useAtom(objectiveAtom);
 	const [activity] = useAtom(activityAtom);
 	const [allDietObjectives] = useAtom(dietObjectiveListAtom);
-
+	const [individualMacrios] = useAtom(macrosAtom);
+	console.log('individualMacrios', individualMacrios);
 	return (
 		<div className="bg-slate-100 border border-slate-400  p-2  rounded relative text-center m-5">
 			<div className="justify-between flex flex-row p-4 m-5">
@@ -174,6 +177,7 @@ function ResultsPage() {
 				/>
 				<DisplayCalorieObjective />
 				<DisplayMacros />
+				<CustomPieChart />
 			</div>
 		</ResultsPageLayout>
 	);
