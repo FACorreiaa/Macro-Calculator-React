@@ -29,7 +29,7 @@ const DisplayBaseInfo = () => {
 	return (
 		<div className="bg-slate-100 border border-slate-400  p-2  rounded relative text-center m-5">
 			<div className="justify-between flex flex-row p-4 m-5">
-				<div className="shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
+				<div className="w-64 shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
 					<h1 className="text-xl font-bold mb-2">Biometric Data</h1>
 					<p className="text-sm">
 						<label className="font-bold">Gender: </label>
@@ -52,13 +52,13 @@ const DisplayBaseInfo = () => {
 						<span>{bmr}</span>
 					</p>
 				</div>
-				<div className="shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
+				<div className="w-64 shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
 					<h1 className="text-xl font-bold mb-2">TDEE</h1>
 					<p className="text-sm ">
 						<span className="text-lg">{tdee}</span>
 					</p>
 				</div>
-				<div className="shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
+				<div className="w-64 shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
 					<h1 className="text-xl font-bold mb-2">Goals and Objectives</h1>
 
 					<p className="text-sm">

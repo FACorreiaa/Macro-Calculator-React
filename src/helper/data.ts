@@ -76,17 +76,17 @@ export const CaloricDistribution: {
 		carbs: number;
 	};
 } = {
-	MEDIUM_CARB: {
+	'Moderate Carb': {
 		protein: 0.3,
 		fats: 0.35,
 		carbs: 0.35,
 	},
-	HIGH_CARB: {
+	'High Carb': {
 		protein: 0.3,
 		carbs: 0.5,
 		fats: 0.2,
 	},
-	LOW_CARB: {
+	'Low Carb': {
 		protein: 0.4,
 		carbs: 0.2,
 		fats: 0.4,
