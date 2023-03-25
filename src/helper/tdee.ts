@@ -70,6 +70,38 @@ export const calculateMacros = (
 			fats,
 		};
 	}
-	console.log('result', result);
 	return result;
+};
+
+export const getDietObjective = (bmr: number, objective: string) =>
+	calculateCalorieTarget(bmr, objective);
+
+export const calculateMacrosPerTab = (
+	bmr: number,
+	objective: string,
+	activeCarbPlan: string
+): Macros => {
+	const dietObjective = getDietObjective(bmr, objective);
+	const macroRacios = CaloricDistribution[activeCarbPlan];
+	const protein = calculateMacroDistribution(
+		macroRacios.protein,
+		dietObjective,
+		PROTEIN_PER_GRAM
+	);
+	const carbs = calculateMacroDistribution(
+		macroRacios.carbs,
+		dietObjective,
+		CARB_PER_GRAM
+	);
+	const fats = calculateMacroDistribution(
+		macroRacios.fats,
+		dietObjective,
+		FAT_PER_GRAM
+	);
+
+	return {
+		protein,
+		carbs,
+		fats,
+	};
 };

@@ -27,6 +27,7 @@ const DietObjctiveListInitialValues = {
 	Bulking: 0,
 	Cutting: 0,
 };
+
 export const tdeeAtom = atom(0);
 export const dietObjectiveAtom = atom(0);
 export const dietObjectiveListAtom = atom(DietObjctiveListInitialValues);
@@ -41,6 +42,7 @@ function TdeePage() {
 	const [, setObjective] = useAtom(objectiveAtom);
 	const [, setActivity] = useAtom(activityAtom);
 	const [, setMacros] = useAtom(macrosAtom);
+
 	const [bmr] = useAtom(bmrAtom);
 
 	const { handleSubmit, register } = useZodForm({
@@ -55,14 +57,13 @@ function TdeePage() {
 		const tdee = calculateTDEE(bmr, values.activity);
 		const dietObjective = calculateCalorieTarget(tdee, values.objective);
 		const allDietObjectives = getallDietObjectives(tdee);
-
-		const individualMacrios = calculateMacros(tdee);
+		const individualMacros = calculateMacros(tdee);
 		setTdee(tdee);
 		setObjective(values.objective);
 		setActivity(values.activity);
 		setCaloricObjectve(dietObjective);
 		setdietObjectiveList(allDietObjectives);
-		setMacros(individualMacrios);
+		setMacros(individualMacros);
 		navigate('/results');
 	}
 

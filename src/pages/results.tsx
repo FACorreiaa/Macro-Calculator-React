@@ -3,7 +3,7 @@ import CustomMacroCard from '../components/dashboard/macro-card';
 import CustomPieChart from '../components/dashboard/pie-chart';
 import DashboardTabsComponent from '../components/dashboard/tabs';
 import HeadComponent from '../components/head';
-import { objectiveValues } from '../helper/data';
+import { carbLabelArray, objectiveValues } from '../helper/data';
 import ResultsPageLayout from '../layout/results-layout';
 import { bmrAtom, bmrCalculationValuesAtom } from './bmr';
 import {
@@ -17,14 +17,22 @@ import {
 import { useAtom } from 'jotai';
 import { useState } from 'react';
 
-const DisplayBaseInfo = () => {
+type IndividualMacroTypes = {
+	individualMacros: {
+		[key: string]: {
+			protein: number;
+			fats: number;
+			carbs: number;
+		};
+	};
+};
+const DisplayBaseInfo = ({ individualMacros }: IndividualMacroTypes) => {
 	const [bmrData] = useAtom(bmrCalculationValuesAtom);
 	const [bmr] = useAtom(bmrAtom);
 	const [tdee] = useAtom(tdeeAtom);
 	const [objective] = useAtom(objectiveAtom);
 	const [activity] = useAtom(activityAtom);
 	const [allDietObjectives] = useAtom(dietObjectiveListAtom);
-	const [individualMacrios] = useAtom(macrosAtom);
 
 	return (
 		<div className="bg-slate-100 border border-slate-400  p-2  rounded relative text-center m-5">
@@ -84,7 +92,7 @@ const DisplayBaseInfo = () => {
 				</div>
 			</div>
 			<div className="justify-between flex flex-row p-4 m-5">
-				{Object.entries(individualMacrios).map(([title, macros]) => (
+				{Object.entries(individualMacros).map(([title, macros]: any) => (
 					<CustomMacroCard
 						key={title}
 						title={title}
@@ -127,31 +135,42 @@ const DisplayCalorieObjective = () => {
 };
 
 const DisplayMacros = () => {
-	const [activeTab, setActiveTab] = useState('Maintenance');
-
+	const [activePlanTab, setActivePlanTab] = useState('Maintenance');
+	const [activeCarbTab, setActiveCarbTab] = useState('Moderate Carb');
 	//const [dietObjective] = useAtom(dietObjectiveAtom);
 	//const [objective] = useAtom(objectiveAtom);
 
-	const handleTabClick = (e: any) => {
+	const handlePlanTabClick = (e: any) => {
 		const tab = e.target.value;
-		setActiveTab(tab);
+		setActivePlanTab(tab);
 	};
 
-	console.log('activeTab', activeTab);
+	const onCarbDistributionClick = (e: any) => {
+		const tab = e.target.value;
+		setActiveCarbTab(tab);
+	};
+
 	return (
 		<div className="bg-slate-100 border border-slate-400  p-2  rounded relative text-center m-5">
 			<DashboardTabsComponent
-				options={objectiveValues}
-				activeTab={activeTab}
-				onClick={handleTabClick}
+				planOptions={objectiveValues}
+				activePlanTab={activePlanTab}
+				activeCarbTab={activeCarbTab}
+				onPlanOptionClick={handlePlanTabClick}
+				onCarbDistributionClick={onCarbDistributionClick}
+				carbDistributionOptions={carbLabelArray}
 			/>
-			<div>oi</div>
 		</div>
 	);
 };
 
 function ResultsPage() {
 	const [bmrData] = useAtom(bmrCalculationValuesAtom);
+	const protein = 200;
+	const fat = 100;
+	const carbs = 250;
+
+	const [individualMacros] = useAtom(macrosAtom);
 
 	return (
 		<ResultsPageLayout>
@@ -165,14 +184,14 @@ function ResultsPage() {
 					title="Measuring: "
 					label={`You are using ${bmrData.metric} system`}
 				/>
-				<DisplayBaseInfo />
+				<DisplayBaseInfo individualMacros={individualMacros} />
 				<BannerInfoComponent
 					title="Advice: "
 					label="Keep in mind the body is not a calculator and this or any tool out there are just extimatives. Adjust yours for the best result possible and enjoy the process."
 				/>
 				<DisplayCalorieObjective />
 				<DisplayMacros />
-				<CustomPieChart />
+				<CustomPieChart protein={protein} fats={fat} carbs={carbs} />
 			</div>
 		</ResultsPageLayout>
 	);

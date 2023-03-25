@@ -1,9 +1,9 @@
 export const PROTEIN_PER_GRAM = 4;
 export const CARB_PER_GRAM = 4;
 export const FAT_PER_GRAM = 9;
-export const LOW_CARB = 'LOW_CARB';
-export const HIGH_CARB = 'HIGH_CARB';
-export const MEDIUM_CARB = 'MEDIUM_CARB';
+export const LOW_CARB = 'Low Carb';
+export const HIGH_CARB = 'High Carb';
+export const MEDIUM_CARB = 'Moderate Carb';
 
 export const measureValues = [
 	{
@@ -92,3 +92,5 @@ export const CaloricDistribution: {
 		fats: 0.4,
 	},
 };
+
+export const carbLabelArray = ['Moderate Carb', 'High Carb', 'Low Carb'];
