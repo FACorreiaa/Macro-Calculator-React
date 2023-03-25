@@ -1,15 +1,21 @@
-import { calculateBMR } from './bmr';
+import { calculateBMR } from '../helper/bmr';
 import { describe, it, expect, test, assert } from 'vitest';
 
 test('calculateTDEE should return the correct value', () => {
-	const age = 34;
-	const weight = 86;
-	const height = 185;
-	const gender = 'Male';
-	const metric = 'Metric';
+	const data = {
+		age: '34',
+		weight: '86',
+		height: '185',
+		gender: 'Male',
+		metric: 'Metric',
+	};
 	const expected = 2340;
-
-	const result = calculateBMR(age, gender, metric, weight, height);
+	// const age = 34;
+	// const weight = 86;
+	// const height = 185;
+	// const gender = 'Male';
+	// const metric = 'Metric';
+	const result = calculateBMR(data);
 	assert.equal(result, expected);
 });
 
