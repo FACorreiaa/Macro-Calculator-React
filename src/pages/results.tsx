@@ -155,10 +155,7 @@ const DisplayMacros = () => {
 			<DashboardTabsComponent
 				planOptions={objectiveValues}
 				activePlanTab={activePlanTab}
-				activeCarbTab={activeCarbTab}
 				onPlanOptionClick={handlePlanTabClick}
-				onCarbDistributionClick={onCarbDistributionClick}
-				carbDistributionOptions={carbLabelArray}
 			/>
 		</div>
 	);
