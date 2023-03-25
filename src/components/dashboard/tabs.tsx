@@ -5,7 +5,7 @@ export interface IOption {
 type DashboardTabsComponentProps = {
 	options: IOption[];
 	activeTab: string;
-	onClick: (e: any) => void;
+	onClick: (e: React.MouseEvent<HTMLElement>) => void;
 };
 
 const DashboardTabsComponent = ({

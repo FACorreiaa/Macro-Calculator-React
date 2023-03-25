@@ -36,8 +36,8 @@ function BmrPage() {
 	const [activeTab, setActiveTab] = useState('Metric');
 	const navigate = useNavigate();
 
-	const handleTabClick = (e: any) => {
-		const tab = e.target.value;
+	const handleTabClick = (event: any) => {
+		const tab = event.target.value;
 		setActiveTab(tab);
 		setValue('metric', tab);
 	};

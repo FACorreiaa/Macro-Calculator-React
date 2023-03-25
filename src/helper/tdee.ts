@@ -1,10 +1,13 @@
 import {
-	caloricDistribution,
 	CARB_PER_GRAM,
 	FAT_PER_GRAM,
 	goalList,
 	PROTEIN_PER_GRAM,
 	workoutVolumesList,
+	MEDIUM_CARB,
+	HIGH_CARB,
+	LOW_CARB,
+	CaloricDistribution,
 } from './data';
 
 type Macros = {
@@ -38,29 +41,35 @@ const calculateMacroDistribution = (
 ): number => (calorieFactor * calorieGoal) / caloriesPerGram;
 
 export const calculateMacros = (
-	caloricFactor: string,
 	coloricGoal: number
-): Macros => {
-	const macroRacios = caloricDistribution[caloricFactor];
-	const protein = calculateMacroDistribution(
-		macroRacios.protein,
-		coloricGoal,
-		PROTEIN_PER_GRAM
-	);
-	const carbs = calculateMacroDistribution(
-		macroRacios.carbs,
-		coloricGoal,
-		CARB_PER_GRAM
-	);
-	const fats = calculateMacroDistribution(
-		macroRacios.fats,
-		coloricGoal,
-		FAT_PER_GRAM
-	);
+): Record<string, Macros> => {
+	const values = [MEDIUM_CARB, LOW_CARB, HIGH_CARB];
+	const result: Record<string, Macros> = CaloricDistribution;
 
-	return {
-		protein,
-		carbs,
-		fats,
-	};
+	for (const value of values) {
+		const macroRacios = CaloricDistribution[value];
+		const protein = calculateMacroDistribution(
+			macroRacios.protein,
+			coloricGoal,
+			PROTEIN_PER_GRAM
+		);
+		const carbs = calculateMacroDistribution(
+			macroRacios.carbs,
+			coloricGoal,
+			CARB_PER_GRAM
+		);
+		const fats = calculateMacroDistribution(
+			macroRacios.fats,
+			coloricGoal,
+			FAT_PER_GRAM
+		);
+
+		result[value] = {
+			protein,
+			carbs,
+			fats,
+		};
+	}
+	console.log('result', result);
+	return result;
 };

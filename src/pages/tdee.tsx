@@ -3,7 +3,12 @@ import BmrForm from '../components/forms/form';
 import FormTitle from '../components/forms/form-title';
 import HeadComponent from '../components/head';
 import Select from '../components/select';
-import { workoutVolumesList, dataOptions, goalList } from '../helper/data';
+import {
+	workoutVolumesList,
+	dataOptions,
+	goalList,
+	CaloricDistribution,
+} from '../helper/data';
 import {
 	calculateTDEE,
 	calculateCalorieTarget,
@@ -27,7 +32,7 @@ export const dietObjectiveAtom = atom(0);
 export const dietObjectiveListAtom = atom(DietObjctiveListInitialValues);
 export const objectiveAtom = atom('');
 export const activityAtom = atom('');
-export const macrosAtom = atom({});
+export const macrosAtom = atom(CaloricDistribution);
 function TdeePage() {
 	const navigate = useNavigate();
 	const [, setTdee] = useAtom(tdeeAtom);
@@ -50,7 +55,8 @@ function TdeePage() {
 		const tdee = calculateTDEE(bmr, values.activity);
 		const dietObjective = calculateCalorieTarget(tdee, values.objective);
 		const allDietObjectives = getallDietObjectives(tdee);
-		const individualMacrios = calculateMacros(values.objective, tdee);
+
+		const individualMacrios = calculateMacros(tdee);
 		setTdee(tdee);
 		setObjective(values.objective);
 		setActivity(values.activity);

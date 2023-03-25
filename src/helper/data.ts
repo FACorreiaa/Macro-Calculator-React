@@ -1,3 +1,10 @@
+export const PROTEIN_PER_GRAM = 4;
+export const CARB_PER_GRAM = 4;
+export const FAT_PER_GRAM = 9;
+export const LOW_CARB = 'LOW_CARB';
+export const HIGH_CARB = 'HIGH_CARB';
+export const MEDIUM_CARB = 'MEDIUM_CARB';
+
 export const measureValues = [
 	{
 		label: 'Metric',
@@ -62,30 +69,26 @@ export const workoutVolumesList: {
 	'Giga Dog! Trainning twice a day!': 1.9,
 };
 
-export const caloricDistribution: {
+export const CaloricDistribution: {
 	[key: string]: {
 		protein: number;
 		fats: number;
 		carbs: number;
 	};
 } = {
-	ModerateCarb: {
+	MEDIUM_CARB: {
 		protein: 0.3,
 		fats: 0.35,
 		carbs: 0.35,
 	},
-	HighCarb: {
+	HIGH_CARB: {
 		protein: 0.3,
 		carbs: 0.5,
 		fats: 0.2,
 	},
-	LowCarb: {
+	LOW_CARB: {
 		protein: 0.4,
 		carbs: 0.2,
 		fats: 0.4,
 	},
 };
-
-export const PROTEIN_PER_GRAM = 4;
-export const CARB_PER_GRAM = 4;
-export const FAT_PER_GRAM = 9;

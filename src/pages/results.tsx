@@ -1,4 +1,5 @@
 import BannerInfoComponent from '../components/banner-info';
+import CustomMacroCard from '../components/dashboard/macro-card';
 import CustomPieChart from '../components/dashboard/pie-chart';
 import DashboardTabsComponent from '../components/dashboard/tabs';
 import HeadComponent from '../components/head';
@@ -24,7 +25,7 @@ const DisplayBaseInfo = () => {
 	const [activity] = useAtom(activityAtom);
 	const [allDietObjectives] = useAtom(dietObjectiveListAtom);
 	const [individualMacrios] = useAtom(macrosAtom);
-	console.log('individualMacrios', individualMacrios);
+
 	return (
 		<div className="bg-slate-100 border border-slate-400  p-2  rounded relative text-center m-5">
 			<div className="justify-between flex flex-row p-4 m-5">
@@ -51,7 +52,12 @@ const DisplayBaseInfo = () => {
 						<span>{bmr}</span>
 					</p>
 				</div>
-
+				<div className="shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
+					<h1 className="text-xl font-bold mb-2">TDEE</h1>
+					<p className="text-sm ">
+						<span className="text-lg">{tdee}</span>
+					</p>
+				</div>
 				<div className="shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
 					<h1 className="text-xl font-bold mb-2">Goals and Objectives</h1>
 
@@ -76,26 +82,17 @@ const DisplayBaseInfo = () => {
 						<span>{allDietObjectives.Cutting}</span>
 					</p>
 				</div>
-				<div className="shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
-					<h1 className="text-xl font-bold mb-2">Macros</h1>
-					<p className="text-sm ">
-						<label className="font-bold">Tdee: </label>
-						<span className="text-lg">{tdee}</span>
-					</p>
-
-					<p className="text-sm">
-						<label className="font-bold">Protein: </label>
-						<span>Protein</span>
-					</p>
-					<p className="text-sm">
-						<label className="font-bold">Fats: </label>
-						<span>Fats</span>
-					</p>
-					<p className="text-sm">
-						<label className="font-bold">Carbs: </label>
-						<span>Carbs</span>
-					</p>
-				</div>
+			</div>
+			<div className="justify-between flex flex-row p-4 m-5">
+				{Object.entries(individualMacrios).map(([title, macros]) => (
+					<CustomMacroCard
+						key={title}
+						title={title}
+						protein={macros.protein}
+						fats={macros.fats}
+						carbs={macros.carbs}
+					/>
+				))}
 			</div>
 		</div>
 	);
@@ -132,8 +129,8 @@ const DisplayCalorieObjective = () => {
 const DisplayMacros = () => {
 	const [activeTab, setActiveTab] = useState('Maintenance');
 
-	const [dietObjective] = useAtom(dietObjectiveAtom);
-	const [objective] = useAtom(objectiveAtom);
+	//const [dietObjective] = useAtom(dietObjectiveAtom);
+	//const [objective] = useAtom(objectiveAtom);
 
 	const handleTabClick = (e: any) => {
 		const tab = e.target.value;
@@ -155,8 +152,6 @@ const DisplayMacros = () => {
 
 function ResultsPage() {
 	const [bmrData] = useAtom(bmrCalculationValuesAtom);
-	const [bmr] = useAtom(bmrAtom);
-	const [tdee] = useAtom(tdeeAtom);
 
 	return (
 		<ResultsPageLayout>
