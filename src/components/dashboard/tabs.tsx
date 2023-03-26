@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface IOption {
 	label: string;
 	value: number;
@@ -6,12 +8,14 @@ type DashboardTabsComponentProps = {
 	planOptions: IOption[];
 	activePlanTab: string;
 	onPlanOptionClick: (e: React.MouseEvent<HTMLElement>) => void;
+	children: ReactNode;
 };
 
 const DashboardTabsComponent = ({
 	planOptions,
 	activePlanTab,
 	onPlanOptionClick,
+	children,
 }: DashboardTabsComponentProps) => {
 	return (
 		<div className="max-w-7xl mx-auto pb-2 sm:px-6 lg:px-8">
@@ -34,6 +38,7 @@ const DashboardTabsComponent = ({
 						);
 					})}
 				</div>
+				{children}
 			</div>
 		</div>
 	);

@@ -1,9 +1,9 @@
 import PageTitle from '../components/page-title';
 import styles from '../styles/forms.module.css';
-import React from 'react';
+import { ReactNode } from 'react';
 
 type LayoutProps = {
-	children: React.ReactNode;
+	children: ReactNode;
 };
 function FormPageLayout({ children }: LayoutProps) {
 	return (

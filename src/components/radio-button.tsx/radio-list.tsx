@@ -1,7 +1,7 @@
-import React from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
 import RadioButton from './radio-button';
 import RadioListHeader from './radio-list-header';
+import { UseFormRegisterReturn } from 'react-hook-form';
+
 export interface IOption {
 	label: string;
 	name?: string;

@@ -1,9 +1,9 @@
 import PageTitle from '../components/page-title';
 import styles from '../styles/results.module.css';
-import React from 'react';
+import { ReactNode } from 'react';
 
 type LayoutProps = {
-	children: React.ReactNode;
+	children: ReactNode;
 };
 function ResultsPageLayout({ children }: LayoutProps) {
 	return (

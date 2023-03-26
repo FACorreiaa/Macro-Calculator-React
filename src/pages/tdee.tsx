@@ -34,6 +34,7 @@ export const dietObjectiveListAtom = atom(DietObjctiveListInitialValues);
 export const objectiveAtom = atom('');
 export const activityAtom = atom('');
 export const macrosAtom = atom(CaloricDistribution);
+
 function TdeePage() {
 	const navigate = useNavigate();
 	const [, setTdee] = useAtom(tdeeAtom);

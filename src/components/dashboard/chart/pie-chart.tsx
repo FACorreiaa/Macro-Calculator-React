@@ -4,11 +4,12 @@ import { Pie } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 type CustomPieChartType = {
+	title: string;
 	protein: number;
 	fats: number;
 	carbs: number;
 };
-function CustomPieChart({ protein, fats, carbs }: CustomPieChartType) {
+function CustomPieChart({ protein, fats, carbs, title }: CustomPieChartType) {
 	const data = {
 		labels: ['Protein', 'Fats', 'Carbs'],
 		datasets: [
@@ -26,12 +27,15 @@ function CustomPieChart({ protein, fats, carbs }: CustomPieChartType) {
 					'rgba(255, 206, 86, 1)',
 				],
 				borderWidth: 2,
+				innerHeight: 100,
+				innerWidth: 100,
 			},
 		],
 	};
 
 	return (
-		<div className="p-6 m-6 container">
+		<div className="p-6 ">
+			<h1 className="text-center font-bold text-xxl">{title}</h1>
 			<Pie data={data} />
 		</div>
 	);

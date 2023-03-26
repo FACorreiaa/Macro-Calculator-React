@@ -1,9 +1,9 @@
 import BannerInfoComponent from '../components/banner-info';
+import CustomPieChart from '../components/dashboard/chart/pie-chart';
 import CustomMacroCard from '../components/dashboard/macro-card';
-import CustomPieChart from '../components/dashboard/pie-chart';
 import DashboardTabsComponent from '../components/dashboard/tabs';
 import HeadComponent from '../components/head';
-import { carbLabelArray, objectiveValues } from '../helper/data';
+import { objectiveValues } from '../helper/data';
 import ResultsPageLayout from '../layout/results-layout';
 import { bmrAtom, bmrCalculationValuesAtom } from './bmr';
 import {
@@ -15,8 +15,11 @@ import {
 	macrosAtom,
 } from './tdee';
 import { useAtom } from 'jotai';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 
+type DisplayMacrosType = {
+	children: ReactNode;
+};
 type IndividualMacroTypes = {
 	individualMacros: {
 		[key: string]: {
@@ -134,9 +137,8 @@ const DisplayCalorieObjective = () => {
 	);
 };
 
-const DisplayMacros = () => {
+const DisplayMacros = ({ children }: DisplayMacrosType) => {
 	const [activePlanTab, setActivePlanTab] = useState('Maintenance');
-	const [activeCarbTab, setActiveCarbTab] = useState('Moderate Carb');
 	//const [dietObjective] = useAtom(dietObjectiveAtom);
 	//const [objective] = useAtom(objectiveAtom);
 
@@ -145,18 +147,14 @@ const DisplayMacros = () => {
 		setActivePlanTab(tab);
 	};
 
-	const onCarbDistributionClick = (e: any) => {
-		const tab = e.target.value;
-		setActiveCarbTab(tab);
-	};
-
 	return (
 		<div className="bg-slate-100 border border-slate-400  p-2  rounded relative text-center m-5">
 			<DashboardTabsComponent
 				planOptions={objectiveValues}
 				activePlanTab={activePlanTab}
-				onPlanOptionClick={handlePlanTabClick}
-			/>
+				onPlanOptionClick={handlePlanTabClick}>
+				{children}
+			</DashboardTabsComponent>
 		</div>
 	);
 };
@@ -187,8 +185,28 @@ function ResultsPage() {
 					label="Keep in mind the body is not a calculator and this or any tool out there are just extimatives. Adjust yours for the best result possible and enjoy the process."
 				/>
 				<DisplayCalorieObjective />
-				<DisplayMacros />
-				<CustomPieChart protein={protein} fats={fat} carbs={carbs} />
+				<DisplayMacros>
+					<div className=" flex flex-wrap flex-row justify-center">
+						<CustomPieChart
+							protein={protein}
+							fats={fat}
+							carbs={carbs}
+							title="Moderate Carb"
+						/>
+						<CustomPieChart
+							protein={protein}
+							fats={fat}
+							carbs={carbs}
+							title="Low Carb"
+						/>
+						<CustomPieChart
+							protein={protein}
+							fats={fat}
+							carbs={carbs}
+							title="High Carb"
+						/>
+					</div>
+				</DisplayMacros>
 			</div>
 		</ResultsPageLayout>
 	);
