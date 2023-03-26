@@ -105,3 +105,6 @@ export const calculateMacrosPerTab = (
 		fats,
 	};
 };
+
+// TO DO
+//Write function to receive basic tdee and return the corresponding macros based on carb distribution
