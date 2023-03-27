@@ -10,11 +10,11 @@ import {
 	CaloricDistribution,
 } from './data';
 
-type Macros = {
+interface Macros {
 	protein: number;
 	fats: number;
 	carbs: number;
-};
+}
 
 export const calculateTDEE = (bmr: number, activity: string): number => {
 	const activityFactor = workoutVolumesList[activity];
@@ -48,26 +48,16 @@ export const calculateMacros = (
 
 	for (const value of values) {
 		const macroRacios = CaloricDistribution[value];
-		const protein = calculateMacroDistribution(
-			macroRacios.protein,
-			coloricGoal,
-			PROTEIN_PER_GRAM
-		);
-		const carbs = calculateMacroDistribution(
-			macroRacios.carbs,
-			coloricGoal,
-			CARB_PER_GRAM
-		);
-		const fats = calculateMacroDistribution(
-			macroRacios.fats,
-			coloricGoal,
-			FAT_PER_GRAM
-		);
+		const { protein, carbs, fats } = macroRacios;
 
 		result[value] = {
-			protein,
-			carbs,
-			fats,
+			protein: calculateMacroDistribution(
+				protein,
+				coloricGoal,
+				PROTEIN_PER_GRAM
+			),
+			carbs: calculateMacroDistribution(carbs, coloricGoal, CARB_PER_GRAM),
+			fats: calculateMacroDistribution(fats, coloricGoal, FAT_PER_GRAM),
 		};
 	}
 	return result;
@@ -79,30 +69,32 @@ export const getDietObjective = (bmr: number, objective: string) =>
 export const calculateMacrosPerTab = (
 	bmr: number,
 	objective: string,
-	activeCarbPlan: string
+	activeCarbPlan = MEDIUM_CARB
 ): Macros => {
 	const dietObjective = getDietObjective(bmr, objective);
 	const macroRacios = CaloricDistribution[activeCarbPlan];
-	const protein = calculateMacroDistribution(
-		macroRacios.protein,
+	const { protein, carbs, fats } = macroRacios;
+
+	const proteinValues = calculateMacroDistribution(
+		protein,
 		dietObjective,
 		PROTEIN_PER_GRAM
 	);
-	const carbs = calculateMacroDistribution(
-		macroRacios.carbs,
+	const carbValues = calculateMacroDistribution(
+		carbs,
 		dietObjective,
 		CARB_PER_GRAM
 	);
-	const fats = calculateMacroDistribution(
-		macroRacios.fats,
+	const fatValues = calculateMacroDistribution(
+		fats,
 		dietObjective,
 		FAT_PER_GRAM
 	);
 
 	return {
-		protein,
-		carbs,
-		fats,
+		protein: proteinValues,
+		carbs: carbValues,
+		fats: fatValues,
 	};
 };
 
