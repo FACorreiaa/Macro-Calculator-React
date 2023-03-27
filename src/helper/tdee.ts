@@ -16,6 +16,12 @@ interface Macros {
 	carbs: number;
 }
 
+interface Plan {
+	Maintenance: number;
+	Cutting: number;
+	Bulking: number;
+}
+
 export const calculateTDEE = (bmr: number, activity: string): number => {
 	const activityFactor = workoutVolumesList[activity];
 	return bmr * activityFactor;
@@ -26,7 +32,7 @@ export const calculateCalorieTarget = (tdee: number, goal: string): number => {
 	return tdee + goalAmount;
 };
 
-export const getallDietObjectives = (bmr: number) => {
+export const getallDietObjectives = (bmr: number): Plan => {
 	return {
 		Maintenance: bmr,
 		Cutting: calculateCalorieTarget(bmr, 'Cutting'),
@@ -63,7 +69,7 @@ export const calculateMacros = (
 	return result;
 };
 
-export const getDietObjective = (bmr: number, objective: string) =>
+export const getDietObjective = (bmr: number, objective: string): number =>
 	calculateCalorieTarget(bmr, objective);
 
 export const calculateMacrosPerTab = (
