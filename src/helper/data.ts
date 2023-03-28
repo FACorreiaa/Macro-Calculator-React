@@ -31,26 +31,24 @@ export const objectiveValues = [
 	},
 ];
 
-const genderValues: {
+const sexValues: {
 	[key: string]: number;
 } = {
 	Male: 5,
 	Female: -161,
 };
 
-export const genderOptions = Object.entries(genderValues).map(
-	([label, value]) => ({
-		label,
-		value,
-	})
-);
+export const sexOptions = Object.entries(sexValues).map(([label, value]) => ({
+	label,
+	value,
+}));
 
 export const goalList: {
 	[key: string]: number;
 } = {
 	Maintenance: 0,
 	Bulking: 450,
-	Cutting: -350,
+	Cutting: 350,
 };
 
 export const dataOptions = (data: object) =>
@@ -92,5 +90,3 @@ export const CaloricDistribution: {
 		fats: 0.4,
 	},
 };
-
-export const carbLabelArray = ['Moderate Carb', 'High Carb', 'Low Carb'];

@@ -16,9 +16,9 @@ export interface IInputGroup {
 	methods: UseFormRegisterReturn<string>;
 }
 
-const RadioList = ({ options, title, name, ...methods }: IInputGroup) => {
+const RadioList = ({ options, title, ...methods }: IInputGroup) => {
 	function renderOptions() {
-		return options.map(({ label, name, value }: IOption) => {
+		return options.map(({ label, value }: IOption) => {
 			const shortenedOptionLabel = label.replace(/\s+/g, '');
 			const optionId = `radio-option-${shortenedOptionLabel}`;
 
@@ -28,7 +28,6 @@ const RadioList = ({ options, title, name, ...methods }: IInputGroup) => {
 					label={label}
 					key={optionId}
 					id={optionId}
-					name={name}
 					{...methods}
 				/>
 			);

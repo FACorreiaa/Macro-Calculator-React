@@ -1,8 +1,9 @@
 import FooterComponent from '../footer';
+import { FormEvent } from 'react';
 
 type BmrFormProps = {
 	children: React.ReactNode;
-	onFormSubmit: any;
+	onFormSubmit: (event: FormEvent<HTMLFormElement>) => void;
 };
 function BmrForm({ children, onFormSubmit }: BmrFormProps) {
 	return (

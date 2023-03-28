@@ -57,7 +57,7 @@ function TdeePage() {
 	function onSubmitGoals(values: GoalsInput) {
 		const tdee = calculateTDEE(bmr, values.activity);
 		const dietObjective = calculateCalorieTarget(tdee, values.objective);
-		const allDietObjectives = getallDietObjectives(tdee);
+		const allDietObjectives = getallDietObjectives(tdee, values.objective);
 		const individualMacros = calculateMacros(tdee);
 		setTdee(tdee);
 		setObjective(values.objective);

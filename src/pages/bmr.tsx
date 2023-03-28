@@ -5,7 +5,7 @@ import Input from '../components/input';
 import Select from '../components/select';
 import TabsComponent from '../components/tabs';
 import { calculateBMR } from '../helper/bmr';
-import { measureValues, genderOptions } from '../helper/data';
+import { measureValues, sexOptions } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
 import FormPageLayout from '../layout/form-layout';
 import { BmrInput, tdeeSchema } from '../types/tdeeSchema';
@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 
 const BmrDefaultValues = {
 	age: '',
-	gender: '',
+	sex: '',
 	height: '',
 	metric: 'Metric',
 	weight: '',
@@ -53,7 +53,7 @@ function BmrPage() {
 		<FormPageLayout>
 			<HeadComponent
 				title="Tdee Calculator"
-				content="Calculate your basic calories inserting Age, Genderm Height and Weight"
+				content="Calculate your basic calories inserting Age, sexm Height and Weight"
 			/>
 			<div className="w-full max-w-xs ">
 				<BmrForm onFormSubmit={handleSubmit(onSubmitbmrDataPage)}>
@@ -64,12 +64,12 @@ function BmrPage() {
 					/>
 
 					<Select
-						label="Gender"
-						id="gender"
-						options={genderOptions}
+						label="Sex"
+						id="Sex"
+						options={sexOptions}
 						selected
-						methods={register('gender')}
-						placeholder="Select gender"
+						methods={register('sex')}
+						placeholder="Select sex"
 					/>
 
 					<Input

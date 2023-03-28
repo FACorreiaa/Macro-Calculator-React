@@ -4,6 +4,7 @@ import CustomMacroCard from '../components/dashboard/macro-card';
 import DashboardTabsComponent from '../components/dashboard/tabs';
 import HeadComponent from '../components/head';
 import { objectiveValues } from '../helper/data';
+import { getallDietObjectives, getMacroDistribution } from '../helper/tdee';
 import ResultsPageLayout from '../layout/results-layout';
 import { bmrAtom, bmrCalculationValuesAtom } from './bmr';
 import {
@@ -15,10 +16,12 @@ import {
 	macrosAtom,
 } from './tdee';
 import { useAtom } from 'jotai';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 type DisplayMacrosType = {
 	children: ReactNode;
+	activePlanTab: string;
+	handlePlanTabClick: (e: React.FormEvent<HTMLButtonElement>) => void;
 };
 type IndividualMacroTypes = {
 	individualMacros: {
@@ -43,8 +46,8 @@ const DisplayBaseInfo = ({ individualMacros }: IndividualMacroTypes) => {
 				<div className="w-64 shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
 					<h1 className="text-xl font-bold mb-2">Biometric Data</h1>
 					<p className="text-sm">
-						<label className="font-bold">Gender: </label>
-						<span>{bmrData.gender}</span>
+						<label className="font-bold">sex: </label>
+						<span>{bmrData.sex}</span>
 					</p>
 					<p className="text-sm">
 						<label className="font-bold">Age: </label>
@@ -137,16 +140,11 @@ const DisplayCalorieObjective = () => {
 	);
 };
 
-const DisplayMacros = ({ children }: DisplayMacrosType) => {
-	const [activePlanTab, setActivePlanTab] = useState('Maintenance');
-	//const [dietObjective] = useAtom(dietObjectiveAtom);
-	//const [objective] = useAtom(objectiveAtom);
-
-	const handlePlanTabClick = (e: any) => {
-		const tab = e.target.value;
-		setActivePlanTab(tab);
-	};
-
+const DisplayMacros = ({
+	children,
+	activePlanTab,
+	handlePlanTabClick,
+}: DisplayMacrosType) => {
 	return (
 		<div className="bg-slate-100 border border-slate-400  p-2  rounded relative text-center m-5">
 			<DashboardTabsComponent
@@ -161,11 +159,44 @@ const DisplayMacros = ({ children }: DisplayMacrosType) => {
 
 function ResultsPage() {
 	const [bmrData] = useAtom(bmrCalculationValuesAtom);
-	const protein = 200;
-	const fat = 100;
-	const carbs = 250;
+	const [objective] = useAtom(objectiveAtom);
 
 	const [individualMacros] = useAtom(macrosAtom);
+	const [activePlanTab, setActivePlanTab] = useState(objective);
+	const [tdee] = useAtom(tdeeAtom);
+
+	const dietObjectives = getallDietObjectives(tdee, activePlanTab);
+
+	const handlePlanTabClick = (e: React.FormEvent<HTMLButtonElement>) => {
+		const tab = e.currentTarget.value;
+		console.log('tab', tab);
+
+		const newMacroDistribution = getMacroDistribution(
+			dietObjectives[tab as keyof typeof dietObjectives]
+		);
+		setActivePlanTab(tab);
+		setMacroDistribution(newMacroDistribution);
+	};
+
+	const [macroDistribution, setMacroDistribution] = useState(
+		getMacroDistribution(
+			dietObjectives[activePlanTab as keyof typeof dietObjectives]
+		)
+	);
+
+	useEffect(() => {
+		const newMacroDistribution = getMacroDistribution(
+			dietObjectives[activePlanTab as keyof typeof dietObjectives]
+		);
+
+		setTimeout(() => {
+			setMacroDistribution(newMacroDistribution);
+		}, 0);
+	}, [activePlanTab]);
+
+	console.log('carbs', macroDistribution['Moderate Carb'].carbs);
+	console.log('carbs', macroDistribution['Low Carb'].carbs);
+	console.log('carbs', macroDistribution['High Carb'].carbs);
 
 	return (
 		<ResultsPageLayout>
@@ -185,24 +216,26 @@ function ResultsPage() {
 					label="Keep in mind the body is not a calculator and this or any tool out there are just extimatives. Adjust yours for the best result possible and enjoy the process."
 				/>
 				<DisplayCalorieObjective />
-				<DisplayMacros>
+				<DisplayMacros
+					handlePlanTabClick={handlePlanTabClick}
+					activePlanTab={activePlanTab}>
 					<div className=" flex flex-wrap flex-row justify-center">
 						<CustomPieChart
-							protein={protein}
-							fats={fat}
-							carbs={carbs}
+							protein={macroDistribution['Moderate Carb'].protein}
+							fats={macroDistribution['Moderate Carb'].fats}
+							carbs={macroDistribution['Moderate Carb'].carbs}
 							title="Moderate Carb"
 						/>
 						<CustomPieChart
-							protein={protein}
-							fats={fat}
-							carbs={carbs}
+							protein={macroDistribution['Low Carb'].protein}
+							fats={macroDistribution['Low Carb'].fats}
+							carbs={macroDistribution['Low Carb'].carbs}
 							title="Low Carb"
 						/>
 						<CustomPieChart
-							protein={protein}
-							fats={fat}
-							carbs={carbs}
+							protein={macroDistribution['High Carb'].protein}
+							fats={macroDistribution['High Carb'].fats}
+							carbs={macroDistribution['High Carb'].carbs}
 							title="High Carb"
 						/>
 					</div>

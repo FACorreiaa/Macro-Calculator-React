@@ -6,14 +6,14 @@ test('calculateTDEE should return the correct value', () => {
 		age: '34',
 		weight: '86',
 		height: '185',
-		gender: 'Male',
+		sex: 'Male',
 		metric: 'Metric',
 	};
 	const expected = 2340;
 	// const age = 34;
 	// const weight = 86;
 	// const height = 185;
-	// const gender = 'Male';
+	// const sex = 'Male';
 	// const metric = 'Metric';
 	const result = calculateBMR(data);
 	assert.equal(result, expected);

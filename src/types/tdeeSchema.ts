@@ -21,7 +21,7 @@ export const tdeeSchema = z.object({
 			message: 'Expected number, received a string',
 		}),
 	metric: string({ required_error: 'Metric is required' }),
-	gender: string({ required_error: 'Gender is required' }),
+	sex: string({ required_error: 'sex is required' }),
 });
 
 export type BmrInput = TypeOf<typeof tdeeSchema>;

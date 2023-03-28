@@ -29,14 +29,15 @@ export const calculateTDEE = (bmr: number, activity: string): number => {
 
 export const calculateCalorieTarget = (tdee: number, goal: string): number => {
 	const goalAmount = goalList[goal];
-	return tdee + goalAmount;
+	return goal === 'Cutting' ? tdee - goalAmount : tdee + goalAmount;
 };
 
-export const getallDietObjectives = (bmr: number): Plan => {
+//askgpt
+export const getallDietObjectives = (bmr: number, objective: string): Plan => {
 	return {
-		Maintenance: bmr,
-		Cutting: calculateCalorieTarget(bmr, 'Cutting'),
-		Bulking: calculateCalorieTarget(bmr, 'Bulking'),
+		Maintenance: calculateCalorieTarget(bmr, objective),
+		Cutting: calculateCalorieTarget(bmr, objective),
+		Bulking: calculateCalorieTarget(bmr, objective),
 	};
 };
 
@@ -69,40 +70,22 @@ export const calculateMacros = (
 	return result;
 };
 
-export const getDietObjective = (bmr: number, objective: string): number =>
-	calculateCalorieTarget(bmr, objective);
-
-export const calculateMacrosPerTab = (
-	bmr: number,
-	objective: string,
-	activeCarbPlan = MEDIUM_CARB
-): Macros => {
-	const dietObjective = getDietObjective(bmr, objective);
-	const macroRacios = CaloricDistribution[activeCarbPlan];
-	const { protein, carbs, fats } = macroRacios;
-
-	const proteinValues = calculateMacroDistribution(
-		protein,
-		dietObjective,
-		PROTEIN_PER_GRAM
-	);
-	const carbValues = calculateMacroDistribution(
-		carbs,
-		dietObjective,
-		CARB_PER_GRAM
-	);
-	const fatValues = calculateMacroDistribution(
-		fats,
-		dietObjective,
-		FAT_PER_GRAM
-	);
-
+export const getMacroDistribution = (caloriesObjectiveValue: number) => {
 	return {
-		protein: proteinValues,
-		carbs: carbValues,
-		fats: fatValues,
+		'Moderate Carb': {
+			protein: (0.4 * caloriesObjectiveValue) / 4,
+			fats: (0.3 * caloriesObjectiveValue) / 9,
+			carbs: (0.3 * caloriesObjectiveValue) / 4,
+		},
+		'High Carb': {
+			protein: (0.4 * caloriesObjectiveValue) / 4,
+			carbs: (0.5 * caloriesObjectiveValue) / 4,
+			fats: (0.3 * caloriesObjectiveValue) / 9,
+		},
+		'Low Carb': {
+			protein: (0.4 * caloriesObjectiveValue) / 4,
+			carbs: (0.2 * caloriesObjectiveValue) / 4,
+			fats: (0.4 * caloriesObjectiveValue) / 9,
+		},
 	};
 };
-
-// TO DO
-//Write function to receive basic tdee and return the corresponding macros based on carb distribution

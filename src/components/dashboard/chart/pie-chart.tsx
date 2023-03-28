@@ -11,6 +11,7 @@ type CustomPieChartType = {
 };
 function CustomPieChart({ protein, fats, carbs, title }: CustomPieChartType) {
 	const data = {
+		title: 'Macro Dist',
 		labels: ['Protein', 'Fats', 'Carbs'],
 		datasets: [
 			{

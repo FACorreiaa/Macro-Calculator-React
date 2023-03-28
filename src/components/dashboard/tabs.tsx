@@ -7,7 +7,7 @@ export interface IOption {
 type DashboardTabsComponentProps = {
 	planOptions: IOption[];
 	activePlanTab: string;
-	onPlanOptionClick: (e: React.MouseEvent<HTMLElement>) => void;
+	onPlanOptionClick: (e: React.FormEvent<HTMLButtonElement>) => void;
 	children: ReactNode;
 };
 
