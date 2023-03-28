@@ -16,7 +16,7 @@ import {
 	macrosAtom,
 } from './tdee';
 import { useAtom } from 'jotai';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 type DisplayMacrosType = {
 	children: ReactNode;
@@ -162,7 +162,6 @@ function ResultsPage() {
 	const [activePlanTab, setActivePlanTab] = useState(objective);
 	const [tdee] = useAtom(tdeeAtom);
 	const dietObjectives = getallDietObjectives(tdee, activePlanTab);
-
 	const [bmrData] = useAtom(bmrCalculationValuesAtom);
 
 	const [individualMacros] = useAtom(macrosAtom);
@@ -183,6 +182,13 @@ function ResultsPage() {
 		setActivePlanTab(tab);
 		setMacroDistribution(newMacroDistribution);
 	};
+
+	useEffect(() => {
+		const newMacroDistribution = getMacroDistribution(
+			dietObjectives[activePlanTab as keyof typeof dietObjectives]
+		);
+		setMacroDistribution(newMacroDistribution);
+	}, [activePlanTab]);
 
 	return (
 		<ResultsPageLayout>
@@ -206,9 +212,6 @@ function ResultsPage() {
 					handlePlanTabClick={handlePlanTabClick}
 					activePlanTab={activePlanTab}>
 					<div className=" flex flex-wrap flex-row justify-center">
-						<div>
-							<span>{macroDistribution['Moderate Carb'].protein}</span>
-						</div>
 						<CustomPieChart
 							protein={macroDistribution['Moderate Carb'].protein}
 							fats={macroDistribution['Moderate Carb'].fats}
