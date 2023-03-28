@@ -25,7 +25,7 @@ interface Plan {
 
 export const calculateTDEE = (bmr: number, activity: string): number => {
 	const activityFactor = workoutVolumesList[activity];
-	return bmr * activityFactor;
+	return Math.trunc(bmr * activityFactor);
 };
 
 export const calculateCalorieTarget = (tdee: number, goal: string): number => {

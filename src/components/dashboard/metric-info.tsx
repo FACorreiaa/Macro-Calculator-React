@@ -10,7 +10,8 @@ function BannerMetricInfo() {
 			role="alert">
 			<strong className="font-bold">Measuring: </strong>
 			<span className="block sm:inline">
-				You are using ${bmrData.metric} system
+				You are using <strong className="font-bold">{bmrData.metric} </strong>
+				system
 			</span>
 		</div>
 	);
