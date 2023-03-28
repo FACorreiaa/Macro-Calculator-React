@@ -1,3 +1,8 @@
+import './index.css';
+import BmrPage from './pages/bmr';
+import ResultsPage from './pages/results';
+import TdeePage from './pages/tdee';
+import { Provider } from 'jotai';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
@@ -5,15 +10,10 @@ import {
 	Navigate,
 	RouterProvider,
 } from 'react-router-dom';
-import ResultsPage from './pages/results';
-import BmrPage from './pages/bmr';
-import TdeePage from './pages/tdee';
-import { Provider } from 'jotai';
-import './index.css';
 
 const router = createBrowserRouter([
 	{
-		path: '/bmr',
+		path: '/',
 		element: <BmrPage />,
 	},
 	{
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '*',
-		element: <Navigate to="/bmr" replace />,
+		element: <Navigate to="/" replace />,
 	},
 ]);
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
