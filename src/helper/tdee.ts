@@ -8,6 +8,7 @@ import {
 	HIGH_CARB,
 	LOW_CARB,
 	CaloricDistribution,
+	DietPlan,
 } from './data';
 
 interface Macros {
@@ -29,10 +30,13 @@ export const calculateTDEE = (bmr: number, activity: string): number => {
 
 export const calculateCalorieTarget = (tdee: number, goal: string): number => {
 	const goalAmount = goalList[goal];
-	return goal === 'Cutting' ? tdee - goalAmount : tdee + goalAmount;
+	if (goal === 'Cutting') {
+		return tdee - goalAmount;
+	}
+
+	return tdee + goalAmount;
 };
 
-//askgpt
 export const getallDietObjectives = (bmr: number, objective: string): Plan => {
 	return {
 		Maintenance: calculateCalorieTarget(bmr, objective),
@@ -70,8 +74,10 @@ export const calculateMacros = (
 	return result;
 };
 
-export const getMacroDistribution = (caloriesObjectiveValue: number) => {
-	return {
+export const getMacroDistribution = (
+	caloriesObjectiveValue: number
+): DietPlan => {
+	const result: DietPlan = {
 		'Moderate Carb': {
 			protein: (0.4 * caloriesObjectiveValue) / 4,
 			fats: (0.3 * caloriesObjectiveValue) / 9,
@@ -79,13 +85,14 @@ export const getMacroDistribution = (caloriesObjectiveValue: number) => {
 		},
 		'High Carb': {
 			protein: (0.4 * caloriesObjectiveValue) / 4,
-			carbs: (0.5 * caloriesObjectiveValue) / 4,
 			fats: (0.3 * caloriesObjectiveValue) / 9,
+			carbs: (0.5 * caloriesObjectiveValue) / 4,
 		},
 		'Low Carb': {
 			protein: (0.4 * caloriesObjectiveValue) / 4,
-			carbs: (0.2 * caloriesObjectiveValue) / 4,
 			fats: (0.4 * caloriesObjectiveValue) / 9,
+			carbs: (0.2 * caloriesObjectiveValue) / 4,
 		},
 	};
+	return result;
 };

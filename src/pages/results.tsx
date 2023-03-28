@@ -16,7 +16,7 @@ import {
 	macrosAtom,
 } from './tdee';
 import { useAtom } from 'jotai';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 type DisplayMacrosType = {
 	children: ReactNode;
@@ -158,18 +158,24 @@ const DisplayMacros = ({
 };
 
 function ResultsPage() {
-	const [bmrData] = useAtom(bmrCalculationValuesAtom);
 	const [objective] = useAtom(objectiveAtom);
-
-	const [individualMacros] = useAtom(macrosAtom);
 	const [activePlanTab, setActivePlanTab] = useState(objective);
 	const [tdee] = useAtom(tdeeAtom);
-
 	const dietObjectives = getallDietObjectives(tdee, activePlanTab);
+
+	const [bmrData] = useAtom(bmrCalculationValuesAtom);
+
+	const [individualMacros] = useAtom(macrosAtom);
+
+	//FIX LOCAL STATE
+	const [macroDistribution, setMacroDistribution] = useState(
+		getMacroDistribution(
+			dietObjectives[activePlanTab as keyof typeof dietObjectives]
+		)
+	);
 
 	const handlePlanTabClick = (e: React.FormEvent<HTMLButtonElement>) => {
 		const tab = e.currentTarget.value;
-		console.log('tab', tab);
 
 		const newMacroDistribution = getMacroDistribution(
 			dietObjectives[tab as keyof typeof dietObjectives]
@@ -177,26 +183,6 @@ function ResultsPage() {
 		setActivePlanTab(tab);
 		setMacroDistribution(newMacroDistribution);
 	};
-
-	const [macroDistribution, setMacroDistribution] = useState(
-		getMacroDistribution(
-			dietObjectives[activePlanTab as keyof typeof dietObjectives]
-		)
-	);
-
-	useEffect(() => {
-		const newMacroDistribution = getMacroDistribution(
-			dietObjectives[activePlanTab as keyof typeof dietObjectives]
-		);
-
-		setTimeout(() => {
-			setMacroDistribution(newMacroDistribution);
-		}, 0);
-	}, [activePlanTab]);
-
-	console.log('carbs', macroDistribution['Moderate Carb'].carbs);
-	console.log('carbs', macroDistribution['Low Carb'].carbs);
-	console.log('carbs', macroDistribution['High Carb'].carbs);
 
 	return (
 		<ResultsPageLayout>
@@ -220,6 +206,9 @@ function ResultsPage() {
 					handlePlanTabClick={handlePlanTabClick}
 					activePlanTab={activePlanTab}>
 					<div className=" flex flex-wrap flex-row justify-center">
+						<div>
+							<span>{macroDistribution['Moderate Carb'].protein}</span>
+						</div>
 						<CustomPieChart
 							protein={macroDistribution['Moderate Carb'].protein}
 							fats={macroDistribution['Moderate Carb'].fats}

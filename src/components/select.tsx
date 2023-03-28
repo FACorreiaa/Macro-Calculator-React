@@ -1,13 +1,13 @@
 import { UseFormRegisterReturn } from 'react-hook-form';
 
-export interface IOption {
+export interface Option {
 	label: string;
 	value: number;
 }
 type SelectProps = {
 	label: string;
 	id: string;
-	options: IOption[];
+	options: Option[];
 	selected?: boolean;
 	methods: UseFormRegisterReturn<string>;
 	placeholder: string;

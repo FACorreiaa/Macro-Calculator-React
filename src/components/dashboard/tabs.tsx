@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
 
-export interface IOption {
+export interface Option {
 	label: string;
 	value: number;
 }
 type DashboardTabsComponentProps = {
-	planOptions: IOption[];
+	planOptions: Option[];
 	activePlanTab: string;
 	onPlanOptionClick: (e: React.FormEvent<HTMLButtonElement>) => void;
 	children: ReactNode;
@@ -21,7 +21,7 @@ const DashboardTabsComponent = ({
 		<div className="max-w-7xl mx-auto pb-2 sm:px-6 lg:px-8">
 			<div className=" pb-4 px-4 ">
 				<div className="flex justify-between ">
-					{planOptions.map(({ label, value }: IOption) => {
+					{planOptions.map(({ label, value }: Option) => {
 						return (
 							<button
 								value={label}

@@ -1,9 +1,9 @@
-export interface IOption {
+export interface Option {
 	label: string;
 	value: number;
 }
 type TabsComponent = {
-	options: IOption[];
+	options: Option[];
 	activeTab: string;
 	onClick: (e: any) => void;
 };
@@ -13,7 +13,7 @@ const TabsComponent = ({ options, activeTab, onClick }: TabsComponent) => {
 		<div className="max-w-7xl mx-auto pb-2 sm:px-6 lg:px-8">
 			<div className=" pb-4 px-4 ">
 				<div className="flex justify-between ">
-					{options.map(({ label, value }: IOption) => {
+					{options.map(({ label, value }: Option) => {
 						return (
 							<button
 								value={label}

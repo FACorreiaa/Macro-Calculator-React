@@ -90,3 +90,11 @@ export const CaloricDistribution: {
 		fats: 0.4,
 	},
 };
+
+export interface DietPlan {
+	[key: string]: {
+		protein: number;
+		fats: number;
+		carbs: number;
+	};
+}
