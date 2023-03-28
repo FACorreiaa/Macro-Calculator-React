@@ -1,0 +1,93 @@
+import { bmrCalculationValuesAtom, bmrAtom } from '../../pages/bmr';
+import {
+	macrosAtom,
+	tdeeAtom,
+	objectiveAtom,
+	activityAtom,
+	dietObjectiveListAtom,
+} from '../../pages/tdee';
+import CustomMacroCard from './macro-card';
+import { useAtom } from 'jotai';
+
+export const DisplayBaseInfo = () => {
+	const [individualMacros] = useAtom(macrosAtom);
+	const [bmrData] = useAtom(bmrCalculationValuesAtom);
+	const [bmr] = useAtom(bmrAtom);
+	const [tdee] = useAtom(tdeeAtom);
+	const [objective] = useAtom(objectiveAtom);
+	const [activity] = useAtom(activityAtom);
+	const [allDietObjectives] = useAtom(dietObjectiveListAtom);
+
+	return (
+		<div className="bg-slate-100 border border-slate-400  p-2  rounded relative text-center m-5">
+			<div className="justify-between flex flex-row p-4 m-5">
+				<div className="w-64 shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
+					<h1 className="text-xl font-bold mb-2">Biometric Data</h1>
+					<p className="text-sm">
+						<label className="font-bold">sex: </label>
+						<span>{bmrData.sex}</span>
+					</p>
+					<p className="text-sm">
+						<label className="font-bold">Age: </label>
+						<span>{bmrData.age}</span>
+					</p>
+					<p className="text-sm">
+						<label className="font-bold">Weight: </label>
+						<span>{bmrData.weight}</span>
+					</p>
+					<p className="text-sm">
+						<label className="font-bold">Height: </label>
+						<span>{bmrData.height}</span>
+					</p>
+					<p className="text-sm">
+						<label className="font-bold">BMR: </label>
+						<span>{bmr}</span>
+					</p>
+				</div>
+				<div className="w-64 shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
+					<h1 className="text-xl font-bold mb-2">TDEE</h1>
+					<p className="text-sm ">
+						<span className="text-lg">{tdee}</span>
+					</p>
+				</div>
+				<div className="w-64 shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
+					<h1 className="text-xl font-bold mb-2">Goals and Objectives</h1>
+
+					<p className="text-sm">
+						<label className="font-bold">Objective: </label>
+						<span>{objective}</span>
+					</p>
+					<p className="text-sm">
+						<label className="font-bold">Activity: </label>
+						<span>{activity}</span>
+					</p>
+					<p className="text-sm">
+						<label className="font-bold">Maintenance calories: </label>
+						<span>{allDietObjectives.Maintenance}</span>
+					</p>
+					<p className="text-sm">
+						<label className="font-bold">Bulking Calories: </label>
+						<span>{allDietObjectives.Bulking}</span>
+					</p>
+					<p className="text-sm">
+						<label className="font-bold">Cutting Calories: </label>
+						<span>{allDietObjectives.Cutting}</span>
+					</p>
+				</div>
+			</div>
+			<div className="justify-between flex flex-row p-4 m-5">
+				{Object.entries(individualMacros).map(([title, macros]: any) => (
+					<CustomMacroCard
+						key={title}
+						title={title}
+						protein={macros.protein}
+						fats={macros.fats}
+						carbs={macros.carbs}
+					/>
+				))}
+			</div>
+		</div>
+	);
+};
+
+export default DisplayBaseInfo;
