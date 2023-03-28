@@ -54,7 +54,7 @@ export const calculateBMR = ({
 		5.0 * parseFloat(age) +
 		ageFactor;
 
-	return result;
+	return Math.trunc(result);
 };
 
 export const getHeightUnit = (metric: string) => units[metric].heightUnit;

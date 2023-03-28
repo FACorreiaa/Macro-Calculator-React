@@ -31,10 +31,10 @@ export const calculateTDEE = (bmr: number, activity: string): number => {
 export const calculateCalorieTarget = (tdee: number, goal: string): number => {
 	const goalAmount = goalList[goal];
 	if (goal === 'Cutting') {
-		return tdee - goalAmount;
+		return Math.trunc(tdee - goalAmount);
 	}
 
-	return tdee + goalAmount;
+	return Math.trunc(tdee + goalAmount);
 };
 
 export const getallDietObjectives = (bmr: number, objective: string): Plan => {
@@ -49,7 +49,7 @@ const calculateMacroDistribution = (
 	calorieFactor: number,
 	calorieGoal: number,
 	caloriesPerGram: number
-): number => (calorieFactor * calorieGoal) / caloriesPerGram;
+): number => Math.trunc((calorieFactor * calorieGoal) / caloriesPerGram);
 
 export const calculateMacros = (
 	coloricGoal: number
@@ -79,19 +79,19 @@ export const getMacroDistribution = (
 ): DietPlan => {
 	const result: DietPlan = {
 		'Moderate Carb': {
-			protein: (0.4 * caloriesObjectiveValue) / 4,
-			fats: (0.3 * caloriesObjectiveValue) / 9,
-			carbs: (0.3 * caloriesObjectiveValue) / 4,
+			protein: Math.trunc((0.4 * caloriesObjectiveValue) / 4),
+			fats: Math.trunc((0.3 * caloriesObjectiveValue) / 9),
+			carbs: Math.trunc((0.3 * caloriesObjectiveValue) / 4),
 		},
 		'High Carb': {
-			protein: (0.4 * caloriesObjectiveValue) / 4,
-			fats: (0.3 * caloriesObjectiveValue) / 9,
-			carbs: (0.5 * caloriesObjectiveValue) / 4,
+			protein: Math.trunc((0.4 * caloriesObjectiveValue) / 4),
+			fats: Math.trunc((0.3 * caloriesObjectiveValue) / 9),
+			carbs: Math.trunc((0.5 * caloriesObjectiveValue) / 4),
 		},
 		'Low Carb': {
-			protein: (0.4 * caloriesObjectiveValue) / 4,
-			fats: (0.4 * caloriesObjectiveValue) / 9,
-			carbs: (0.2 * caloriesObjectiveValue) / 4,
+			protein: Math.trunc((0.4 * caloriesObjectiveValue) / 4),
+			fats: Math.trunc((0.4 * caloriesObjectiveValue) / 9),
+			carbs: Math.trunc((0.2 * caloriesObjectiveValue) / 4),
 		},
 	};
 	return result;
