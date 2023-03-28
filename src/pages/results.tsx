@@ -166,7 +166,6 @@ function ResultsPage() {
 
 	const [individualMacros] = useAtom(macrosAtom);
 
-	//FIX LOCAL STATE
 	const [macroDistribution, setMacroDistribution] = useState(
 		getMacroDistribution(
 			dietObjectives[activePlanTab as keyof typeof dietObjectives]
