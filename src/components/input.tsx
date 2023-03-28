@@ -18,11 +18,11 @@ function Input({
 }: InputProps) {
 	return (
 		<div className="mb-6">
-			<label className="block text-gray-200 dark:text-gray-900 text-sm font-bold">
+			<label className="block text-gray-200 dark:text-gray-950 text-sm font-bold">
 				{label}
 			</label>
 			<input
-				className="shadow appearance-none border rounded w-full py-1 px-2 dark:text-slate-900 leading-tight focus:outline-none focus:shadow-outline"
+				className="shadow appearance-none border rounded w-full py-1 px-2 dark:text-slate-950 leading-tight focus:outline-none focus:shadow-outline"
 				id={id}
 				key={id}
 				type={type}

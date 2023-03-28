@@ -29,8 +29,8 @@ const DashboardTabsComponent = ({
 								id={label}
 								className={`${
 									activePlanTab === label
-										? 'border-purple-900 font-bold text-purple-900'
-										: 'border-transparent text-gray-900 hover:text-gray-700 hover:border-gray-300'
+										? 'border-purple-950 font-bold text-purple-950'
+										: 'border-transparent text-gray-950 hover:text-gray-700 hover:border-gray-300'
 								} whitespace-nowrap	py-4 px-1 border-b-2 font-medium text-sm`}
 								onClick={onPlanOptionClick}>
 								{label}
