@@ -98,6 +98,17 @@ export const CaloricDistribution: {
 	},
 };
 
+export interface Measure {
+	Metric: {
+		height: 'cm';
+		weight: 'kg';
+	};
+	Imperial: {
+		height: 'lb';
+		weight: 'ft';
+	};
+}
+
 export interface DietPlan {
 	[key: string]: {
 		protein: number;
