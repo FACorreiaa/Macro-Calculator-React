@@ -5,7 +5,7 @@ import Input from '../components/input';
 import Select from '../components/select';
 import TabsComponent from '../components/tabs';
 import { calculateBMR } from '../helper/bmr';
-import { measureValues, sexOptions } from '../helper/data';
+import { measureValues, PersonalData, sexOptions } from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
 import FormPageLayout from '../layout/form-layout';
 import { BmrInput, tdeeSchema } from '../types/tdeeSchema';
@@ -65,35 +65,35 @@ function BmrPage() {
 
 					<Select
 						label="Sex"
-						id="Sex"
+						id={PersonalData.SEX}
 						options={sexOptions}
 						selected
-						methods={register('sex')}
+						methods={register(PersonalData.SEX)}
 						placeholder="Select sex"
 					/>
 
 					<Input
 						label="Age"
-						id="age"
+						id={PersonalData.AGE}
 						type="number"
 						placeholder="Insert your age"
-						methods={register('age')}
+						methods={register(PersonalData.AGE)}
 						errorMessage={formState.errors.age?.message}
 					/>
 					<Input
 						label="Weight"
-						id="weight"
+						id={PersonalData.WEIGHT}
 						type="number"
 						placeholder="Insert your weight"
-						methods={register('weight')}
+						methods={register(PersonalData.WEIGHT)}
 						errorMessage={formState.errors.weight?.message}
 					/>
 					<Input
 						label="Height"
-						id="height"
+						id={PersonalData.HEIGHT}
 						type="number"
 						placeholder="Insert your height"
-						methods={register('height')}
+						methods={register(PersonalData.HEIGHT)}
 						errorMessage={formState.errors.age?.message}
 					/>
 

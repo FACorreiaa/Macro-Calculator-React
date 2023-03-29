@@ -67,11 +67,6 @@ export const activityLevelValues: {
 	'Giga Dog! Trainning twice a day!': 1.9,
 };
 
-export enum CarbIntake {
-	MODERATE = 'Moderate Carb',
-	HIGH = 'High Carb',
-	LOW = 'Low Carb',
-}
 export const CaloricDistribution: {
 	[key: string]: {
 		protein: number;
@@ -102,4 +97,19 @@ export interface DietPlan {
 		fats: number;
 		carbs: number;
 	};
+}
+
+export enum CarbIntake {
+	MODERATE = 'Moderate Carb',
+	HIGH = 'High Carb',
+	LOW = 'Low Carb',
+}
+
+export enum PersonalData {
+	AGE = 'age',
+	WEIGHT = 'weight',
+	HEIGHT = 'height',
+	OBJECTIVE = 'objective',
+	ACTIVITY = 'activity',
+	SEX = 'sex',
 }

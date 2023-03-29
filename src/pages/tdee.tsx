@@ -8,6 +8,7 @@ import {
 	dataOptions,
 	goalList,
 	CaloricDistribution,
+	PersonalData,
 } from '../helper/data';
 import {
 	calculateTDEE,
@@ -79,20 +80,20 @@ function TdeePage() {
 					<FormTitle title="Calculate your TDEE" />
 
 					<Select
-						label="Activity volume"
+						label="Select activity"
 						id="activity"
 						options={dataOptions(activityLevelValues)}
 						selected
-						methods={register('activity')}
+						methods={register(PersonalData.ACTIVITY)}
 						placeholder="Select activity"
 					/>
 
 					<Select
-						label="Activity volume"
-						id="activity"
+						label="Select volume"
+						id="objective"
 						options={dataOptions(goalList)}
 						selected
-						methods={register('objective')}
+						methods={register(PersonalData.OBJECTIVE)}
 						placeholder="Select objective"
 					/>
 

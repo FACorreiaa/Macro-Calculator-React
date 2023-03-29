@@ -88,19 +88,19 @@ function ResultsPage() {
 							protein={macroDistribution[CarbIntake.MODERATE].protein}
 							fats={macroDistribution[CarbIntake.MODERATE].fats}
 							carbs={macroDistribution[CarbIntake.MODERATE].carbs}
-							title="Moderate Carb"
+							title={CarbIntake.MODERATE}
 						/>
 						<CustomPieChart
 							protein={macroDistribution[CarbIntake.LOW].protein}
 							fats={macroDistribution[CarbIntake.LOW].fats}
 							carbs={macroDistribution[CarbIntake.LOW].carbs}
-							title="Low Carb"
+							title={CarbIntake.LOW}
 						/>
 						<CustomPieChart
 							protein={macroDistribution[CarbIntake.HIGH].protein}
 							fats={macroDistribution[CarbIntake.HIGH].fats}
 							carbs={macroDistribution[CarbIntake.HIGH].carbs}
-							title="High Carb"
+							title={CarbIntake.HIGH}
 						/>
 					</div>
 					<MacroTable macroDistribution={macroDistribution} />
