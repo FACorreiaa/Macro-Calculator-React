@@ -5,28 +5,35 @@ export const LOW_CARB = 'Low Carb';
 export const HIGH_CARB = 'High Carb';
 export const MEDIUM_CARB = 'Moderate Carb';
 
+export const METRIC = 'Metric';
+export const IMPERIAL = 'Imperial';
+
+export const MAINTENANCE = 'Maintenance';
+export const BULKING = 'Bulking';
+export const CUTTING = 'Cutting';
+
 export const measureValues = [
 	{
-		label: 'Metric',
+		label: METRIC,
 		value: 0,
 	},
 	{
-		label: 'Imperial',
+		label: IMPERIAL,
 		value: 1,
 	},
 ];
 
 export const objectiveValues = [
 	{
-		label: 'Maintenance',
+		label: MAINTENANCE,
 		value: 0,
 	},
 	{
-		label: 'Bulking',
+		label: BULKING,
 		value: 1,
 	},
 	{
-		label: 'Cutting',
+		label: CUTTING,
 		value: 2,
 	},
 ];
@@ -113,3 +120,7 @@ export enum PersonalData {
 	ACTIVITY = 'activity',
 	SEX = 'sex',
 }
+
+export const CARBS = 'Carbs';
+export const FATS = 'Fats';
+export const PROTEIN = 'Protein';

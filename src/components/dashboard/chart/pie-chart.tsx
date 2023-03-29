@@ -1,3 +1,4 @@
+import { PROTEIN, FATS, CARBS } from '../../../helper/data';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
@@ -14,7 +15,7 @@ function CustomPieChart({ protein, fats, carbs, title }: CustomPieChartType) {
 	useEffect(() => {
 		setData({
 			title: 'Macro Dist',
-			labels: ['Protein', 'Fats', 'Carbs'],
+			labels: [PROTEIN, FATS, CARBS],
 			datasets: [
 				{
 					label: 'Macro distribution',
@@ -38,7 +39,7 @@ function CustomPieChart({ protein, fats, carbs, title }: CustomPieChartType) {
 	}, [protein, fats, carbs]);
 	const [data, setData] = useState({
 		title: 'Macro Dist',
-		labels: ['Protein', 'Fats', 'Carbs'],
+		labels: [PROTEIN, FATS, CARBS],
 		datasets: [
 			{
 				label: 'Macro distribution',

@@ -1,4 +1,4 @@
-import { DietPlan } from '../../helper/data';
+import { CARBS, DietPlan, FATS, PROTEIN } from '../../helper/data';
 
 type MacroTableProps = {
 	macroDistribution: DietPlan;
@@ -14,13 +14,13 @@ function MacroTable({ macroDistribution }: MacroTableProps) {
 							Macros
 						</th>
 						<th scope="col" className="px-6 py-3">
-							Protein
+							{PROTEIN}
 						</th>
 						<th scope="col" className="px-6 py-3">
-							Fats
+							{FATS}
 						</th>
 						<th scope="col" className="px-6 py-3">
-							Farbs
+							{CARBS}
 						</th>
 					</tr>
 				</thead>
