@@ -24,7 +24,7 @@ export const DisplayBaseInfo = () => {
 				<div className="w-64 shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
 					<h1 className="text-xl font-bold mb-2">Biometric Data</h1>
 					<p className="text-sm">
-						<label className="font-bold">sex: </label>
+						<label className="font-bold">Sex: </label>
 						<span>{bmrData.sex}</span>
 					</p>
 					<p className="text-sm">
