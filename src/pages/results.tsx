@@ -6,7 +6,7 @@ import DisplayBaseInfo from '../components/dashboard/main-info';
 import BannerMetricInfo from '../components/dashboard/metric-info';
 import DashboardTabsComponent from '../components/dashboard/tabs';
 import HeadComponent from '../components/head';
-import { objectiveValues } from '../helper/data';
+import { CarbIntake, objectiveValues } from '../helper/data';
 import { getallDietObjectives, getMacroDistribution } from '../helper/tdee';
 import ResultsPageLayout from '../layout/results-layout';
 import { tdeeAtom, objectiveAtom } from './tdee';
@@ -85,21 +85,21 @@ function ResultsPage() {
 					activePlanTab={activePlanTab}>
 					<div className=" flex flex-wrap flex-row justify-center">
 						<CustomPieChart
-							protein={macroDistribution['Moderate Carb'].protein}
-							fats={macroDistribution['Moderate Carb'].fats}
-							carbs={macroDistribution['Moderate Carb'].carbs}
+							protein={macroDistribution[CarbIntake.MODERATE].protein}
+							fats={macroDistribution[CarbIntake.MODERATE].fats}
+							carbs={macroDistribution[CarbIntake.MODERATE].carbs}
 							title="Moderate Carb"
 						/>
 						<CustomPieChart
-							protein={macroDistribution['Low Carb'].protein}
-							fats={macroDistribution['Low Carb'].fats}
-							carbs={macroDistribution['Low Carb'].carbs}
+							protein={macroDistribution[CarbIntake.LOW].protein}
+							fats={macroDistribution[CarbIntake.LOW].fats}
+							carbs={macroDistribution[CarbIntake.LOW].carbs}
 							title="Low Carb"
 						/>
 						<CustomPieChart
-							protein={macroDistribution['High Carb'].protein}
-							fats={macroDistribution['High Carb'].fats}
-							carbs={macroDistribution['High Carb'].carbs}
+							protein={macroDistribution[CarbIntake.HIGH].protein}
+							fats={macroDistribution[CarbIntake.HIGH].fats}
+							carbs={macroDistribution[CarbIntake.HIGH].carbs}
 							title="High Carb"
 						/>
 					</div>

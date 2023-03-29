@@ -4,7 +4,7 @@ import FormTitle from '../components/forms/form-title';
 import HeadComponent from '../components/head';
 import Select from '../components/select';
 import {
-	workoutVolumesList,
+	activityLevelValues,
 	dataOptions,
 	goalList,
 	CaloricDistribution,
@@ -81,7 +81,7 @@ function TdeePage() {
 					<Select
 						label="Activity volume"
 						id="activity"
-						options={dataOptions(workoutVolumesList)}
+						options={dataOptions(activityLevelValues)}
 						selected
 						methods={register('activity')}
 						placeholder="Select activity"

@@ -3,7 +3,7 @@ import {
 	FAT_PER_GRAM,
 	goalList,
 	PROTEIN_PER_GRAM,
-	workoutVolumesList,
+	activityLevelValues,
 	MEDIUM_CARB,
 	HIGH_CARB,
 	LOW_CARB,
@@ -24,7 +24,7 @@ interface Plan {
 }
 
 export const calculateTDEE = (bmr: number, activity: string): number => {
-	const activityFactor = workoutVolumesList[activity];
+	const activityFactor = activityLevelValues[activity];
 	return Math.trunc(bmr * activityFactor);
 };
 
