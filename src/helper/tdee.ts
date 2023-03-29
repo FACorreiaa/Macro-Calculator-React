@@ -9,6 +9,9 @@ import {
 	LOW_CARB,
 	CaloricDistribution,
 	DietPlan,
+	MAINTENANCE,
+	BULKING,
+	CUTTING,
 } from './data';
 
 interface Macros {
@@ -37,11 +40,11 @@ export const calculateCalorieTarget = (tdee: number, goal: string): number => {
 	return Math.trunc(tdee + goalAmount);
 };
 
-export const getallDietObjectives = (bmr: number, objective: string): Plan => {
+export const getallDietObjectives = (bmr: number): Plan => {
 	return {
-		Maintenance: calculateCalorieTarget(bmr, objective),
-		Cutting: calculateCalorieTarget(bmr, objective),
-		Bulking: calculateCalorieTarget(bmr, objective),
+		Maintenance: calculateCalorieTarget(bmr, MAINTENANCE),
+		Cutting: calculateCalorieTarget(bmr, CUTTING),
+		Bulking: calculateCalorieTarget(bmr, BULKING),
 	};
 };
 

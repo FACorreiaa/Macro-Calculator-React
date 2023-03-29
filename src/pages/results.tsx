@@ -40,7 +40,7 @@ function ResultsPage() {
 	const [objective] = useAtom(objectiveAtom);
 	const [activePlanTab, setActivePlanTab] = useState(objective);
 	const [tdee] = useAtom(tdeeAtom);
-	const dietObjectives = getallDietObjectives(tdee, activePlanTab);
+	const dietObjectives = getallDietObjectives(tdee);
 
 	const [macroDistribution, setMacroDistribution] = useState(
 		getMacroDistribution(
