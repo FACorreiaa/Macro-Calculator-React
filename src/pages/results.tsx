@@ -1,6 +1,7 @@
 import BannerInfoComponent from '../components/banner-info';
 import DisplayCalorieObjective from '../components/dashboard/calories-objective';
 import CustomPieChart from '../components/dashboard/chart/pie-chart';
+import MacroTable from '../components/dashboard/macro-table';
 import DisplayBaseInfo from '../components/dashboard/main-info';
 import BannerMetricInfo from '../components/dashboard/metric-info';
 import DashboardTabsComponent from '../components/dashboard/tabs';
@@ -102,6 +103,7 @@ function ResultsPage() {
 							title="High Carb"
 						/>
 					</div>
+					<MacroTable macroDistribution={macroDistribution} />
 				</DisplayMacros>
 			</div>
 		</ResultsPageLayout>

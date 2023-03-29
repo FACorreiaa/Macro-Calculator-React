@@ -54,8 +54,8 @@ function CustomPieChart({ protein, fats, carbs, title }: CustomPieChartType) {
 					'rgba(255, 206, 86, 1)',
 				],
 				borderWidth: 2,
-				innerHeight: 100,
-				innerWidth: 100,
+				innerHeight: 300,
+				innerWidth: 300,
 			},
 		],
 	});
