@@ -5,7 +5,14 @@ import Input from '../components/input';
 import Select from '../components/select';
 import TabsComponent from '../components/tabs';
 import { calculateBMR } from '../helper/bmr';
-import { measureValues, PersonalData, sexOptions } from '../helper/data';
+import {
+	measureValues,
+	PersonalData,
+	sexOptions,
+	Measure,
+	METRIC,
+	Tabs,
+} from '../helper/data';
 import useZodForm from '../hooks/useZodForm';
 import FormPageLayout from '../layout/form-layout';
 import { BmrInput, tdeeSchema } from '../types/tdeeSchema';
@@ -17,9 +24,10 @@ const BmrDefaultValues = {
 	age: '',
 	sex: '',
 	height: '',
-	metric: 'Metric',
+	metric: METRIC,
 	weight: '',
 };
+
 export const bmrAtom = atom(0);
 export const bmrCalculationValuesAtom = atom(BmrDefaultValues);
 
@@ -33,7 +41,7 @@ function BmrPage() {
 	const [, setBmr] = useAtom(bmrAtom);
 	const [, setBmrCalculationValues] = useAtom(bmrCalculationValuesAtom);
 
-	const [activeTab, setActiveTab] = useState('Metric');
+	const [activeTab, setActiveTab] = useState<Tabs>(METRIC);
 	const navigate = useNavigate();
 
 	const handleTabClick = (event: any) => {
@@ -69,7 +77,7 @@ function BmrPage() {
 						options={sexOptions}
 						selected
 						methods={register(PersonalData.SEX)}
-						placeholder="Select sex"
+						placeholder="Sex"
 					/>
 
 					<Input
@@ -84,7 +92,7 @@ function BmrPage() {
 						label="Weight"
 						id={PersonalData.WEIGHT}
 						type="number"
-						placeholder="Insert your weight"
+						placeholder={`Insert your weight (${Measure[activeTab].weight})`}
 						methods={register(PersonalData.WEIGHT)}
 						errorMessage={formState.errors.weight?.message}
 					/>
@@ -92,7 +100,7 @@ function BmrPage() {
 						label="Height"
 						id={PersonalData.HEIGHT}
 						type="number"
-						placeholder="Insert your height"
+						placeholder={`Insert your height (${Measure[activeTab].height})`}
 						methods={register(PersonalData.HEIGHT)}
 						errorMessage={formState.errors.age?.message}
 					/>

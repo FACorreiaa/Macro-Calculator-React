@@ -1,4 +1,4 @@
-import { CARBS, FATS, PROTEIN } from '../../helper/data';
+import { CARBS, FATS, GRAMS, PROTEIN } from '../../helper/data';
 
 type CustomMacroCardType = {
 	title: string;
@@ -13,15 +13,21 @@ function CustomMacroCard({ title, protein, fats, carbs }: CustomMacroCardType) {
 
 			<p className="text-sm">
 				<label className="font-bold">{PROTEIN}: </label>
-				<span>{protein}</span>
+				<span>
+					{protein} {GRAMS}
+				</span>
 			</p>
 			<p className="text-sm">
 				<label className="font-bold">{FATS}: </label>
-				<span>{fats}</span>
+				<span>
+					{fats} {GRAMS}
+				</span>
 			</p>
 			<p className="text-sm">
 				<label className="font-bold">{CARBS}: </label>
-				<span>{carbs}</span>
+				<span>
+					{carbs} {GRAMS}
+				</span>
 			</p>
 		</div>
 	);

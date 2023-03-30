@@ -12,6 +12,11 @@ export const MAINTENANCE = 'Maintenance';
 export const BULKING = 'Bulking';
 export const CUTTING = 'Cutting';
 
+export const YEARS = 'years';
+export const GRAMS = 'grams';
+export const KCALS = 'kcals';
+export type Tabs = 'Metric' | 'Imperial';
+
 export const measureValues = [
 	{
 		label: METRIC,
@@ -98,16 +103,16 @@ export const CaloricDistribution: {
 	},
 };
 
-export interface Measure {
+export const Measure: { [key: string]: any } = {
 	Metric: {
-		height: 'cm';
-		weight: 'kg';
-	};
+		height: 'cm',
+		weight: 'kg',
+	},
 	Imperial: {
-		height: 'lb';
-		weight: 'ft';
-	};
-}
+		height: 'lb',
+		weight: 'ft',
+	},
+};
 
 export interface DietPlan {
 	[key: string]: {

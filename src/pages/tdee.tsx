@@ -80,21 +80,21 @@ function TdeePage() {
 					<FormTitle title="Calculate your TDEE" />
 
 					<Select
-						label="Select activity"
+						label="Weekly activity"
 						id="activity"
 						options={dataOptions(activityLevelValues)}
 						selected
 						methods={register(PersonalData.ACTIVITY)}
-						placeholder="Select activity"
+						placeholder="Weekly activity"
 					/>
 
 					<Select
-						label="Select volume"
+						label="Diet objective"
 						id="objective"
 						options={dataOptions(goalList)}
 						selected
 						methods={register(PersonalData.OBJECTIVE)}
-						placeholder="Select objective"
+						placeholder="Diet objective"
 					/>
 
 					<div className="flex justify-between">

@@ -1,3 +1,4 @@
+import { KCALS, Measure } from '../../helper/data';
 import { bmrCalculationValuesAtom, bmrAtom } from '../../pages/bmr';
 import {
 	macrosAtom,
@@ -18,6 +19,7 @@ export const DisplayBaseInfo = () => {
 	const [activity] = useAtom(activityAtom);
 	const [allDietObjectives] = useAtom(dietObjectiveListAtom);
 
+	const metric = bmrData.metric;
 	return (
 		<div className="bg-slate-100 border border-slate-400  p-2  rounded relative text-center m-5">
 			<div className="justify-between flex flex-row p-4 m-5">
@@ -33,21 +35,29 @@ export const DisplayBaseInfo = () => {
 					</p>
 					<p className="text-sm">
 						<label className="font-bold">Weight: </label>
-						<span>{bmrData.weight}</span>
+						<span>
+							{bmrData.weight} {Measure[metric].weight}
+						</span>
 					</p>
 					<p className="text-sm">
 						<label className="font-bold">Height: </label>
-						<span>{bmrData.height}</span>
+						<span>
+							{bmrData.height} {Measure[metric].height}
+						</span>
 					</p>
 					<p className="text-sm">
 						<label className="font-bold">BMR: </label>
-						<span>{bmr}</span>
+						<span>
+							{bmr} {KCALS}
+						</span>
 					</p>
 				</div>
 				<div className="w-64 shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
 					<h1 className="text-xl font-bold mb-2">TDEE</h1>
 					<p className="text-sm ">
-						<span className="text-lg">{tdee}</span>
+						<span className="text-lg">
+							{tdee} {KCALS}
+						</span>
 					</p>
 				</div>
 				<div className="w-64 shadow-sm justify-center  shadow-slate-800  bg-white p-6 border border-spacing-2 rounded">
@@ -63,15 +73,21 @@ export const DisplayBaseInfo = () => {
 					</p>
 					<p className="text-sm">
 						<label className="font-bold">Maintenance calories: </label>
-						<span>{allDietObjectives.Maintenance}</span>
+						<span>
+							{allDietObjectives.Maintenance} {KCALS}
+						</span>
 					</p>
 					<p className="text-sm">
 						<label className="font-bold">Bulking Calories: </label>
-						<span>{allDietObjectives.Bulking}</span>
+						<span>
+							{allDietObjectives.Bulking} {KCALS}
+						</span>
 					</p>
 					<p className="text-sm">
 						<label className="font-bold">Cutting Calories: </label>
-						<span>{allDietObjectives.Cutting}</span>
+						<span>
+							{allDietObjectives.Cutting} {KCALS}
+						</span>
 					</p>
 				</div>
 			</div>

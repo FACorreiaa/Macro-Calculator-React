@@ -1,3 +1,4 @@
+import { KCALS } from '../../helper/data';
 import { dietObjectiveAtom, objectiveAtom } from '../../pages/tdee';
 import { useAtom } from 'jotai';
 
@@ -14,12 +15,14 @@ export const DisplayCalorieObjective = () => {
 					<label className="font-bold">Calories target:&nbsp; </label>
 					<span>
 						For {objective} you should consume{' '}
-						<span className="underline font-bold text-lg">{dietObjective}</span>{' '}
+						<span className="underline font-bold text-lg">
+							{dietObjective} {KCALS}
+						</span>{' '}
 						per day or&nbsp;
 					</span>
 					<span>
 						<span className="underline font-bold text-lg">
-							{dietObjective * 7}
+							{dietObjective * 7} {KCALS}
 						</span>{' '}
 						per week
 					</span>
