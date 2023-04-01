@@ -4,7 +4,6 @@ import HeadComponent from '../components/head';
 import Input from '../components/input';
 import Select from '../components/select';
 import TabsComponent from '../components/tabs';
-import { calculateBMR } from '../helper/bmr';
 import {
 	measureValues,
 	PersonalData,
@@ -13,6 +12,7 @@ import {
 	METRIC,
 	Tabs,
 } from '../helper/data';
+import { calculateBMR } from '../helper/tdee';
 import useZodForm from '../hooks/useZodForm';
 import FormPageLayout from '../layout/form-layout';
 import { BmrInput, tdeeSchema } from '../types/tdeeSchema';
@@ -102,7 +102,7 @@ function BmrPage() {
 						type="number"
 						placeholder={`Insert your height (${Measure[activeTab].height})`}
 						methods={register(PersonalData.HEIGHT)}
-						errorMessage={formState.errors.age?.message}
+						errorMessage={formState.errors.height?.message}
 					/>
 
 					<div className="flex justify-between">

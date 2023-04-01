@@ -1,3 +1,4 @@
+import { BmrInput } from '../types/tdeeSchema';
 import {
 	CARB_PER_GRAM,
 	FAT_PER_GRAM,
@@ -25,6 +26,61 @@ interface Plan {
 	Cutting: number;
 	Bulking: number;
 }
+
+export const maleAgeFactor = 88.362;
+export const femaleAgeFactor = 447.593;
+
+type MetricSystem = 'Metric' | 'Imperial';
+type Gender = 'Male' | 'Female';
+
+const conversion = {
+	Metric: {
+		Male: {
+			weightMultiplier: 13.4,
+			heightMultiplier: 4.8,
+			ageMultiplier: 5.7,
+			ageFactor: 88.362,
+		},
+		Female: {
+			weightMultiplier: 9.2,
+			heightMultiplier: 3.1,
+			ageMultiplier: 4.3,
+			ageFactor: 447.593,
+		},
+	},
+	Imperial: {
+		Male: {
+			weightMultiplier: 6.23,
+			heightMultiplier: 12.7,
+			ageMultiplier: 6.8,
+			ageFactor: 88.362,
+		},
+		Female: {
+			weightMultiplier: 4.35,
+			heightMultiplier: 4.7,
+			ageMultiplier: 4.7,
+			ageFactor: 447.593,
+		},
+	},
+};
+
+export const calculateBMR = ({
+	age,
+	sex,
+	metric,
+	weight,
+	height,
+}: BmrInput): number => {
+	return Math.trunc(
+		conversion[metric as MetricSystem][sex as Gender].ageFactor +
+			conversion[metric as MetricSystem][sex as Gender].weightMultiplier *
+				Number(weight) +
+			conversion[metric as MetricSystem][sex as Gender].heightMultiplier *
+				Number(height) -
+			conversion[metric as MetricSystem][sex as Gender].ageMultiplier *
+				Number(age)
+	);
+};
 
 export const calculateTDEE = (bmr: number, activity: string): number => {
 	const activityFactor = activityLevelValues[activity];

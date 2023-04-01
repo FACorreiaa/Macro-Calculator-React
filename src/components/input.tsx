@@ -18,7 +18,7 @@ function Input({
 }: InputProps) {
 	return (
 		<div className="mb-6">
-			<label className="block text-gray-200 dark:text-gray-950 text-sm font-bold">
+			<label className="block text-gray-200 dark:text-gray-950 mb-1 text-sm font-bold">
 				{label}
 			</label>
 			<input
