@@ -134,7 +134,7 @@ export const DisplayBaseInfo = () => {
 
 	const metric = biometricData.metric;
 	return (
-		<div className="bg-slate-100 border border-slate-400  p-2  rounded relative text-center m-5">
+		<div className="bg-purple-200 border border-slate-400  p-2  rounded relative text-center m-5">
 			<div className="p-2 m-5  rounded relative text-center flex justify-center items-center flex-col sm:flex-row sm:justify-between shadow-slate-800 shadow-sm border bg-white">
 				<BiometricDataCard
 					biometricData={biometricData}

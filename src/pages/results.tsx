@@ -25,7 +25,7 @@ const DisplayMacros = ({
 	handlePlanTabClick,
 }: DisplayMacrosType) => {
 	return (
-		<div className="bg-slate-100 border border-slate-400  p-2  rounded relative text-center m-5">
+		<div className="bg-purple-200 border border-slate-400  p-2  rounded relative text-center m-5">
 			<DashboardTabsComponent
 				planOptions={objectiveValues}
 				activePlanTab={activePlanTab}
