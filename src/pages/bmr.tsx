@@ -50,7 +50,7 @@ function BmrPage() {
 		setValue('metric', tab);
 	};
 
-	function onSubmitbmrDataPage(values: BmrInput) {
+	function onSubmitbiometricDataPage(values: BmrInput) {
 		const bmr = calculateBMR(values);
 		setBmr(bmr);
 		setBmrCalculationValues(values);
@@ -64,7 +64,7 @@ function BmrPage() {
 				content="Calculate your basic calories inserting Age, sexm Height and Weight"
 			/>
 			<div className="w-full max-w-xs ">
-				<BmrForm onFormSubmit={handleSubmit(onSubmitbmrDataPage)}>
+				<BmrForm onFormSubmit={handleSubmit(onSubmitbiometricDataPage)}>
 					<TabsComponent
 						options={measureValues}
 						activeTab={activeTab}

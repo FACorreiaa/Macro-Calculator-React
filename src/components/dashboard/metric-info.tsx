@@ -2,7 +2,7 @@ import { bmrCalculationValuesAtom } from '../../pages/bmr';
 import { useAtom } from 'jotai';
 
 function BannerMetricInfo() {
-	const [bmrData] = useAtom(bmrCalculationValuesAtom);
+	const [biometricData] = useAtom(bmrCalculationValuesAtom);
 
 	return (
 		<div
@@ -10,7 +10,8 @@ function BannerMetricInfo() {
 			role="alert">
 			<strong className="font-bold">Measuring: </strong>
 			<span className="block sm:inline">
-				You are using <strong className="font-bold">{bmrData.metric} </strong>
+				You are using{' '}
+				<strong className="font-bold">{biometricData.metric} </strong>
 				system
 			</span>
 		</div>

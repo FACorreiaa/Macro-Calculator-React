@@ -7,9 +7,9 @@ type MacroTableProps = {
 function MacroTable({ macroDistribution }: MacroTableProps) {
 	return (
 		<div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-			<table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+			<table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 sm:bg-white sm:shadow-lg">
 				<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-					<tr>
+					<tr className="sm:table-row sm:rounded-none sm:mb-0 mb-2">
 						<th scope="col" className="px-6 py-3">
 							Macros
 						</th>
@@ -29,7 +29,7 @@ function MacroTable({ macroDistribution }: MacroTableProps) {
 						return (
 							<tr
 								key={title}
-								className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+								className="sm:table-row sm:rounded-none sm:mb-0 mb-2 bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 								<th
 									scope="row"
 									className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
